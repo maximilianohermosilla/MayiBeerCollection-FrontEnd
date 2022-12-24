@@ -1,6 +1,6 @@
 
 .card-body{
-    width: 100%;
+    margin: 0 1%;
 }
 
 .mat-table {
@@ -27,6 +27,10 @@
 
 mat-icon{
     color: white;
+}
+
+mat-header-row{
+    background-color: #989898
 }
 
 .green{
