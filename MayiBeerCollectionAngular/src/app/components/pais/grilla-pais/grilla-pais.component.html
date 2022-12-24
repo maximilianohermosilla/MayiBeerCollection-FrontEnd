@@ -1,0 +1,40 @@
+<div class="card-body">
+    <div class="tab-content">
+        <div class="active tab-pane">
+
+            <div class="col-sm-12">
+                <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.nombre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef class="text-end">Acciones</th>
+                        <td mat-cell *matCellDef="let element" class="text-end">
+                            <section>                                
+                                <div class="example-button-row">
+                                    <div class="example-flex-container">                                                           
+                                        <button mat-mini-fab class="green" (click)="ver(element)">                                    
+                                            <mat-icon style="cursor: pointer;">edit_square</mat-icon>                                    
+                                        </button>
+                                        &nbsp;&nbsp;
+                                        <button mat-mini-fab class="delete" (click)="ver(element)">                                    
+                                            <mat-icon style="cursor: pointer;">delete</mat-icon>                                    
+                                        </button>
+                                        &nbsp;&nbsp;
+                                        <button mat-mini-fab color="warn" (click)="ver(element)">                                    
+                                            <mat-icon style="cursor: pointer;">location_city</mat-icon>                                    
+                                        </button>
+                                    </div>
+                                </div>                                
+                            </section>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="nombreColumnas" class="background-color: green"></tr>
+                    <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
