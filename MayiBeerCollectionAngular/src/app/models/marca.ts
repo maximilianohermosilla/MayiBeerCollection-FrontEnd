@@ -1,4 +1,4 @@
-export class Marca{
+export interface Marca{
     Id?: number;
-    Nombre?: string;
+    Nombre: string;
 }

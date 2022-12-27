@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MarcaService } from 'src/app/services/marca.service';
 
 @Component({
   selector: 'app-marca',
@@ -6,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./marca.component.css']
 })
 export class MarcaComponent {
-
+  
 }

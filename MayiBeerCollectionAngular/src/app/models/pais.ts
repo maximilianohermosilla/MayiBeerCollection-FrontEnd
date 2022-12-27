@@ -1,4 +1,4 @@
-export class Pais{
+export interface Pais{
     Id?: number;
-    Nombre?: string;
+    Nombre: string;
 }

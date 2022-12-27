@@ -14,6 +14,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatAutocompleteModule,
+    MatToolbarModule,
+    MatListModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
@@ -50,6 +54,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatAutocompleteModule,
+    MatToolbarModule,
+    MatListModule,
     ReactiveFormsModule,
     HttpClientModule
   ]

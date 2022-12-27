@@ -1,0 +1,57 @@
+
+.card-body{
+    margin: 0 1%;
+}
+
+.mat-table {
+    width: 100% !important;
+}
+
+.tabla {
+    width: 100%;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.54) 0px 3px 8px;
+}
+
+.enabled {
+    /* background-color: #a27b7b; */
+    background-color: none;
+}
+
+.disabled {
+    background-color: #f0f0f0;
+}
+
+.mat-row:hover {
+    background-color: #d9f8d3 !important;
+}
+
+mat-icon{
+    color: white;
+}
+
+mat-header-row{
+    background-color: #989898
+}
+
+.green{
+    background-color: green;
+}
+
+.delete{
+    background-color: crimson;
+}
+
+.example-flex-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+  
+.example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+    padding-right: 10px;
+    margin-right: 10px;
+}

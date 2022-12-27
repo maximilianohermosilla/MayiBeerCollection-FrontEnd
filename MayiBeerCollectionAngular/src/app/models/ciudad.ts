@@ -1,6 +1,6 @@
-export class Ciudad{
+export interface Ciudad{
     Id?: number;
-    Nombre?: string;
-    IdPais?: number;
-    NombrePais?: string;
+    Nombre: string;
+    IdPais: number;
+    NombrePais: string;
 }

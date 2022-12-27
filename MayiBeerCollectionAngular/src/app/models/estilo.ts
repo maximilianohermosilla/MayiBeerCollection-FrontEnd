@@ -1,4 +1,4 @@
-export class Estilo{
+export interface Estilo{
     Id?: number;
-    Nombre?: string;
+    Nombre: string;
 }
