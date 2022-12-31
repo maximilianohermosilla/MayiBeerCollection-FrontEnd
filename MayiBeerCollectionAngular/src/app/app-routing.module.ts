@@ -5,10 +5,11 @@ import { GrillaCiudadComponent } from './components/ciudad/grilla-ciudad/grilla-
 import { GrillaEstiloComponent } from './components/estilo/grilla-estilo/grilla-estilo.component';
 import { GrillaMarcaComponent } from './components/marca/grilla-marca/grilla-marca.component';
 import { GrillaPaisComponent } from './components/pais/grilla-pais/grilla-pais.component';
+import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '',    
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -34,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: GrillaCervezaComponent
+    component: NotfoundComponent
   }
 ];
 

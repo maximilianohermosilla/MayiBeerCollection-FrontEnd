@@ -18,6 +18,7 @@ import { CervezaComponent } from './components/cerveza/cerveza.component';
 import { GrillaCervezaComponent } from './components/cerveza/grilla-cerveza/grilla-cerveza.component';
 import { SharedModule } from './shared/shared/shared.module';
 import { BannerTitleComponent } from './components/shared/banner-title/banner-title.component';
+import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BannerTitleComponent } from './components/shared/banner-title/banner-ti
     GrillaEstiloComponent,
     CervezaComponent,
     GrillaCervezaComponent,
-    BannerTitleComponent
+    BannerTitleComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

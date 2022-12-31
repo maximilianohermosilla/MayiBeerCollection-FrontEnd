@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MarcaService } from 'src/app/services/marca.service';
 
@@ -9,6 +10,7 @@ import { MarcaService } from 'src/app/services/marca.service';
 })
 export class GrillaMarcaComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
 
@@ -17,8 +19,7 @@ export class GrillaMarcaComponent {
   ngOnInit(): void {
     this.serviceMarca.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource = rta;
-      console.log(rta);
+      this.dataSource.paginator = this.paginator;
     })
   }
 

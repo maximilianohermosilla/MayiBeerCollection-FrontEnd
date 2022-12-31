@@ -1,14 +1,14 @@
 .class-icon{
-    font-size: 6vw;
-    min-height: 6vw;
-    min-width: 6vw;
+    font-size: 5vh;
+    min-height: 5vh;
+    min-width: 5vh;
 }
 
 .green{
     color:white;
     background-color: green;
-    min-height: 4vw;
-    min-width: 4vw;
+    min-height: 3vw;
+    min-width: 3vw;
 }
 
 .title-grilla{ 
@@ -16,10 +16,10 @@
     justify-content: space-between;
     box-shadow: rgba(0, 0, 0, 0.54) 0px 3px 8px;
     align-items: center;
-    font-size: 5vw; 
-    min-height: 7vw;
-    margin: 2vw 4vw;
-    padding: 3vw 5vw;
+    font-size: 3vh;
+    min-height: 5vw;
+    margin: 2vw 10vw;
+    padding: 1vw 2vw;
     background-image: linear-gradient(-180deg,#606060,#303030 90%);
     fill:#fff;  
     background-repeat:repeat;

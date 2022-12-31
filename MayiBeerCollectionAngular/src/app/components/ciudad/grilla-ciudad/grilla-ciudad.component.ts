@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { CiudadService } from 'src/app/services/ciudad.service';
 
@@ -9,16 +10,16 @@ import { CiudadService } from 'src/app/services/ciudad.service';
 })
 export class GrillaCiudadComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
-  nombreColumnas: string[] = ["nombre", "acciones"];
+  nombreColumnas: string[] = ["nombre", "pais", "acciones"];
 
   constructor(private servicioCiudad: CiudadService) { }
 
   ngOnInit(): void {
     this.servicioCiudad.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource = rta;
-      console.log(rta);
+      this.dataSource.paginator = this.paginator;
     })
   }
 

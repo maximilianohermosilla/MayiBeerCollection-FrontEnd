@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EstiloService } from 'src/app/services/estilo.service';
 
@@ -9,6 +10,7 @@ import { EstiloService } from 'src/app/services/estilo.service';
 })
 export class GrillaEstiloComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
 
@@ -17,8 +19,7 @@ export class GrillaEstiloComponent {
   ngOnInit(): void {
     this.servicioEstilo.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource = rta;
-      console.log(rta);
+      this.dataSource.paginator = this.paginator;
     })
   }
 

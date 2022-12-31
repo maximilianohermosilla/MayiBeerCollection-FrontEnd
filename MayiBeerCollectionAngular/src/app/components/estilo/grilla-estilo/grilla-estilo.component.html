@@ -21,11 +21,7 @@
                                         &nbsp;&nbsp;
                                         <button mat-mini-fab class="delete" (click)="ver(element)">                                    
                                             <mat-icon style="cursor: pointer;">delete</mat-icon>                                    
-                                        </button>
-                                        &nbsp;&nbsp;
-                                        <button mat-mini-fab color="warn" (click)="ver(element)">                                    
-                                            <mat-icon style="cursor: pointer;">location_city</mat-icon>                                    
-                                        </button>
+                                        </button>                                     
                                     </div>
                                 </div>                                
                             </section>
@@ -34,6 +30,10 @@
                     <tr mat-header-row *matHeaderRowDef="nombreColumnas" style="background-color: #656565"></tr>
                     <tr class="fila" mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
                 </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons
+                                aria-label="Select page">
+                </mat-paginator>
             </div>
         </div>
     </div>
