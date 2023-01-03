@@ -1,6 +1,6 @@
 export interface Ciudad{
-    Id?: number;
-    Nombre: string;
-    IdPais: number;
-    NombrePais: string;
+    id: number;
+    nombre: string;
+    idPais: number;
+    nombrePais: string;
 }

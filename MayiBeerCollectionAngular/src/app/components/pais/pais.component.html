@@ -1,4 +1,4 @@
-<div mat-dialog-content>    
+<div mat-dialog-content class="dialog-content">    
         <div class="card-container">
             <h1>{{title}}</h1>
             <form [formGroup]="formGroup" class="form-horizontal row">
@@ -17,6 +17,6 @@
         </div>   
 </div>
 <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="true">Cancelar</button>
     <button mat-button (click)="save()">Guardar</button>
+    <button mat-button [mat-dialog-close]="true">Cancelar</button>
 </div>

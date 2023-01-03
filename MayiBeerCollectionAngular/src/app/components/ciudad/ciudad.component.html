@@ -1,1 +1,22 @@
-<p>ciudad works!</p>
+<div mat-dialog-content class="dialog-content">    
+    <div class="card-container">
+        <h1>{{title}}</h1>
+        <br><br>
+        <form [formGroup]="formGroup" class="form-horizontal row">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>País</mat-label>
+            <mat-select formControlName="pais"  [(ngModel)]="datos.idPais">
+                <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        </form>          
+    </div>   
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button type="button" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
+</div>

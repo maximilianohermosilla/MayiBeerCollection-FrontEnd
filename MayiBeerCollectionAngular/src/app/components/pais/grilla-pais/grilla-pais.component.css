@@ -60,6 +60,10 @@ mat-header-row{
     width: 100%;
 }
 
+.dialog-content {
+    margin: 10px;
+}
+
 @media screen and (max-width: 575px) {
     .card-body{
         margin: 8px;

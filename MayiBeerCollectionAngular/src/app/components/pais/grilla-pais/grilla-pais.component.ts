@@ -31,6 +31,22 @@ export class GrillaPaisComponent implements OnInit{
     })
   }
 
+  
+  openDialog(): void {
+    console.log("Nuevo pais");
+    const dialogRef = this.dialog.open(PaisComponent,{
+      width: '640px',disableClose: false, data: {
+        title: "Nuevo Pais",
+        pais: null
+      } 
+    });
+
+    dialogRef.afterClosed().subscribe( res => {
+      console.log("Cerraste el dialog");
+      this.ngOnInit();
+    })
+  }
+
   ver(event: any) {
     console.log(event);
     const dialogRef = this.dialog.open(PaisComponent,{
@@ -43,6 +59,11 @@ export class GrillaPaisComponent implements OnInit{
     dialogRef.afterClosed().subscribe( res => {
       console.log("Cerraste el dialog");
     })
+
+  }  
+
+  verCiudades(event: any) {
+    console.log(event);   
 
   }
 
@@ -66,18 +87,4 @@ export class GrillaPaisComponent implements OnInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog(): void {
-    console.log("Nuevo pais");
-    const dialogRef = this.dialog.open(PaisComponent,{
-      width: '640px',disableClose: false, data: {
-        title: "Nuevo Pais",
-        pais: null
-      } 
-    });
-
-    dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
-      this.ngOnInit();
-    })
-}
 }

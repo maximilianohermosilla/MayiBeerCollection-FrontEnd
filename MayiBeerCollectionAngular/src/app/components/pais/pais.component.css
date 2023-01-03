@@ -1,5 +1,6 @@
 body{
     background-color: #323232;
+    padding: 10px;
 }
 .content {
     display: flex;
@@ -19,6 +20,7 @@ body{
     color: white;
     width: 80%;
     min-width: 300px;
+    padding: 10px;
   }
 
   
@@ -109,4 +111,8 @@ body{
   mat-label{
     color: white;
     border-color: white;
+  }
+
+  .dialog-content {
+    margin: 10px;
   }

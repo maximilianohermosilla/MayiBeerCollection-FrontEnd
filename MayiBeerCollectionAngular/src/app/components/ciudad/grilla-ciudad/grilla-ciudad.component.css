@@ -54,3 +54,7 @@ mat-header-row{
     padding-right: 10px;
     margin-right: 10px;
 }
+
+.card-container{
+    align-items: center;
+}
