@@ -6,7 +6,7 @@ import { EstiloService } from 'src/app/services/estilo.service';
 @Component({
   selector: 'app-grilla-estilo',
   templateUrl: './grilla-estilo.component.html',
-  styleUrls: ['./grilla-estilo.component.css']
+  styleUrls: ['../../shared/style-grilla.css']
 })
 export class GrillaEstiloComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
@@ -23,5 +23,9 @@ export class GrillaEstiloComponent {
     })
   }
 
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   ver(db: any) {}
 }

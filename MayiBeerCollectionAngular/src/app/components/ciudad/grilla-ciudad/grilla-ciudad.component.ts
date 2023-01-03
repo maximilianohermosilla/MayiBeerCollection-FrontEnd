@@ -6,7 +6,7 @@ import { CiudadService } from 'src/app/services/ciudad.service';
 @Component({
   selector: 'app-grilla-ciudad',
   templateUrl: './grilla-ciudad.component.html',
-  styleUrls: ['./grilla-ciudad.component.css']
+  styleUrls: ['../../shared/style-grilla.css']
 })
 export class GrillaCiudadComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
@@ -21,6 +21,10 @@ export class GrillaCiudadComponent {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ver(db: any) {}

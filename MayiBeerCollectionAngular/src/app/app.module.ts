@@ -19,6 +19,7 @@ import { GrillaCervezaComponent } from './components/cerveza/grilla-cerveza/gril
 import { SharedModule } from './shared/shared/shared.module';
 import { BannerTitleComponent } from './components/shared/banner-title/banner-title.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
+import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NotfoundComponent } from './components/shared/notfound/notfound.compone
     CervezaComponent,
     GrillaCervezaComponent,
     BannerTitleComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

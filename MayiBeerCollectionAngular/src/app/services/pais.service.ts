@@ -19,4 +19,18 @@ export class PaisService {
   public GetAll(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl);    
   }
+
+  public nuevo(pais: Pais): Observable<any> {
+    console.log(pais);
+    return this.http.post<Pais>(this.apiUrl + "nuevo", pais);
+  }
+
+  public actualizar(pais: Pais): Observable<Pais>{
+    console.log(pais);    
+    return this.http.put<Pais>(this.apiUrl + "actualizar", pais);
+  }
+
+  public eliminar(id: number): Observable<any>{
+    return this.http.delete<any>(this.apiUrl + "eliminar/" + id);
+  }
 }

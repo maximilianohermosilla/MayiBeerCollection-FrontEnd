@@ -1,7 +1,14 @@
+<app-banner-title
+text="Estilos"
+icon="soup_kitchen"
+></app-banner-title>
 <div class="card-body">
     <div class="tab-content">
         <div class="active tab-pane">
-
+            <mat-form-field class="search">
+                <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
+                <mat-icon matPrefix class="my-icon">search</mat-icon>
+            </mat-form-field>
             <div class="col-sm-12">
                 <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
                     <ng-container matColumnDef="nombre">

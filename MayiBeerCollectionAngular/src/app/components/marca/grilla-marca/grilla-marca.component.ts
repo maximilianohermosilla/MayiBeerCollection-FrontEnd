@@ -6,7 +6,7 @@ import { MarcaService } from 'src/app/services/marca.service';
 @Component({
   selector: 'app-grilla-marca',
   templateUrl: './grilla-marca.component.html',
-  styleUrls: ['./grilla-marca.component.css']
+  styleUrls: ['../../shared/style-grilla.css']
 })
 export class GrillaMarcaComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
@@ -21,6 +21,10 @@ export class GrillaMarcaComponent {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ver(db: any) {}

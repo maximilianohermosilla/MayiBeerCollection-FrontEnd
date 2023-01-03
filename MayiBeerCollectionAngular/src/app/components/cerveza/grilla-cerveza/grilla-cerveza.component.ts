@@ -23,5 +23,9 @@ export class GrillaCervezaComponent {
     })
   }
 
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
   ver(db: any) {}
 }
