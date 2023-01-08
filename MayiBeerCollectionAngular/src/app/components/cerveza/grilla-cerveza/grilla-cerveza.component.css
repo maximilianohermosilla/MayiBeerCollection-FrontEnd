@@ -94,6 +94,10 @@ mat-header-row{
         margin-top: 5px;
         padding: 0 8%;
     }
+
+    mat-form-field{
+        width: 100%
+    }
     
   }
 

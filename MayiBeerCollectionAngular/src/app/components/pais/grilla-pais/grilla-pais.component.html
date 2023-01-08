@@ -5,7 +5,6 @@ icon="public"
 ></app-banner-title>
 <div class="card-body">
     <div class="tab-content">
-        <button (click)="openDialog()">Nuevo</button>
         <div class="active tab-pane">
             <mat-form-field class="search">
                 <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">

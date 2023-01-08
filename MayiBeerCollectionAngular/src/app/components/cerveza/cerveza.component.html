@@ -1,1 +1,80 @@
-<p>cerveza works!</p>
+<div mat-dialog-content class="dialog-content">    
+    <div class="card-container">
+        <h1>{{title}}</h1>
+        <br><br>
+        <form [formGroup]="formGroup" class="form-horizontal row">
+            <div class="col-md-4">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="marca"  [(ngModel)]="datos.idMarca">
+                <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Estilo</mat-label>
+            <mat-select formControlName="estilo"  [(ngModel)]="datos.idEstilo">
+                <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ciudad</mat-label>
+            <mat-select formControlName="ciudad"  [(ngModel)]="datos.idCiudad">
+                <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <div>
+            <mat-label>Archivo</mat-label>            
+            <input formControlName="imagen" type="file" (change)="selectFile($event)"/>
+        </div> -->
+    </div>
+    <div class="col-md-4">
+        <mat-form-field appearance="fill">
+            <mat-label>Ibu</mat-label>
+            <input formControlName="ibu" matInput type="text" placeholder="" [(ngModel)]="datos.ibu">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Alcohol</mat-label>
+            <input formControlName="alcohol" matInput type="text" placeholder="" [(ngModel)]="datos.alcohol">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Contenido</mat-label>
+            <input formControlName="contenido" matInput type="text" placeholder="" [(ngModel)]="datos.contenido">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <input formControlName="observaciones" matInput type="text" placeholder="" [(ngModel)]="datos.observaciones">
+        </mat-form-field>
+        <!-- <div>
+            <mat-label>Imagen</mat-label>
+            <img [src]="imageFileSanitized" alt="" style="width: 200px; height: 200px">
+        </div> -->
+        
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Imagen</mat-label>
+            <input formControlName="imagen" matInput type="file" placeholder="" [(ngModel)]="archivo" (change)="selectFile($event)" >
+        </mat-form-field> -->
+        <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+        <input hidden (change)="selectFile($event)" #fileInput type="file" id="file"> -->
+    </div>  
+    <div class="col-md-4">
+        <div>
+            <mat-label>Imagen</mat-label>
+            <button type="button" mat-raised-button (click)="fileInput.click()">Seleccionar imagen</button>
+            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </div>
+        <div>
+            <br>
+            <img id="image-beer" [src]="imageFileSanitized" alt="Imagen" style="width: 100%; height: 230px;">
+        </div>
+    </div>    
+        </form>  
+    </div>   
+</div>
+<div mat-dialog-actions class="dialog-actions">
+    <button type="button" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
+</div>

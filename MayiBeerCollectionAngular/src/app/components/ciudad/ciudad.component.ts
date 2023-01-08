@@ -42,18 +42,23 @@ export class CiudadComponent {
     })
   }
 
-  ver(element: any) {
-    console.log(element);    
-  }
-
   save(){
     if (this.formGroup.value.pais){
-      console.log(this.formGroup.value.pais);
+      if (this.datos.id > 0){
+        let _edit: Ciudad = {id: this.datos.id, nombre: this.datos.nombre, idPais: this.datos.idPais, nombrePais: this.datos.nombrePais};
+        this.servicioCiudad.actualizar(_edit).subscribe(result =>
+          {this.refDialog.close(this.formGroup.value);}
+        );
+      }
+      else{   
+        this.servicioCiudad.nuevo(this.datos).subscribe(result =>
+          {this.refDialog.close(this.formGroup.value);}
+        );
+      }
     }
     else{
-      console.log(this.formGroup.value.pais);
       console.log("Debe seleccionar un pais");
     }
-
+    
   }
 }

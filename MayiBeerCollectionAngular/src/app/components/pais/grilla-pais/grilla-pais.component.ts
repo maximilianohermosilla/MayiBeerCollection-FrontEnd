@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PaisService } from 'src/app/services/pais.service';
 import { MatTableModule, MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { PaisComponent } from '../pais.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
@@ -30,7 +29,6 @@ export class GrillaPaisComponent implements OnInit{
       this.dataSource.paginator = this.paginator;
     })
   }
-
   
   openDialog(): void {
     console.log("Nuevo pais");
