@@ -1,0 +1,10 @@
+.dialog-actions{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+  }
+
+  .dialog-content{
+    padding-bottom: 0;
+  }
+  

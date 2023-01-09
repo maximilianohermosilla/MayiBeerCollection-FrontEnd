@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared/shared.module';
 import { BannerTitleComponent } from './components/shared/banner-title/banner-title.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confi
     GrillaCervezaComponent,
     BannerTitleComponent,
     NotfoundComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

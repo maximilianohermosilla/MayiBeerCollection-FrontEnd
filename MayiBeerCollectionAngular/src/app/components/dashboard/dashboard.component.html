@@ -1,0 +1,17 @@
+<mat-form-field class="search">  
+  <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
+  <mat-icon matPrefix class="my-icon">search</mat-icon>
+</mat-form-field>
+<div class="grilla">  
+    <div class="card" *ngFor="let element of cervezas">
+        <div class="card-img">
+          <img class="card-img-top" [src]="element.imagen" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{element.nombre}}</h4>
+          <p hidden class="card-text">{{element.nombreMarca}} {{element.nombreEstilo}}, {{element.nombreCiudad}}</p>
+          <a href="#" class="btn btn-primary">Ver detalle</a>
+        </div>
+      </div>
+</div>
+

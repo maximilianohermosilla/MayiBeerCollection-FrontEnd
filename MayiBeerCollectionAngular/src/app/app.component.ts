@@ -28,6 +28,7 @@ export class AppComponent {
     this.fillerNav.push({nombre: "Estilos",routerlink: "estilos",icon: "soup_kitchen"}); 
     this.fillerNav.push({nombre: "Ciudades",routerlink: "ciudades",icon: "location_city"}); 
     this.fillerNav.push({nombre: "Paises",routerlink: "paises",icon: "public"}); 
+    this.fillerNav.push({nombre: "Dashboard",routerlink: "dashboard",icon: "dashboard"}); 
   }
 
   ngOnDestroy(): void {

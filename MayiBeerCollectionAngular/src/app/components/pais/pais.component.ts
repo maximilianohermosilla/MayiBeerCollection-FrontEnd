@@ -23,7 +23,6 @@ export class PaisComponent implements OnInit{
     this.title = "Nuevo pais";
 
     if (data.pais != undefined) {
-      console.log(data.pais);
       this.datos = data.pais;
       this.title = data.title;
     }
@@ -42,8 +41,6 @@ export class PaisComponent implements OnInit{
   }
 
   save(){
-    console.log(this.datos);
-    console.log(this.datos.id);
     if (this.datos.id > 0){
       console.log("update");
       let _editPais: Pais = {id: this.datos.id, nombre: this.datos.nombre};

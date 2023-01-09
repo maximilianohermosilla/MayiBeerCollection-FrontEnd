@@ -23,7 +23,6 @@ export class MarcaComponent implements OnInit{
     this.title = "Nueva Marca";
 
     if (data.marca != undefined) {
-      console.log(data.marca);
       this.datos = data.marca;
       this.title = data.title;
     }

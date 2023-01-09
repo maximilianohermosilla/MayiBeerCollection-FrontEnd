@@ -23,7 +23,6 @@ export class EstiloComponent implements OnInit{
     this.title = "Nueva Marca";
 
     if (data.estilo != undefined) {
-      console.log(data.estilo);
       this.datos = data.estilo;
       this.title = data.title;
     }
@@ -42,8 +41,6 @@ export class EstiloComponent implements OnInit{
   }
 
   save(){
-    console.log(this.datos);
-    console.log(this.datos.id);
     if (this.datos.id > 0){
       console.log("update");
       let _edit: Estilo = {id: this.datos.id, nombre: this.datos.nombre};

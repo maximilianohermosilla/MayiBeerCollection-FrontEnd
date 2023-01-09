@@ -24,7 +24,6 @@ export class CiudadComponent {
     @Inject(MAT_DIALOG_DATA) public data: { ciudad: any, title: string, paises: any[] }) {
     
     this.title = "Nueva ciudad";
-    console.log(data);
     if (data.ciudad != undefined) {
       this.datos = data.ciudad;
       this.title = data.title;

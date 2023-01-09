@@ -44,7 +44,6 @@ export class GrillaEstiloComponent {
   }
 
   ver(event: any) {
-    console.log(event);
     const dialogRef = this.dialog.open(EstiloComponent,{
       width: '640px',disableClose: false, data: {
         title: "Editar Marca",

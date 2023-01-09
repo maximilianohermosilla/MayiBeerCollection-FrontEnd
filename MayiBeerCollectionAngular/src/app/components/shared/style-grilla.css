@@ -60,6 +60,12 @@ mat-header-row{
     width: 100%;
 }
 
+.dialog-actions{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px
+}
+
 @media screen and (max-width: 575px) {
     .card-body{
         margin: 8px;

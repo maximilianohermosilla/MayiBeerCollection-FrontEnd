@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GrillaCervezaComponent } from './components/cerveza/grilla-cerveza/grilla-cerveza.component';
 import { GrillaCiudadComponent } from './components/ciudad/grilla-ciudad/grilla-ciudad.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GrillaEstiloComponent } from './components/estilo/grilla-estilo/grilla-estilo.component';
 import { GrillaMarcaComponent } from './components/marca/grilla-marca/grilla-marca.component';
 import { GrillaPaisComponent } from './components/pais/grilla-pais/grilla-pais.component';
@@ -10,7 +11,7 @@ import { NotfoundComponent } from './components/shared/notfound/notfound.compone
 const routes: Routes = [
   {
     path: '',    
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -34,7 +35,11 @@ const routes: Routes = [
     component: GrillaPaisComponent
   },
   {
-    path: '**',
+    path: 'dashboard',
+    component: DashboardComponent
+  },
+  {
+    path: 'dashboard',
     component: NotfoundComponent
   }
 ];

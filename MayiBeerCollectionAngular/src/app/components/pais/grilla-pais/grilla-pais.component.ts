@@ -31,7 +31,6 @@ export class GrillaPaisComponent implements OnInit{
   }
   
   openDialog(): void {
-    console.log("Nuevo pais");
     const dialogRef = this.dialog.open(PaisComponent,{
       width: '640px',disableClose: false, data: {
         title: "Nuevo Pais",
@@ -46,7 +45,6 @@ export class GrillaPaisComponent implements OnInit{
   }
 
   ver(event: any) {
-    console.log(event);
     const dialogRef = this.dialog.open(PaisComponent,{
       width: '640px',disableClose: false, data: {
         title: "Editar Pais",

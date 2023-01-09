@@ -30,8 +30,7 @@ export class GrillaMarcaComponent implements OnInit{
     })
   }  
   
-  openDialog(): void {    
-    console.log("Nueva marca");
+  openDialog(): void {
     const dialogRef = this.dialog.open(MarcaComponent,{
       width: '640px',disableClose: false, data: {
         title: "Nueva Marca",
@@ -46,7 +45,6 @@ export class GrillaMarcaComponent implements OnInit{
   }
 
   ver(event: any) {
-    console.log(event);
     const dialogRef = this.dialog.open(MarcaComponent,{
       width: '640px',disableClose: false, data: {
         title: "Editar Marca",

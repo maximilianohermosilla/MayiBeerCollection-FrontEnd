@@ -35,13 +35,10 @@ export class GrillaCiudadComponent {
     this.servicioPais.GetAll().subscribe((rta: Pais[]) => {
       this.listaPaises = rta;    
     });
-    console.log(this.listaPaises);
   }
 
   
   openDialog(): void {
-    console.log("Nueva ciudad");
-    console.log(this.listaPaises);
     const dialogRef = this.dialog.open(CiudadComponent,{
       width: '640px',disableClose: false, data: {
         title: "Nuevo Ciudad",
@@ -57,7 +54,6 @@ export class GrillaCiudadComponent {
   }
 
   ver(event: any) {
-    console.log(event);
     const dialogRef = this.dialog.open(CiudadComponent,{
       width: '640px',disableClose: false, data: {
         title: "Editar Ciudad",

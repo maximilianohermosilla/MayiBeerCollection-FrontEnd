@@ -11,7 +11,7 @@ body{
     align-items: center;
     background-color: #323232;
   }
-
+/* 
   .card-container {
     display: flex;
     flex-direction: column;
@@ -23,9 +23,9 @@ body{
     padding: 10px;
   }
 
-  
+   */
 
-  .card {
+  /* .card {
     all: unset;
     border-radius: 4px;
     border: 1px solid #eee;
@@ -76,7 +76,7 @@ body{
 
   .card.card.highlight-card span {
     margin-left: 60px;
-  }
+  } */
 
 
   
@@ -114,5 +114,11 @@ body{
   }
 
   .dialog-content {
-    margin: 10px;
+    padding-bottom: 0;
+  }
+
+  .dialog-actions{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
   }

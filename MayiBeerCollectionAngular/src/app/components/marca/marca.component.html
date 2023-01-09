@@ -6,17 +6,10 @@
             <mat-label>Nombre</mat-label>
             <input  formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Select</mat-label>
-            <mat-select>
-            <mat-option value="one">First option</mat-option>
-            <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field> -->  
         </form>          
     </div>   
 </div>
-<div mat-dialog-actions>
-<button mat-button (click)="save()">Guardar</button>
-<button mat-button [mat-dialog-close]="true">Cancelar</button>
+<div mat-dialog-actions class="dialog-actions">
+    <button type="button" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
 </div>

@@ -26,10 +26,6 @@
                 <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <!-- <div>
-            <mat-label>Archivo</mat-label>            
-            <input formControlName="imagen" type="file" (change)="selectFile($event)"/>
-        </div> -->
     </div>
     <div class="col-md-4">
         <mat-form-field appearance="fill">
@@ -48,22 +44,10 @@
             <mat-label>Observaciones</mat-label>
             <input formControlName="observaciones" matInput type="text" placeholder="" [(ngModel)]="datos.observaciones">
         </mat-form-field>
-        <!-- <div>
-            <mat-label>Imagen</mat-label>
-            <img [src]="imageFileSanitized" alt="" style="width: 200px; height: 200px">
-        </div> -->
-        
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Imagen</mat-label>
-            <input formControlName="imagen" matInput type="file" placeholder="" [(ngModel)]="archivo" (change)="selectFile($event)" >
-        </mat-form-field> -->
-        <!-- <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-        <input hidden (change)="selectFile($event)" #fileInput type="file" id="file"> -->
     </div>  
     <div class="col-md-4">
-        <div>
-            <mat-label>Imagen</mat-label>
-            <button type="button" mat-raised-button (click)="fileInput.click()">Seleccionar imagen</button>
+        <div class="center">
+            <button type="button" mat-raised-button color="warn" (click)="fileInput.click()">Seleccionar imagen</button>
             <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
         </div>
         <div>
