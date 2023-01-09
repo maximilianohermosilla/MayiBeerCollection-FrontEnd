@@ -21,6 +21,8 @@ import { BannerTitleComponent } from './components/shared/banner-title/banner-ti
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { GrillaPaisCiudadComponent } from './components/pais/grilla-pais-ciudad/grilla-pais-ciudad.component';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BannerTitleComponent,
     NotfoundComponent,
     ConfirmDialogComponent,
-    DashboardComponent
+    DashboardComponent,
+    GrillaPaisCiudadComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

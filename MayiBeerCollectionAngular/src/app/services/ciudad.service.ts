@@ -19,6 +19,10 @@ export class CiudadService {
   public GetAll(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl);    
   }
+
+  public GetByPaisId(id: Number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "buscarPais/" + id);
+  }
   
   public nuevo(ciudad: Ciudad): Observable<any> {
     console.log(ciudad);

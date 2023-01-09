@@ -9,6 +9,9 @@
 .tabla {
     width: 100%;
     text-align: left;
+}
+
+.grilla{
     box-shadow: rgba(0, 0, 0, 0.54) 0px 3px 8px;
 }
 

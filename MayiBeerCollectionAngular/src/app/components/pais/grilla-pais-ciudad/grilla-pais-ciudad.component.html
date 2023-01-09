@@ -1,11 +1,7 @@
-<app-banner-title
-text="Cervezas"
-icon="sports_bar"
-(btnAdd)="openDialog()"
-></app-banner-title>
 <div class="card-body">
     <div class="tab-content">
         <div class="active tab-pane">
+            <br>
             <mat-form-field class="search">
                 <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
                 <mat-icon matPrefix class="my-icon">search</mat-icon>
@@ -17,35 +13,15 @@ icon="sports_bar"
                         <td mat-cell *matCellDef="let element">
                             {{element.nombre}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="marca">
-                        <th mat-header-cell *matHeaderCellDef> Marca </th>
+                    <ng-container matColumnDef="pais">
+                        <th mat-header-cell *matHeaderCellDef> Pais </th>
                         <td mat-cell *matCellDef="let element">
-                            {{element.nombreMarca}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="estilo">
-                        <th mat-header-cell *matHeaderCellDef> Estilo </th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element.nombreEstilo}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="ibu">
-                        <th mat-header-cell *matHeaderCellDef> Ibu </th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element.ibu}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="alcohol">
-                        <th mat-header-cell *matHeaderCellDef> Alcohol </th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element.alcohol}} %</td>
-                    </ng-container>
-                    <ng-container matColumnDef="ciudad">
-                        <th mat-header-cell *matHeaderCellDef class="ciudades"> Ciudad </th>
-                        <td mat-cell *matCellDef="let element" class="ciudades">
-                            {{element.nombreCiudad}} </td>
+                            {{element.paisNombre}} </td>
                     </ng-container>
                     <ng-container matColumnDef="acciones">
                         <th mat-header-cell *matHeaderCellDef class="text-end">Acciones</th>
                         <td mat-cell *matCellDef="let element" class="text-end">
-                            <section>
+                            <section>                                
                                 <div class="example-button-row">
                                     <div class="example-flex-container">                                                           
                                         <button mat-mini-fab class="green" (click)="ver(element)">                                    
@@ -68,6 +44,12 @@ icon="sports_bar"
                                 aria-label="Select page">
                 </mat-paginator>
             </div>
+            <br>
         </div>
     </div>
 </div>
+<app-banner-title
+text="Agregar Ciudad"
+icon=""
+(btnAdd)="openDialog()"
+></app-banner-title>

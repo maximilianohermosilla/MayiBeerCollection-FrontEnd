@@ -10,7 +10,7 @@ icon="location_city"
                 <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
                 <mat-icon matPrefix class="my-icon">search</mat-icon>
             </mat-form-field>
-            <div class="col-sm-12">
+            <div class="col-sm-12 grilla">
                 <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
                     <ng-container matColumnDef="nombre">
                         <th mat-header-cell *matHeaderCellDef> Nombre </th>

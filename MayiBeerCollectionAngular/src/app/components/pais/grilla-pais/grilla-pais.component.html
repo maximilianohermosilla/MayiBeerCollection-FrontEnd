@@ -10,7 +10,7 @@ icon="public"
                 <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
                 <mat-icon matPrefix class="my-icon">search</mat-icon>
             </mat-form-field>
-            <div class="col-sm-12">
+            <div class="col-sm-12 grilla">
                 <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
                     <ng-container matColumnDef="nombre">
                         <th mat-header-cell *matHeaderCellDef> Nombre </th>
@@ -31,7 +31,7 @@ icon="public"
                                             <mat-icon style="cursor: pointer;">delete</mat-icon>                                    
                                         </button>
                                         &nbsp;&nbsp;
-                                        <button mat-mini-fab color="warn" (click)="verCiudades(element.ciudades)">                                    
+                                        <button mat-mini-fab color="warn" (click)="verCiudades(element)">                                    
                                             <mat-icon style="cursor: pointer;">location_city</mat-icon>                                    
                                         </button>
                                     </div>

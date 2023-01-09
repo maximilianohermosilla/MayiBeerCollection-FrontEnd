@@ -10,6 +10,7 @@ import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { MarcaService } from 'src/app/services/marca.service';
+import { PaisService } from 'src/app/services/pais.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { CervezaComponent } from '../cerveza.component';
 
@@ -24,23 +25,30 @@ export class GrillaCervezaComponent {
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "ciudad", "acciones"];
  
+  listaPaises: Estilo[] = [];
   listaCiudades: Ciudad[] = [];
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];
 
   constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog,
-    private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService) { }
+    private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService) { }
 
   ngOnInit(): void {
     this.servicioCerveza.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
     });
+    this.listarPaises();
     this.listarCiudades();
     this.listarMarcas();
     this.listarEstilos();
   }
 
+  listarPaises(){
+    this.servicioPais.GetAll().subscribe((rta: Ciudad[]) => {
+      this.listaPaises = rta;    
+    });
+  }
   
   listarCiudades(){
     this.servicioCiudad.GetAll().subscribe((rta: Ciudad[]) => {
@@ -66,6 +74,7 @@ export class GrillaCervezaComponent {
       width: '800px',disableClose: false, data: {
         title: "Nueva Cerveza",
         cerveza: null,
+        paises: this.listaPaises,
         ciudades: this.listaCiudades,
         marcas: this.listaMarcas,
         estilos: this.listaEstilos
@@ -84,6 +93,7 @@ export class GrillaCervezaComponent {
       width: '800px',disableClose: false, data: {
         title: "Editar Cerveza",
         cerveza: event,
+        paises: this.listaPaises,
         ciudades: this.listaCiudades,
         marcas: this.listaMarcas,
         estilos: this.listaEstilos

@@ -37,6 +37,17 @@
     width: 100%;
 }
 
+.btn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.btn>mat-icon{
+    margin-right: 10px
+}
+
 @media screen and (max-width: 575px) {
     .search{
         margin-top: 5px;

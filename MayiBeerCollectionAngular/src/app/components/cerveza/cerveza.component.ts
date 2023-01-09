@@ -9,6 +9,7 @@ import { Ciudad } from 'src/app/models/ciudad';
 import { Estilo } from 'src/app/models/estilo';
 import { Marca } from 'src/app/models/marca';
 import { CervezaService } from 'src/app/services/cerveza.service';
+import { CiudadService } from 'src/app/services/ciudad.service';
 
 @Component({
   selector: 'app-cerveza',
@@ -42,6 +43,7 @@ export class CervezaComponent {
   };
 
   title = "";  
+  listaPaises: Estilo[] = [];
   listaCiudades: Ciudad[] = [];
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];
@@ -49,13 +51,14 @@ export class CervezaComponent {
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioCerveza: CervezaService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>,private sanitizer: DomSanitizer,
-    @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, ciudades: any[], marcas: any[], estilos: any[] }) {
+  constructor(private servicioCerveza: CervezaService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>,private sanitizer: DomSanitizer, private servicioCiudad: CiudadService,
+    @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {
     
     this.title = "Nueva Cerveza";
     if (data.cerveza != undefined) {
       this.datos = data.cerveza;
       this.title = data.title;
+      this.listaPaises = data.paises;
       this.listaCiudades = data.ciudades;
       this.listaMarcas = data.marcas;
       this.listaEstilos = data.estilos;
@@ -65,6 +68,7 @@ export class CervezaComponent {
     }
     else{
       this.title = data.title;
+      this.listaPaises = data.paises;
       this.listaCiudades = data.ciudades;
       this.listaMarcas = data.marcas;
       this.listaEstilos = data.estilos;
@@ -75,6 +79,7 @@ export class CervezaComponent {
       nombre: ['',[Validators.required]],      
       marca: ['',[Validators.required]],
       estilo: ['',],
+      pais: ['',],
       ciudad: ['',],
       ibu: ['',],
       alcohol: ['',],
@@ -107,8 +112,7 @@ export class CervezaComponent {
       };
 
       this.servicioCerveza.actualizar(_edit).subscribe(result =>
-        {
-          console.log(result);  
+        {          
           this.refDialog.close(this.formGroup.value);
         }
       );
@@ -117,7 +121,6 @@ export class CervezaComponent {
       this.datos.imagen = this.imageFileSanitized.changingThisBreaksApplicationSecurity;
       this.servicioCerveza.nuevo(this.datos).subscribe(result =>
         {
-          console.log(result); 
           this.refDialog.close(this.formGroup.value);
         }
       );
@@ -151,4 +154,15 @@ export class CervezaComponent {
     })
   }
 
+  listarCiudades(idPais: number){
+    this.servicioCiudad.GetByPaisId(idPais).subscribe((rta: Ciudad[]) => {
+      this.listaCiudades = rta;    
+    });
+  }
+
+  actualizarCiudades(idPais: number){
+    if(idPais > 0){
+      this.listarCiudades(idPais);
+    }
+  }
 }

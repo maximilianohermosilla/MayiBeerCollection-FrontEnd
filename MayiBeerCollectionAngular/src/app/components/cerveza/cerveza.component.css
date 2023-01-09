@@ -2,6 +2,11 @@ mat-form-field{
     width: 100%
 }
 
+.form-half{
+    width: 49%;
+    margin-right: 2px;
+}
+
 .center{
     display: flex;
     justify-content: center;

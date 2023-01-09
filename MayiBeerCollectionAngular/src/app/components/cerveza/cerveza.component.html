@@ -20,22 +20,28 @@
                 <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field class="form-half" appearance="fill">
+            <mat-label>Ibu</mat-label>
+            <input formControlName="ibu" matInput type="text" placeholder="" [(ngModel)]="datos.ibu">
+        </mat-form-field>
+        <mat-form-field class="form-half" appearance="fill">
+            <mat-label>Alcohol</mat-label>
+            <input formControlName="alcohol" matInput type="text" placeholder="" [(ngModel)]="datos.alcohol">
+        </mat-form-field>
+    </div>
+    <div class="col-md-4">
+        <mat-form-field appearance="fill">
+            <mat-label>Pais</mat-label>
+            <mat-select formControlName="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="datos.idPais">
+                <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>     
         <mat-form-field appearance="fill">
             <mat-label>Ciudad</mat-label>
             <mat-select formControlName="ciudad"  [(ngModel)]="datos.idCiudad">
                 <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
             </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="col-md-4">
-        <mat-form-field appearance="fill">
-            <mat-label>Ibu</mat-label>
-            <input formControlName="ibu" matInput type="text" placeholder="" [(ngModel)]="datos.ibu">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Alcohol</mat-label>
-            <input formControlName="alcohol" matInput type="text" placeholder="" [(ngModel)]="datos.alcohol">
-        </mat-form-field>
+        </mat-form-field>        
         <mat-form-field appearance="fill">
             <mat-label>Contenido</mat-label>
             <input formControlName="contenido" matInput type="text" placeholder="" [(ngModel)]="datos.contenido">

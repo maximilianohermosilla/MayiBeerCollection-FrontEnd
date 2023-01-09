@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaisComponent } from '../pais.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { Pais } from 'src/app/models/pais';
+import { GrillaCiudadComponent } from '../../ciudad/grilla-ciudad/grilla-ciudad.component';
+import { GrillaPaisCiudadComponent } from '../grilla-pais-ciudad/grilla-pais-ciudad.component';
 
 
 @Component({
@@ -60,6 +62,18 @@ export class GrillaPaisComponent implements OnInit{
 
   verCiudades(event: any) {
     console.log(event);   
+    const dialogRef = this.dialog.open(GrillaPaisCiudadComponent,{
+      width: '640px',disableClose: false, data: {
+        title: "Ciudades",
+        pais: event,
+        ciudades: event.ciudades
+      } 
+    });
+
+    dialogRef.afterClosed().subscribe( res => {
+      this.ngOnInit();
+      console.log("Cerraste el dialog");
+    })
 
   }
 
