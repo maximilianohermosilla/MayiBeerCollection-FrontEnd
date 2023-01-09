@@ -23,6 +23,7 @@ import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confi
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GrillaPaisCiudadComponent } from './components/pais/grilla-pais-ciudad/grilla-pais-ciudad.component';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,12 +48,17 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
     FilterPipe
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,    
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+  exports: [
+    FilterPipe
+  ],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
