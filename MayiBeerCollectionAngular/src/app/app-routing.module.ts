@@ -4,6 +4,7 @@ import { GrillaCervezaComponent } from './components/cerveza/grilla-cerveza/gril
 import { GrillaCiudadComponent } from './components/ciudad/grilla-ciudad/grilla-ciudad.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GrillaEstiloComponent } from './components/estilo/grilla-estilo/grilla-estilo.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { GrillaMarcaComponent } from './components/marca/grilla-marca/grilla-marca.component';
 import { GrillaPaisComponent } from './components/pais/grilla-pais/grilla-pais.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: NotfoundComponent
+  },
+  {
+    path: 'menu',
+    component: LandingPageComponent
   }
 ];
 

@@ -23,6 +23,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void{    
+    this.fillerNav.push({nombre: "Menu Principal",routerlink: "menu",icon: "home"}); 
     this.fillerNav.push({nombre: "Cervezas",routerlink: "cervezas",icon: "sports_bar"}); 
     this.fillerNav.push({nombre: "Marcas",routerlink: "marcas",icon: "local_mall"}); 
     this.fillerNav.push({nombre: "Estilos",routerlink: "estilos",icon: "soup_kitchen"}); 

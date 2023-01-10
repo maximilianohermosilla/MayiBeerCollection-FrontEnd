@@ -8,6 +8,7 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 import { Pais } from 'src/app/models/pais';
 import { GrillaCiudadComponent } from '../../ciudad/grilla-ciudad/grilla-ciudad.component';
 import { GrillaPaisCiudadComponent } from '../grilla-pais-ciudad/grilla-pais-ciudad.component';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
 
 
 @Component({
@@ -41,7 +42,10 @@ export class GrillaPaisComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
+      console.log(res);
+      if(res != true){
+        this.dialogClose("País insertado con éxito", "");
+      }
       this.ngOnInit();
     })
   }
@@ -55,7 +59,10 @@ export class GrillaPaisComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
+      console.log(res);
+      if(res != true){
+        this.dialogClose("País actualizado con éxito", "");
+      }
     })
 
   }  
@@ -95,6 +102,21 @@ export class GrillaPaisComponent implements OnInit{
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  dialogClose(_mensaje: string, _icono: string){
+    this.dialogoConfirmacion.open(DialogComponent, {
+      data: {
+        mensaje: _mensaje,
+        icon: _icono
+      }
+    })
+    .afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      if (confirmado) {        
+          this.ngOnInit();
+        }   
+    }); 
   }
 
 }

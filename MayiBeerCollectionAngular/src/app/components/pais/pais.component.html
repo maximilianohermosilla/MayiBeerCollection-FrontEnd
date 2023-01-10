@@ -6,6 +6,14 @@
             <mat-label>Nombre</mat-label>
             <input  formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
+        <div class="center">
+            <button type="button" mat-raised-button color="warn" (click)="fileInput.click()">Seleccionar imagen</button>
+            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </div>
+        <div>
+            <br>
+            <img id="image-beer" [src]="imageFileSanitized" alt="Imagen" style="width: 100%; height: 270px;">
+        </div>
         </form>          
     </div>   
 </div>

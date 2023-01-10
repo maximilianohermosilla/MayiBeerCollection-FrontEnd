@@ -24,6 +24,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GrillaPaisCiudadComponent } from './components/pais/grilla-pais-ciudad/grilla-pais-ciudad.component';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './components/shared/dialog/dialog.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmDialogComponent,
     DashboardComponent,
     GrillaPaisCiudadComponent,
-    FilterPipe
+    FilterPipe,
+    DialogComponent,
+    LandingPageComponent
   ],
   imports: [
     FormsModule,
