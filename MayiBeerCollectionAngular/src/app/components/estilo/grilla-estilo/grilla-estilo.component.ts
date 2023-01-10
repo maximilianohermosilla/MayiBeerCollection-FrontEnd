@@ -26,6 +26,7 @@ export class GrillaEstiloComponent {
     this.servicioEstilo.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
+      //console.log(rta);
     })
   }
 

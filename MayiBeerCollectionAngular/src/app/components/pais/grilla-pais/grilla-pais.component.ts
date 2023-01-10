@@ -43,7 +43,7 @@ export class GrillaPaisComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe( res => {
       console.log(res);
-      if(res != true){
+      if(res != true && res != undefined){
         this.dialogClose("País insertado con éxito", "");
       }
       this.ngOnInit();
@@ -60,7 +60,7 @@ export class GrillaPaisComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe( res => {
       console.log(res);
-      if(res != true){
+      if(res != true && res != undefined){
         this.dialogClose("País actualizado con éxito", "");
       }
     })

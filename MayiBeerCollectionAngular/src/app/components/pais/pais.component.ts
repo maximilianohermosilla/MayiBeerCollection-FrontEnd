@@ -72,7 +72,6 @@ export class PaisComponent implements OnInit{
   selectFile(event: Event): void{
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
-    //this.imageUrl= this.sant.bypassSecurityTrustUrl( window.URL.createObjectURL(this.fileSelected)) as string;    
     this.base64="Base64...";
     this.convertFileToBase64();
     

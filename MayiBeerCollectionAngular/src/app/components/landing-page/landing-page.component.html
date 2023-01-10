@@ -1,17 +1,51 @@
+<div class="banner"></div>
 
-<mat-form-field class="search">  
-    <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
-    <mat-icon matPrefix class="my-icon">search</mat-icon>
-  </mat-form-field>
-  <div class="grilla">  
-      <div class="card" *ngFor="let element of dataSource">
-          <div class="card-img">
-            <img class="card-img-top" [src]="element.imagen" alt="Card image cap">
-          </div>
-          <!-- <div class="card-body">
-            <h4 class="card-title">{{element.nombre}}</h4>
-            <p hidden class="card-text">{{element.nombreMarca}} {{element.nombreEstilo}}, {{element.nombreCiudad}}</p>
-          </div> -->
-        </div>
-  </div>
-  
+<div class="title">
+    Marcas
+</div>
+<div class="container">
+    <ng-image-slider [images]="marcasObject"
+    [infinite]="true"
+    [autoSlide]="1"
+    [imageSize]="{width: '25%', height: '20%'}"
+    slideImage="1"
+    (imageClick)="imageClickFxn($event)"    
+    [imagePopup]="false"
+     #nav1
+     style="cursor: pointer"
+     ></ng-image-slider>
+</div>  
+
+
+<div class="title">
+    Paises
+</div>
+<div class="container">
+    <ng-image-slider [images]="paisesObject"
+    [infinite]="true"
+    [autoSlide]="3"
+    [imageSize]="{width: '25%', height: '15%'}"
+    slideImage="1"
+    (imageClick)="imageClickFxn($event)"    
+    [imagePopup]="false"
+     #nav2
+     style="cursor: pointer"
+     ></ng-image-slider>
+</div> 
+
+
+<div class="title">
+    Estilos
+</div>
+<div class="container">
+    <ng-image-slider [images]="estilosObject"
+    [infinite]="true"
+    [autoSlide]="2"
+    [imageSize]="{width: '25%', height: '20%'}"
+    slideImage="2"
+    (imageClick)="imageClickFxn($event)"    
+    [imagePopup]="false"
+     #nav3
+     style="cursor: pointer"
+     ></ng-image-slider>
+</div> 

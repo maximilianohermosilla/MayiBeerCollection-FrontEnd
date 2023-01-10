@@ -21,8 +21,6 @@ export class CervezaComponent {
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
   formGroup: FormGroup;
-  base64: string = ''
-  fileSelected?: Blob;
   datos: Cerveza = {
     id: 0,
     nombre: "",
@@ -47,6 +45,10 @@ export class CervezaComponent {
   listaCiudades: Ciudad[] = [];
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];
+
+  
+  base64: string = ''
+  fileSelected?: Blob;
   archivo: any;
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";

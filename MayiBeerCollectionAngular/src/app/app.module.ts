@@ -26,6 +26,7 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     LandingPageComponent
   ],
   imports: [
+    NgImageSliderModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
