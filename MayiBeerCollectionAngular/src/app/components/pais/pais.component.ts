@@ -35,6 +35,9 @@ export class PaisComponent implements OnInit{
       this.title = data.title;           
       this.data.pais.imagen == null? this.imageFileSanitized = this.defaultImage: this.imageFileSanitized = this.data.pais.imagen;
     }
+    else{      
+      this.imageFileSanitized = this.defaultImage;
+    }
 
     this.formGroup = this.formBuilder.group({
       nombre: ['',[Validators.required]],      

@@ -122,3 +122,11 @@ body{
     justify-content: space-evenly;
     padding: 20px;
   }
+  
+  .center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+    

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Busqueda } from '../models/busqueda';
 import { Cerveza } from '../models/cerveza';
 import { enviroment } from '../shared/enviroment';
 
@@ -19,14 +20,16 @@ export class CervezaService {
   public GetAll(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl);    
   }
+
+  public GetBusqueda(busqueda: Busqueda): Observable<any> {
+    return this.http.post<any[]>(this.apiUrl + "busquedaFiltros", busqueda);    
+  }
   
   public nuevo(cerveza: Cerveza): Observable<any> {
-    console.log(cerveza);
     return this.http.post<Cerveza>(this.apiUrl + "nuevo", cerveza);
   }
 
   public actualizar(cerveza: Cerveza): Observable<Cerveza>{
-    console.log(cerveza);    
     return this.http.put<Cerveza>(this.apiUrl + "actualizar", cerveza);
   }
 

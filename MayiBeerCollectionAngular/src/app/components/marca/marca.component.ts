@@ -35,6 +35,9 @@ export class MarcaComponent implements OnInit{
       this.title = data.title;     
       this.data.marca.imagen == null? this.imageFileSanitized = this.defaultImage: this.imageFileSanitized = this.data.marca.imagen;
     }
+    else{      
+      this.imageFileSanitized = this.defaultImage;
+    }
 
     this.formGroup = this.formBuilder.group({
       nombre: ['',[Validators.required]],            

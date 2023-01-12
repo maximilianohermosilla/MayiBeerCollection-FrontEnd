@@ -6,6 +6,7 @@ import { Cerveza } from 'src/app/models/cerveza';
 import { Ciudad } from 'src/app/models/ciudad';
 import { Estilo } from 'src/app/models/estilo';
 import { Marca } from 'src/app/models/marca';
+import { Pais } from 'src/app/models/pais';
 import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
 import { EstiloService } from 'src/app/services/estilo.service';
@@ -25,7 +26,7 @@ export class GrillaCervezaComponent {
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "ciudad", "acciones"];
  
-  listaPaises: Estilo[] = [];
+  listaPaises: Pais[] = [];
   listaCiudades: Ciudad[] = [];
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];

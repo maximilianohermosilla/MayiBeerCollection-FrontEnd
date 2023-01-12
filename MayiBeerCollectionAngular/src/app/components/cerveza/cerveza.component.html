@@ -48,7 +48,14 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Observaciones</mat-label>
-            <input formControlName="observaciones" matInput type="text" placeholder="" [(ngModel)]="datos.observaciones">
+            <textarea matInput
+            formControlName="observaciones" 
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            [(ngModel)]="datos.observaciones"></textarea>
+            <!-- <input formControlName="observaciones" matInput type="text" placeholder="" [(ngModel)]="datos.observaciones"> -->
         </mat-form-field>
     </div>  
     <div class="col-md-4">

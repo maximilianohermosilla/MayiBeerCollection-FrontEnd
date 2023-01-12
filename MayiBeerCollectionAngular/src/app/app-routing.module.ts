@@ -12,7 +12,7 @@ import { NotfoundComponent } from './components/shared/notfound/notfound.compone
 const routes: Routes = [
   {
     path: '',    
-    redirectTo: 'dashboard',
+    redirectTo: 'menu',
     pathMatch: 'full'
   },
   {
@@ -37,16 +37,17 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    //component: DashboardComponent, data :{ idPais :'1', idEstilo: '2', idMarca: '3', idCiudad: 4}
     component: DashboardComponent
-  },
-  {
-    path: 'dashboard',
-    component: NotfoundComponent
   },
   {
     path: 'menu',
     component: LandingPageComponent
-  }
+  },
+  {
+    path: '',
+    component: NotfoundComponent
+  },
 ];
 
 

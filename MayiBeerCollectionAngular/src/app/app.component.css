@@ -30,6 +30,10 @@
     align-items: space-between;
   }
 
+  .mat-drawer{    
+    box-shadow: rgba(0, 0, 0, 0.54) 5px 5px 18px;
+  }
+
   .spacer {
     flex: 1;
   }

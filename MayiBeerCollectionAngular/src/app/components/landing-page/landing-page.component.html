@@ -1,49 +1,56 @@
-<div class="banner"></div>
+<div class="banner">
 
-<div class="title">
-    Marcas
+<div class="d-flex justify-content-center">
+    <span class="titulo" id="titulo" style="text-align: center">Bienvenido a MayiBeerCollection</span>
 </div>
-<div class="container">
+</div>
+<br><br>
+<div class="container-fluid">
+    <div class="title">
+        Marcas
+    </div>
     <ng-image-slider [images]="marcasObject"
     [infinite]="true"
     [autoSlide]="1"
-    [imageSize]="{width: '25%', height: '20%'}"
+    [imageSize]="{width: '22%', height: '18%'}"
     slideImage="1"
-    (imageClick)="imageClickFxn($event)"    
+    (imageClick)="imageClick($event, 'idMarca')"    
     [imagePopup]="false"
      #nav1
      style="cursor: pointer"
      ></ng-image-slider>
 </div>  
 
+<div class="spacer"></div>
 
-<div class="title">
-    Paises
-</div>
-<div class="container">
+<div class="container-fluid">
+    <div class="title">
+        Paises
+    </div>
     <ng-image-slider [images]="paisesObject"
     [infinite]="true"
     [autoSlide]="3"
-    [imageSize]="{width: '25%', height: '15%'}"
+    [imageSize]="{width: '25%', height: '14%'}"
     slideImage="1"
-    (imageClick)="imageClickFxn($event)"    
+    (imageClick)="imageClick($event, 'idPais')"    
     [imagePopup]="false"
      #nav2
      style="cursor: pointer"
      ></ng-image-slider>
 </div> 
 
+<div class="spacer"></div>
 
-<div class="title">
-    Estilos
-</div>
-<div class="container">
+<div class="container-fluid">
+    <div class="title">
+        Estilos
+    </div>
     <ng-image-slider [images]="estilosObject"
     [infinite]="true"
     [autoSlide]="2"
-    [imageSize]="{width: '25%', height: '20%'}"
+    [imageSize]="{width: '22%', height: '18%'}"
     slideImage="2"
-    (imageClick)="imageClickFxn($event)"    
+    (imageClick)="imageClick($event, 'idEstilo')"    
     [imagePopup]="false"
      #nav3
      style="cursor: pointer"

@@ -1,6 +1,9 @@
 .banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 180px;
+    height: 300px;
     background-image: url(src\assets\img\banner.jpg);
     display: inline-block;
 }
@@ -67,10 +70,15 @@
 
 .title{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 2em;
     font-size: 4em;
+    font-weight: 700;
+    background: -webkit-linear-gradient(#FFFFFF, #777777);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .main-inner>div:hover{
@@ -81,8 +89,29 @@
 .info{
     z-index:999;
     position:relative;
-    }
+}
 
+.titulo{
+    display: block;
+    padding-top: 100px;
+    height: 100%;
+    font-size: 4rem; 
+    font-weight: 700;
+    background: -webkit-linear-gradient(#65cd23, #005333);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: auto;
+}
+
+.spacer {
+    flex: 1;
+    height: 7vh;
+  }
+
+  .container-fluid{
+    padding: 0 10%;
+  }
 
 @media screen and (max-width: 575px) {
     .search{
@@ -91,7 +120,32 @@
     }
     
     .banner{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
         background-size: cover;
-        height: 100px;
+        height: 130px;
     }
+
+    .titulo{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding-top: 0;
+        font-size: 2.2rem; 
+        background: -webkit-linear-gradient(rgba(49, 128, 0, 0.7), rgba(49, 128, 0, 0.8));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .title{
+        height: 1em;
+        font-size: 2em;
+        font-weight: 700;
+    }
+
+    .container-fluid{
+        padding: 0;
+      }
 }
