@@ -1,6 +1,6 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
@@ -11,6 +11,7 @@ import { Marca } from 'src/app/models/marca';
 import { Pais } from 'src/app/models/pais';
 import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-cerveza',
@@ -54,7 +55,8 @@ export class CervezaComponent {
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioCerveza: CervezaService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>,private sanitizer: DomSanitizer, private servicioCiudad: CiudadService,
+  constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog,
+    private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService,
     @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {
     
     this.title = "Nueva Cerveza";
@@ -125,6 +127,26 @@ export class CervezaComponent {
       this.servicioCerveza.nuevo(this.datos).subscribe(result =>
         {
           this.refDialog.close(this.formGroup.value);
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Confirmación",
+              mensaje: "Cerveza ingresada con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+        },
+        error => {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
         }
       );
     } 

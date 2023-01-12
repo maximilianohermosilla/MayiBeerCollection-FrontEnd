@@ -11,7 +11,7 @@ export class DialogComponent {
   
   constructor(
     public dialogo: MatDialogRef<ConfirmDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { mensaje: string, icono: string }) { }
+    @Inject(MAT_DIALOG_DATA) public data: { titulo: string, mensaje: string, icono: string, clase: string }) { }
 
     cerrarDialogo(): void {
       this.dialogo.close(false);
