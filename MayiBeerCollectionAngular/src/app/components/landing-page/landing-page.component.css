@@ -6,6 +6,7 @@
     height: 300px;
     background-image: url(src\assets\img\banner.jpg);
     display: inline-block;
+    box-shadow: 0px 10px 22px 7px rgba(0, 0, 0, 0.4);
 }
 
 .grilla{
@@ -97,21 +98,24 @@
     height: 100%;
     font-size: 4rem; 
     font-weight: 700;
-    background: -webkit-linear-gradient(#65cd23, #005333);
+    background: -webkit-linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.8));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: auto;
 }
 
 .spacer {
     flex: 1;
-    height: 7vh;
+    height: 2vw;
   }
 
   .container-fluid{
     padding: 0 10%;
-  }
+}
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
 
 @media screen and (max-width: 575px) {
     .search{
@@ -132,20 +136,16 @@
         justify-content: flex-end;
         align-items: flex-end;
         padding-top: 0;
-        font-size: 2.2rem; 
-        background: -webkit-linear-gradient(rgba(49, 128, 0, 0.7), rgba(49, 128, 0, 0.8));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-size: 2.2rem;
+       
     }
 
     .title{
-        height: 1em;
         font-size: 2em;
         font-weight: 700;
     }
 
     .container-fluid{
-        padding: 0;
+        padding: 0 30px;
       }
 }

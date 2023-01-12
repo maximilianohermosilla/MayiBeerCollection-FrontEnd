@@ -42,7 +42,6 @@ export class GrillaPaisComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log(res);
       if(res != true && res != undefined){
         this.dialogClose("País insertado con éxito", "");
       }
@@ -59,7 +58,6 @@ export class GrillaPaisComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log(res);
       if(res != true && res != undefined){
         this.dialogClose("País actualizado con éxito", "");
       }
@@ -68,7 +66,6 @@ export class GrillaPaisComponent implements OnInit{
   }  
 
   verCiudades(event: any) {
-    console.log(event);   
     const dialogRef = this.dialog.open(GrillaPaisCiudadComponent,{
       width: '640px',disableClose: false, data: {
         title: "Ciudades",

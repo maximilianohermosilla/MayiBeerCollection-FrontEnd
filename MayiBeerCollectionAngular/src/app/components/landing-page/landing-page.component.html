@@ -4,34 +4,38 @@
     <span class="titulo" id="titulo" style="text-align: center">Bienvenido a MayiBeerCollection</span>
 </div>
 </div>
-<br><br>
+<br>
+
 <div class="container-fluid">
+    <mat-divider></mat-divider>
     <div class="title">
         Marcas
-    </div>
+    </div><br>
     <ng-image-slider [images]="marcasObject"
     [infinite]="true"
-    [autoSlide]="1"
-    [imageSize]="{width: '22%', height: '18%'}"
-    slideImage="1"
-    (imageClick)="imageClick($event, 'idMarca')"    
+    [autoSlide]="3"
+    [animationSpeed]="0.5"
+    [slideImage]="1"
     [imagePopup]="false"
+    [imageSize]="{width: '300px', height:'300px'}"
+    (imageClick)="imageClick($event, 'idMarca')"    
      #nav1
      style="cursor: pointer"
      ></ng-image-slider>
 </div>  
 
 <div class="spacer"></div>
-
 <div class="container-fluid">
+    <mat-divider></mat-divider>
     <div class="title">
         Paises
     </div>
     <ng-image-slider [images]="paisesObject"
     [infinite]="true"
-    [autoSlide]="3"
-    [imageSize]="{width: '25%', height: '14%'}"
-    slideImage="1"
+    [autoSlide]="2"
+    [animationSpeed]="0.5"
+    [slideImage]="1"
+    [imageSize]="{width: '300px', height:'200px'}"
     (imageClick)="imageClick($event, 'idPais')"    
     [imagePopup]="false"
      #nav2
@@ -39,17 +43,18 @@
      ></ng-image-slider>
 </div> 
 
-<div class="spacer"></div>
-
+<div class="spacer"></div>    
 <div class="container-fluid">
+    <mat-divider></mat-divider>
     <div class="title">
         Estilos
     </div>
-    <ng-image-slider [images]="estilosObject"
+    <ng-image-slider [images]="estilosObject"    
     [infinite]="true"
-    [autoSlide]="2"
-    [imageSize]="{width: '22%', height: '18%'}"
-    slideImage="2"
+    [autoSlide]="3"
+    [animationSpeed]="0.5"
+    [slideImage]="1"
+    [imageSize]="{width: '300px', height:'300px'}"
     (imageClick)="imageClick($event, 'idEstilo')"    
     [imagePopup]="false"
      #nav3

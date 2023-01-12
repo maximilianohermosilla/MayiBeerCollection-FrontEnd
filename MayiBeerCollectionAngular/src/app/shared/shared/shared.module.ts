@@ -16,6 +16,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatToolbarModule,
     MatListModule,
+    MatDividerModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

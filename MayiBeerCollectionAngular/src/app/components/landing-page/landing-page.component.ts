@@ -70,16 +70,15 @@ export class LandingPageComponent {
    }
 
    imageClick(event: any, param: string){
-    //console.log(this.marcasObject[event]);
     switch (param) {
       case 'idMarca':
         this.router.navigate(['dashboard'], { queryParams: { idMarca: this.marcasObject[event].id } });    
         break;
       case 'idPais':
-        this.router.navigate(['dashboard'], { queryParams: { idPais: this.marcasObject[event].id } });    
+        this.router.navigate(['dashboard'], { queryParams: { idPais: this.paisesObject[event].id } });    
         break;
       case 'idEstilo':
-        this.router.navigate(['dashboard'], { queryParams: { idEstilo: this.marcasObject[event].id } });    
+        this.router.navigate(['dashboard'], { queryParams: { idEstilo: this.estilosObject[event].id } });    
         break;
       default:
         break;
@@ -89,6 +88,7 @@ export class LandingPageComponent {
    getMarcas(){
     this.servicioMarca.GetAll().subscribe((rta: any[]) => {
       this.dataSource = rta;    
+      this.marcasObject.push({id: 0, image: '', thumbImage: '', alt: '', title: ''});
       this.dataSource.forEach(element => {
         var imageSlide: ImageSlide = {id: 0, image: '', thumbImage: '', alt: '', title: ''} ;
         imageSlide.id = element.id;
@@ -104,6 +104,7 @@ export class LandingPageComponent {
    getEstilos(){
     this.servicioEstilos.GetAll().subscribe((rta: any[]) => {
       this.dataSource = rta; 
+      this.estilosObject.push({id: 0, image: '', thumbImage: '', alt: '', title: ''});
       this.dataSource.forEach(element => {
         var imageSlide: ImageSlide = {id: 0, image: '', thumbImage: '', alt: '', title: ''} ;
         imageSlide.id = element.id;
@@ -119,6 +120,7 @@ export class LandingPageComponent {
    getPaises(){
     this.servicioPaises.GetAll().subscribe((rta: any[]) => {
       this.dataSource = rta;    
+      this.paisesObject.push({id: 0, image: '', thumbImage: '', alt: '', title: ''});
       this.dataSource.forEach(element => {
         var imageSlide: ImageSlide = {id: 0, image: '', thumbImage: '', alt: '', title: ''} ;
         imageSlide.id = element.id;

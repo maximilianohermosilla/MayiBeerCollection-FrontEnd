@@ -92,6 +92,11 @@ mat-form-field{
     -webkit-text-fill-color: transparent;
 }
 
+.thumbnail{
+    width: 60px;
+    height: 56px;
+}
+
 @media screen and (max-width: 575px) {
     .search{
         margin-top: 5px;
@@ -100,5 +105,16 @@ mat-form-field{
 
     .titulo{
         font-size: 2rem; 
+    }
+
+    .grilla-filter{
+        display: inline-table;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .thumbnail{
+        margin-bottom: 19px;
+        margin-right: 3px;
     }
 }

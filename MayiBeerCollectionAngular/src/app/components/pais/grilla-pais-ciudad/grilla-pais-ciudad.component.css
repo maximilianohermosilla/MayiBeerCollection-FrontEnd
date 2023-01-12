@@ -61,7 +61,8 @@ mat-header-row{
 
 
 app-banner-title{
-    color: white
+    color: white;
+    width: 100%;
 }
 
 .grilla{

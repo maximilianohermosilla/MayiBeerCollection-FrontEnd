@@ -33,7 +33,6 @@ export class GrillaPaisCiudadComponent {
         this.datos = data.ciudades;
         this.dataSource = new MatTableDataSource<Ciudad[]>(data.ciudades);
         this.dataSource.paginator = this.paginator;  
-        console.log(this.datos);
       }
       this.pais.id = data.pais.id;
       this.pais.nombre = data.pais.nombre;

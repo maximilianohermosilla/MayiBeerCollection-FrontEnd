@@ -52,9 +52,13 @@ export class DashboardComponent {
   formGroup: FormGroup;
   myParam: string = "";
 
-  selectedMarca: any;
+  paisSelected: Pais = {id: 0,nombre: ''};
+  marcaSelected: Marca = {id: 0,nombre: ''};
+  estiloSelected: Estilo = {id: 0,nombre: ''};
 
   titulo = "Búsqueda";
+  defaultImage = "/assets/img/default.png";
+  defaultImageCheck = "/assets/img/check-all.png";
 
   constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private formBuilder: FormBuilder,
     private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService,
@@ -106,7 +110,11 @@ export class DashboardComponent {
     const dialogRef = this.dialog.open(CervezaComponent,{
       width: '800px',disableClose: false, data: {
         title: "Nueva Cerveza",
-        cerveza: null
+        cerveza: null,
+        paises: this.listaPaises,
+        ciudades: this.listaCiudades,
+        marcas: this.listaMarcas,
+        estilos: this.listaEstilos
       } 
     });
 
@@ -115,6 +123,7 @@ export class DashboardComponent {
       this.ngOnInit();
     })
   }
+  
 
   ver(event: any) {
     console.log(event);
@@ -166,17 +175,29 @@ export class DashboardComponent {
   }
 
   onChangeFilter(){
+    
+    console.log(this.paisSelected);
     //this.busqueda.idMarca = 
     setTimeout(() => {
       this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
         this.cervezas = rta;   
       });      
+      this.clearSelectedItems();        
       if (this.busqueda.idCiudad! > 0 || this.busqueda.idMarca! > 0 || this.busqueda.idEstilo! > 0 || this.busqueda.idPais! > 0){
         this.titulo = "Resultados de la búsqueda";
       }
       else{
         this.titulo = "Búsqueda";
       }
+      this.paisSelected = this.listaPaises.find(element => element.id == this.busqueda.idPais) || this.paisSelected;
+      this.marcaSelected = this.listaMarcas.find(element => element.id == this.busqueda.idMarca) || this.marcaSelected;
+      this.estiloSelected = this.listaEstilos.find(element => element.id == this.busqueda.idEstilo) || this.estiloSelected;
     }, 1000);
+  }
+
+  clearSelectedItems(){
+    this.paisSelected = {id: 0,nombre: ''};
+    this.marcaSelected = {id: 0,nombre: ''};
+    this.estiloSelected = {id: 0,nombre: ''};
   }
 }

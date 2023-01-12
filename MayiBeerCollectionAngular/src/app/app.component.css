@@ -102,6 +102,10 @@
   
   h1.example-app-name {
     margin-left: 8px;
+    background: -webkit-linear-gradient(#65cd23, #005333);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   
   .example-sidenav-container {

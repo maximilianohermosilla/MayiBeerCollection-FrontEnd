@@ -1,6 +1,11 @@
-<div class="d-flex justify-content-center">
+<app-banner-title
+text={{titulo}}
+icon="search"
+(btnAdd)="openDialog()"
+></app-banner-title>
+<!-- <div class="d-flex justify-content-center">
   <span class="titulo" id="titulo">{{titulo}}</span>
-</div>
+</div> -->
 <mat-form-field class="search">  
   <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
   <mat-icon matPrefix class="my-icon">search</mat-icon>
@@ -8,13 +13,15 @@
 <div class="grilla">
   <form [formGroup]="formGroup" class="form-horizontal">
     <div class="grilla-filter">
+      <img class="thumbnail" [src]="marcaSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
       <mat-form-field appearance="fill">
         <mat-label>Marca</mat-label>
-        <mat-select formControlName="marca" id="marca" (ngModelChange)="onChangeFilter()" [(ngModel)]="busqueda.idMarca" [(value)]="selectedMarca">
+        <mat-select formControlName="marca" id="marca" (ngModelChange)="onChangeFilter()" [(ngModel)]="busqueda.idMarca">
             <mat-option [value]="0">Todos</mat-option>
             <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
         </mat-select>
     </mat-form-field>
+    <img class="thumbnail" [src]="estiloSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
     <mat-form-field appearance="fill">
         <mat-label>Estilo</mat-label>
         <mat-select formControlName="estilo" id="estilo" (ngModelChange)="onChangeFilter()"  [(ngModel)]="busqueda.idEstilo">
@@ -22,14 +29,16 @@
             <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
         </mat-select>
     </mat-form-field>
+    <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
     <mat-form-field appearance="fill">
       <mat-label>Pais</mat-label>
       <mat-select formControlName="pais" id="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="busqueda.idPais">
         <mat-option [value]="0">Todos</mat-option>
           <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
       </mat-select>
-    </mat-form-field>     
-    <mat-form-field appearance="fill">
+    </mat-form-field>  
+    <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">   
+    <mat-form-field appearance="fill">        
         <mat-label>Ciudad</mat-label>
         <mat-select formControlName="ciudad" id="ciudad" (ngModelChange)="onChangeFilter()" [(ngModel)]="busqueda.idCiudad">
             <mat-option [value]="0">Todos</mat-option>
@@ -43,7 +52,7 @@
   <h1 *ngIf="cervezas.length == 0">No se encontraron resultados</h1>
   <div class="card" *ngFor="let element of cervezas | filterCerveza: filterText">
       <div class="card-img">
-        <img class="card-img-top" [src]="element.imagen" alt="Card image cap">
+        <img class="card-img-top" [src]="element.imagen || defaultImage" alt={{element.nombre}}>
       </div>
       <div class="card-body">
         <h4 class="card-title">{{element.nombre}}</h4>
