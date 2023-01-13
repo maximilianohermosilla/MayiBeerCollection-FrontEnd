@@ -1,7 +1,10 @@
-<h1 mat-dialog-title><mat-icon class={{data.clase}}>{{data.icono}}</mat-icon>{{data.titulo}}</h1>
-<div mat-dialog-content>
-    <p>{{data.mensaje}}</p>
-</div>
-<div mat-dialog-actions class="mat-dialog-actions">
-    <button class="btn btn-success" (click)="cerrarDialogo()">Cerrar</button>    
+<div class="container" style="margin: 20px 0">
+    <h1 mat-dialog-title><mat-icon class={{data.clase}}>{{data.icono}}</mat-icon>{{data.titulo}}</h1>
+    <mat-divider></mat-divider>
+    <div class="dialog-content" mat-dialog-content>
+        <span>{{data.mensaje}}</span>
+    </div>
+    <div mat-dialog-actions class="mat-dialog-actions">
+        <button class="btn btn-success" (click)="cerrarDialogo()">Cerrar</button>    
+    </div>
 </div>

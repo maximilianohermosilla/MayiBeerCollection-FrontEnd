@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Estilo } from 'src/app/models/estilo';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-estilo',
@@ -26,7 +27,9 @@ export class EstiloComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioEstilo: EstiloService, private formBuilder: FormBuilder, public spinnerService: SpinnerService, public refDialog: MatDialogRef<EstiloComponent>, private sanitizer: DomSanitizer,
+  constructor(private servicioEstilo: EstiloService, private formBuilder: FormBuilder,
+     public spinnerService: SpinnerService, public refDialog: MatDialogRef<EstiloComponent>,
+     private sanitizer: DomSanitizer, public dialogoConfirmacion: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { estilo: any; title: string; }) {
     
     this.title = "Nueva Marca";
@@ -61,19 +64,71 @@ export class EstiloComponent implements OnInit{
       let _edit: Estilo = {id: this.datos.id, nombre: this.datos.nombre, 
         imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
       console.log(_edit);
-      this.servicioEstilo.actualizar(_edit).subscribe(result =>
-        {this.refDialog.close(this.formGroup.value);}
+      this.servicioEstilo.actualizar(_edit).subscribe(
+        result =>
+        {
+          this.refDialog.close(this.formGroup.value);                
+          this.dialogoConfirmacion.open(DialogComponent, {
+            width: '400px', data: {
+              titulo: "Confirmación",
+              mensaje: "Estilo actualizado con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+          this.spinnerService.hide();
+        },
+        error => 
+        {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
+          this.spinnerService.hide();
+        }          
       );
     }
     else{      
       console.log("nuevo");
-      this.servicioEstilo.nuevo(this.datos).subscribe(result =>
-        {this.refDialog.close(this.formGroup.value);}
+      this.servicioEstilo.nuevo(this.datos).subscribe(
+        result =>
+        {
+          this.refDialog.close(this.formGroup.value);
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Confirmación",
+              mensaje: "Estilo ingresado con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+          this.spinnerService.hide();
+        },
+        error => {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
+          this.spinnerService.hide();
+        }
       );
     }
   }
 
   selectFile(event: Event): void{
+    this.spinnerService.show();
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
     //this.imageUrl= this.sant.bypassSecurityTrustUrl( window.URL.createObjectURL(this.fileSelected)) as string;    
@@ -89,7 +144,8 @@ export class EstiloComponent implements OnInit{
       this.base64=reader.result as string;
     }
     setTimeout(()=>{         
-      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64)
+      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+      this.spinnerService.hide();
     }, 1000); 
   }
 

@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { PaisService } from 'src/app/services/pais.service';
 import {MatTableModule, MatTableDataSource, MatTable} from '@angular/material/table';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pais } from 'src/app/models/pais';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-pais',
@@ -26,7 +27,9 @@ export class PaisComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<PaisComponent>, private sanitizer: DomSanitizer,
+  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService,
+     private formBuilder: FormBuilder, public refDialog: MatDialogRef<PaisComponent>,
+     private sanitizer: DomSanitizer, public dialogoConfirmacion: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { pais: any, title: string }) {
     
     this.title = "Nuevo pais";
@@ -60,20 +63,70 @@ export class PaisComponent implements OnInit{
       console.log("update");
       let _editPais: Pais = {id: this.datos.id, nombre: this.datos.nombre,
         imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
-      console.log(_editPais);
-      this.servicioPais.actualizar(_editPais).subscribe(result =>
-        {this.refDialog.close(this.formGroup.value);}
+      this.servicioPais.actualizar(_editPais).subscribe(
+        result =>
+        {
+          this.refDialog.close(this.formGroup.value);                   
+          this.dialogoConfirmacion.open(DialogComponent, {
+            width: '400px', data: {
+              titulo: "Confirmación",
+              mensaje: "País actualizado con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+          this.spinnerService.hide();
+        },
+        error => 
+        {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
+          this.spinnerService.hide();
+        }          
       );
     }
-    else{      
-      console.log("nuevo");
-      this.servicioPais.nuevo(this.datos).subscribe(result =>
-        {this.refDialog.close(this.formGroup.value);}
+    else{
+      this.servicioPais.nuevo(this.datos).subscribe(
+        result =>
+        {
+          this.refDialog.close(this.formGroup.value);
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Confirmación",
+              mensaje: "País ingresado con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+          this.spinnerService.hide();
+        },
+        error => {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
+          this.spinnerService.hide();
+        }
       );
     }
   }
   
   selectFile(event: Event): void{
+    this.spinnerService.show();
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
     this.base64="Base64...";
@@ -88,7 +141,8 @@ export class PaisComponent implements OnInit{
       this.base64=reader.result as string;
     }
     setTimeout(()=>{         
-      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64)
+      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+      this.spinnerService.hide();
     }, 1000); 
   }
 }

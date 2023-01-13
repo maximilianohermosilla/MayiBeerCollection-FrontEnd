@@ -14,6 +14,7 @@ icon="search"
 <div class="grilla">
   <form [formGroup]="formGroup" class="form-horizontal">
     <div class="grilla-filter">
+      <div>
       <img class="thumbnail" [src]="marcaSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
       <mat-form-field appearance="fill">
         <mat-label>Marca</mat-label>
@@ -21,31 +22,38 @@ icon="search"
             <mat-option [value]="0">Todos</mat-option>
             <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
         </mat-select>
-    </mat-form-field>
-    <img class="thumbnail" [src]="estiloSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
-    <mat-form-field appearance="fill">
-        <mat-label>Estilo</mat-label>
-        <mat-select formControlName="estilo" id="estilo" (ngModelChange)="onChangeFilter()"  [(ngModel)]="busqueda.idEstilo">
-            <mat-option [value]="0">Todos</mat-option>
-            <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
+      </mat-form-field>
+      </div>
+      <div>
+      <img class="thumbnail" [src]="estiloSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
+      <mat-form-field appearance="fill">
+          <mat-label>Estilo</mat-label>
+          <mat-select formControlName="estilo" id="estilo" (ngModelChange)="onChangeFilter()"  [(ngModel)]="busqueda.idEstilo">
+              <mat-option [value]="0">Todos</mat-option>
+              <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+      </div>
+      <div>
+      <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
+      <mat-form-field appearance="fill">
+        <mat-label>Pais</mat-label>
+        <mat-select formControlName="pais" id="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="busqueda.idPais">
+          <mat-option [value]="0">Todos</mat-option>
+            <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
         </mat-select>
-    </mat-form-field>
-    <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">
-    <mat-form-field appearance="fill">
-      <mat-label>Pais</mat-label>
-      <mat-select formControlName="pais" id="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="busqueda.idPais">
-        <mat-option [value]="0">Todos</mat-option>
-          <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
-      </mat-select>
-    </mat-form-field>  
-    <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">   
-    <mat-form-field appearance="fill">        
-        <mat-label>Ciudad</mat-label>
-        <mat-select formControlName="ciudad" id="ciudad" (ngModelChange)="onChangeFilter()" [(ngModel)]="busqueda.idCiudad">
-            <mat-option [value]="0">Todos</mat-option>
-            <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
-        </mat-select>
-      </mat-form-field> 
+      </mat-form-field>  
+      </div>
+      <div>
+      <img class="thumbnail" [src]="paisSelected.imagen || defaultImageCheck" alt="listaPaises[busqueda.idPais].imagen">   
+      <mat-form-field appearance="fill">        
+          <mat-label>Ciudad</mat-label>
+          <mat-select formControlName="ciudad" id="ciudad" (ngModelChange)="onChangeFilter()" [(ngModel)]="busqueda.idCiudad">
+              <mat-option [value]="0">Todos</mat-option>
+              <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </div>
   </div>
   </form>
 </div>

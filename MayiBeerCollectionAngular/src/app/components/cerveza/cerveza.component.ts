@@ -95,10 +95,10 @@ export class CervezaComponent {
     })
   }
 
-  save(){        
+  save(){  
+    this.spinnerService.show();      
     //console.log(this.imageFileSanitized.changingThisBreaksApplicationSecurity);
     if (this.datos.id > 0){
-
       let _edit: Cerveza = {
         id: this.datos.id,
         nombre: this.datos.nombre,
@@ -119,7 +119,29 @@ export class CervezaComponent {
 
       this.servicioCerveza.actualizar(_edit).subscribe(result =>
         {          
-          this.refDialog.close(this.formGroup.value);
+          this.refDialog.close(this.formGroup.value);          
+          this.dialogoConfirmacion.open(DialogComponent, {
+            width: '400px', data: {
+              titulo: "Confirmación",
+              mensaje: "Cerveza actualizada con éxito",
+              icono: "check_circle",
+              clase: "class-success"
+            }
+          });
+          this.spinnerService.hide();
+        },
+        error => {
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: error.error,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          this.refDialog.close();
+          console.log(error);
+          this.spinnerService.hide();
         }
       );
     }
@@ -136,6 +158,7 @@ export class CervezaComponent {
               clase: "class-success"
             }
           });
+          this.spinnerService.hide();
         },
         error => {
           this.dialogoConfirmacion.open(DialogComponent, {
@@ -148,12 +171,14 @@ export class CervezaComponent {
           })
           this.refDialog.close();
           console.log(error);
+          this.spinnerService.hide();
         }
       );
     } 
   }
 
   selectFile(event: Event): void{
+    this.spinnerService.show();
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
     //this.imageUrl= this.sant.bypassSecurityTrustUrl( window.URL.createObjectURL(this.fileSelected)) as string;    
@@ -169,7 +194,8 @@ export class CervezaComponent {
       this.base64=reader.result as string;
     }
     setTimeout(()=>{         
-      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64)
+      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+      this.spinnerService.hide();
     }, 1000); 
   }
 
