@@ -27,6 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './components/shared/dialog/dialog.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
     GrillaPaisCiudadComponent,
     FilterPipe,
     DialogComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    SpinnerComponent
   ],
   imports: [
     NgImageSliderModule,
@@ -64,7 +68,9 @@ import { NgImageSliderModule } from 'ng-image-slider';
   exports: [
     FilterPipe
   ],
-  providers: [FilterPipe],
+  providers: [FilterPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true}, 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

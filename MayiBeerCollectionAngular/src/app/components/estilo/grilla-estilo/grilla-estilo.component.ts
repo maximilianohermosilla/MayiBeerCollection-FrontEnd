@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Estilo } from 'src/app/models/estilo';
 import { EstiloService } from 'src/app/services/estilo.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { EstiloComponent } from '../estilo.component';
 
@@ -20,7 +21,7 @@ export class GrillaEstiloComponent {
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioEstilo: EstiloService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioEstilo: EstiloService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
 
   ngOnInit(): void {
     this.servicioEstilo.GetAll().subscribe((rta: any[]) => {

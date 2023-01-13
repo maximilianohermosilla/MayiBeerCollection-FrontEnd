@@ -12,6 +12,7 @@ import { CiudadService } from 'src/app/services/ciudad.service';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { MarcaService } from 'src/app/services/marca.service';
 import { PaisService } from 'src/app/services/pais.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { CervezaComponent } from '../cerveza.component';
 
@@ -31,7 +32,7 @@ export class GrillaCervezaComponent {
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];
 
-  constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog,
+  constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, public spinnerService: SpinnerService,
     private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService) { }
 
   ngOnInit(): void {

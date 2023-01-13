@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Busqueda } from '../models/busqueda';
 import { Cerveza } from '../models/cerveza';
 import { enviroment } from '../shared/enviroment';
@@ -10,7 +10,8 @@ import { enviroment } from '../shared/enviroment';
 })
 export class CervezaService {
   apiUrl = enviroment.urlBase() + "Cerveza/";
-  
+  spinner = new BehaviorSubject<Boolean>(true);
+
   constructor(private http: HttpClient) { }
 
   public GetById(id: Number): Observable<any> {

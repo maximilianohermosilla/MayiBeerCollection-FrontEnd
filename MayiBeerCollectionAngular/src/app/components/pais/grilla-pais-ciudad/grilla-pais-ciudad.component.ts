@@ -7,6 +7,7 @@ import { Ciudad } from 'src/app/models/ciudad';
 import { Pais } from 'src/app/models/pais';
 import { CiudadService } from 'src/app/services/ciudad.service';
 import { PaisService } from 'src/app/services/pais.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { CiudadComponent } from '../../ciudad/ciudad.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
@@ -25,7 +26,7 @@ export class GrillaPaisCiudadComponent {
   datos: Ciudad[] = [];
   pais: Pais = {id: 0, nombre: ""};
 
-  constructor(private servicioCiudad: CiudadService, private servicioPais: PaisService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog,
+  constructor(private servicioCiudad: CiudadService, private servicioPais: PaisService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { pais: any, ciudades: any[] }) {
 
       //if (data.ciudades != undefined) {

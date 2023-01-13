@@ -10,6 +10,7 @@ import { PaisService } from 'src/app/services/pais.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { CiudadComponent } from '../ciudad.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-grilla-ciudad',
@@ -24,7 +25,8 @@ export class GrillaCiudadComponent  implements AfterViewInit {
   listaPaises: Pais[] = [];
   nombreColumnas: string[] = ["nombre", "pais", "acciones"];
 
-  constructor(private servicioCiudad: CiudadService, private servicioPais: PaisService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(private servicioCiudad: CiudadService, private servicioPais: PaisService, public spinnerService: SpinnerService,
+     public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private _liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.servicioCiudad.GetAll().subscribe((rta: any[]) => {

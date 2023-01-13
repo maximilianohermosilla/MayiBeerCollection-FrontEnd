@@ -9,6 +9,7 @@ import { Pais } from 'src/app/models/pais';
 import { GrillaCiudadComponent } from '../../ciudad/grilla-ciudad/grilla-ciudad.component';
 import { GrillaPaisCiudadComponent } from '../grilla-pais-ciudad/grilla-pais-ciudad.component';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class GrillaPaisComponent implements OnInit{
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioPais: PaisService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
 
   ngOnInit(): void {
     this.servicioPais.GetAll().subscribe((rta: any[]) => {

@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { MarcaComponent } from '../marca.component';
 
@@ -21,9 +22,10 @@ export class GrillaMarcaComponent implements OnInit{
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioMarca: MarcaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioMarca: MarcaService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
 
   ngOnInit(): void {
+    this.spinnerService.show();
     this.servicioMarca.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;

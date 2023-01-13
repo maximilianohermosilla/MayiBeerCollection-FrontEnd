@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Estilo } from 'src/app/models/estilo';
 import { EstiloService } from 'src/app/services/estilo.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-estilo',
@@ -25,7 +26,7 @@ export class EstiloComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioEstilo: EstiloService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<EstiloComponent>, private sanitizer: DomSanitizer,
+  constructor(private servicioEstilo: EstiloService, private formBuilder: FormBuilder, public spinnerService: SpinnerService, public refDialog: MatDialogRef<EstiloComponent>, private sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: { estilo: any; title: string; }) {
     
     this.title = "Nueva Marca";

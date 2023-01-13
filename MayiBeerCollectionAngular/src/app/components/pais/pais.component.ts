@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pais } from 'src/app/models/pais';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-pais',
@@ -25,7 +26,7 @@ export class PaisComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioPais: PaisService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<PaisComponent>, private sanitizer: DomSanitizer,
+  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<PaisComponent>, private sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: { pais: any, title: string }) {
     
     this.title = "Nuevo pais";

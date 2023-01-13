@@ -5,6 +5,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-marca',
@@ -25,7 +26,7 @@ export class MarcaComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private servicioMarca: MarcaService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<MarcaComponent>, private sanitizer: DomSanitizer,
+  constructor(private servicioMarca: MarcaService, public spinnerService: SpinnerService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<MarcaComponent>, private sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: { marca: any; title: string; }) {
     
     this.title = "Nueva Marca";

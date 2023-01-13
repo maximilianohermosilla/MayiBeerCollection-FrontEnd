@@ -11,6 +11,7 @@ import { Marca } from 'src/app/models/marca';
 import { Pais } from 'src/app/models/pais';
 import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
@@ -56,7 +57,7 @@ export class CervezaComponent {
   defaultImage = "/assets/img/default.png";
 
   constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog,
-    private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService,
+    private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService, public spinnerService: SpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {
     
     this.title = "Nueva Cerveza";

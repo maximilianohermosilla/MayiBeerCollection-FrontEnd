@@ -19,6 +19,7 @@ import { CervezaComponent } from '../cerveza/cerveza.component';
 import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Busqueda } from 'src/app/models/busqueda';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -60,7 +61,7 @@ export class DashboardComponent {
   defaultImage = "/assets/img/default.png";
   defaultImageCheck = "/assets/img/check-all.png";
 
-  constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private formBuilder: FormBuilder,
+  constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private formBuilder: FormBuilder, public spinnerService: SpinnerService,
     private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService,
     private route: ActivatedRoute){
       this.formGroup = this.formBuilder.group({           
@@ -78,7 +79,7 @@ export class DashboardComponent {
     this.listarPaises();
     this.listarMarcas();
     this.listarEstilos();    
-
+    this.spinnerService.show();
     this.route.queryParams.subscribe(params => {
       this.busqueda.idCiudad = Number(params['idCiudad']) || 0;
       this.busqueda.idMarca = Number(params['idMarca']) || 0;
@@ -178,6 +179,7 @@ export class DashboardComponent {
     
     console.log(this.paisSelected);
     //this.busqueda.idMarca = 
+    
     setTimeout(() => {
       this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
         this.cervezas = rta;   
@@ -192,6 +194,7 @@ export class DashboardComponent {
       this.paisSelected = this.listaPaises.find(element => element.id == this.busqueda.idPais) || this.paisSelected;
       this.marcaSelected = this.listaMarcas.find(element => element.id == this.busqueda.idMarca) || this.marcaSelected;
       this.estiloSelected = this.listaEstilos.find(element => element.id == this.busqueda.idEstilo) || this.estiloSelected;
+      //this.spinnerService.hide();
     }, 1000);
   }
 

@@ -9,6 +9,7 @@ import { Marca } from 'src/app/models/marca';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { MarcaService } from 'src/app/services/marca.service';
 import { PaisService } from 'src/app/services/pais.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { MarcaComponent } from '../marca/marca.component';
 
@@ -33,7 +34,7 @@ export class LandingPageComponent {
   estilosObject = Array();
   paisesObject = Array();
 
-  constructor(private servicioMarca: MarcaService, private servicioEstilos: EstiloService, private servicioPaises: PaisService,
+  constructor(private servicioMarca: MarcaService, private servicioEstilos: EstiloService, private servicioPaises: PaisService, public spinnerService: SpinnerService,
     public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private sanitizer: DomSanitizer, private router: Router) {  
 
   }

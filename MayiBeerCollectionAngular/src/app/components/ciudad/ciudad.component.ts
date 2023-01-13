@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { Ciudad } from 'src/app/models/ciudad';
 import { Pais } from 'src/app/models/pais';
 import { CiudadService } from 'src/app/services/ciudad.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-ciudad',
@@ -20,7 +21,7 @@ export class CiudadComponent {
   title = "";
   listaPaises: any[] = [];
 
-  constructor(private servicioCiudad: CiudadService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<CiudadComponent>,
+  constructor(private servicioCiudad: CiudadService, private formBuilder: FormBuilder, public refDialog: MatDialogRef<CiudadComponent>, public spinnerService: SpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: { ciudad: any, title: string, paises: any[] }) {
     
     this.title = "Nueva ciudad";
