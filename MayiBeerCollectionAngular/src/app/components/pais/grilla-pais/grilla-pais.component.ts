@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PaisService } from 'src/app/services/pais.service';
 import { MatTableModule, MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PaisComponent } from '../pais.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { Pais } from 'src/app/models/pais';
@@ -90,8 +90,21 @@ export class GrillaPaisComponent implements OnInit{
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.servicioPais.eliminar(pais.id).subscribe(result =>
-            {this.ngOnInit();}
-          );
+            {
+              console.log(result);
+              if(result.status){
+                  this.dialogoConfirmacion.open(DialogComponent, {
+                    data: {
+                      titulo: "Error",
+                      mensaje: result.error,
+                      icono: "warning",
+                      clase: "class-error"
+                    }
+                })
+              }
+              this.spinnerService.hide();
+              this.ngOnInit();
+            });
         } else {
         }
       });      

@@ -19,7 +19,7 @@ import { DialogComponent } from '../shared/dialog/dialog.component';
   templateUrl: './cerveza.component.html',
   styleUrls: ['./cerveza.component.css']
 })
-export class CervezaComponent {
+export class CervezaComponent{
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
@@ -35,9 +35,9 @@ export class CervezaComponent {
     nombreCiudad: "",
     idPais: 0,
     nombrePais: "",
-    ibu: 0,
-    alcohol: 0,
-    contenido: 0,
+    ibu: undefined,
+    alcohol: undefined,
+    contenido: undefined,
     observaciones: "",
     imagen: "",
     imageFile: ""
@@ -89,7 +89,7 @@ export class CervezaComponent {
       ciudad: ['',],
       ibu: ['',],
       alcohol: ['',],
-      contenido: ['',],
+      contenido: ['',[Validators.required]],  
       observaciones: ['',],
       imagen: ['',],
     })
@@ -130,7 +130,7 @@ export class CervezaComponent {
           });
           this.spinnerService.hide();
         },
-        error => {
+        error => {          
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",

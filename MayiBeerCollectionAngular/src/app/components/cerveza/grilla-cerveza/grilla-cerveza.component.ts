@@ -25,7 +25,7 @@ export class GrillaCervezaComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
-  nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "ciudad", "acciones"];
+  nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "contenido", "ciudad", "acciones"];
  
   listaPaises: Pais[] = [];
   listaCiudades: Ciudad[] = [];

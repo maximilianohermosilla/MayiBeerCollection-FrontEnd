@@ -111,7 +111,15 @@ export class CiudadComponent {
       }
     }
     else{
-      console.log("Debe seleccionar un pais");
+      this.dialogoConfirmacion.open(DialogComponent, {
+        data: {
+          titulo: "Advertencia",
+          mensaje: "Debe ingresar un nombre y seleccionar un país",
+          icono: "warning",
+          clase: "class-warning"
+        }
+      })
+      this.spinnerService.hide();
     }
     
   }

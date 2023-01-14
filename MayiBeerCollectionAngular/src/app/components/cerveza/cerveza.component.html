@@ -5,49 +5,60 @@
         <mat-divider></mat-divider><br>
         <form [formGroup]="formGroup" class="form-horizontal row">
             <div class="col-md-4">
-        <mat-form-field appearance="fill">
+        <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-danger">El valor es requerido</p>
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Nombre</mat-label>
             <input formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Marca</mat-label>
             <mat-select formControlName="marca"  [(ngModel)]="datos.idMarca">
                 <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <p *ngIf="(formGroup.controls['contenido'].hasError('min') || formGroup.controls['contenido'].hasError('max') || formGroup.controls['contenido'].hasError('required')) && formGroup.controls['contenido'].touched"
+         class="text-hidden">_</p>
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Estilo</mat-label>
             <mat-select formControlName="estilo"  [(ngModel)]="datos.idEstilo">
                 <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field class="form-half" appearance="fill">
+        <mat-form-field class="form-half" color="accent" appearance="fill">
+            <p *ngIf="(formGroup.controls['ibu'].hasError('min') || formGroup.controls['ibu'].hasError('max')) && formGroup.controls['ibu'].touched" class="text-danger">0 - 100</p>          
             <mat-label>Ibu</mat-label>
-            <input formControlName="ibu" matInput type="text" placeholder="" [(ngModel)]="datos.ibu">
+            <input formControlName="ibu" min="0" max="100" matInput type="number" placeholder="" [(ngModel)]="datos.ibu">
         </mat-form-field>
-        <mat-form-field class="form-half" appearance="fill">
+        <mat-form-field class="form-half" color="accent" appearance="fill">
+            <p *ngIf="(formGroup.controls['alcohol'].hasError('min') || formGroup.controls['alcohol'].hasError('max')) && formGroup.controls['alcohol'].touched" class="text-danger">0 - 100</p>     
             <mat-label>Alcohol</mat-label>
-            <input formControlName="alcohol" matInput type="text" placeholder="" [(ngModel)]="datos.alcohol">
+            <input formControlName="alcohol" min="0" max="100" matInput type="number" placeholder="" [(ngModel)]="datos.alcohol">
         </mat-form-field>
     </div>
     <div class="col-md-4">
-        <mat-form-field appearance="fill">
+        <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-hidden">_</p>          
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Pais</mat-label>
             <mat-select formControlName="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="datos.idPais">
                 <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
             </mat-select>
         </mat-form-field>     
-        <mat-form-field appearance="fill">
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Ciudad</mat-label>
             <mat-select formControlName="ciudad"  [(ngModel)]="datos.idCiudad">
                 <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
             </mat-select>
+        </mat-form-field>  
+        <p *ngIf="formGroup.controls['contenido'].hasError('required') && formGroup.controls['contenido'].touched" class="text-danger">El valor es equerido</p>          
+        <mat-form-field color="accent" appearance="fill">
+            <mat-label>Contenido*</mat-label>
+            <p *ngIf="(formGroup.controls['contenido'].hasError('min') || formGroup.controls['contenido'].hasError('max')) && formGroup.controls['contenido'].touched" class="text-danger">0 - 1000</p>
+            <input formControlName="contenido" min="0" max="1000" matInput type="number" placeholder="" [(ngModel)]="datos.contenido" required>
         </mat-form-field>        
-        <mat-form-field appearance="fill">
-            <mat-label>Contenido</mat-label>
-            <input formControlName="contenido" matInput type="text" placeholder="" [(ngModel)]="datos.contenido">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
+        <p *ngIf="((formGroup.controls['alcohol'].hasError('min') || formGroup.controls['alcohol'].hasError('max')) && formGroup.controls['alcohol'].touched) ||
+            ((formGroup.controls['ibu'].hasError('min') || formGroup.controls['ibu'].hasError('max')) && formGroup.controls['ibu'].touched)
+        " class="text-hidden">_</p>  
+        <mat-form-field color="accent" appearance="fill">
             <mat-label>Observaciones</mat-label>
             <textarea matInput
             formControlName="observaciones" 
@@ -73,6 +84,6 @@
     </div>   
 </div>
 <div mat-dialog-actions class="dialog-actions">
-    <button type="button" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" class="btn btn-success" [disabled]="!formGroup.valid" (click)="save()">Guardar</button>
     <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
 </div>

@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SpinnerService {
 
-  blockUI: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  blockUI: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   //blockUI$ = new Subject<boolean>();
 

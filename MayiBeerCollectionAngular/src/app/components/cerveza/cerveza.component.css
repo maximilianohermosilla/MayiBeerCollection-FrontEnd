@@ -21,3 +21,15 @@ mat-form-field{
 img{
     cursor:pointer;
 }
+
+.text-danger{
+    margin: 0;
+    padding: 0;
+    color: crimson;
+}
+
+.text-hidden{
+    margin: 0;
+    padding: 0;
+    color: transparent;
+}

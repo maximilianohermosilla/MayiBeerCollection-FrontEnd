@@ -1,8 +1,8 @@
 export interface Cerveza{
     id: number;
     nombre: string;
-    ibu: number;
-    alcohol: number;
+    ibu?: number;
+    alcohol?: number;
     idMarca: number;
     nombreMarca:string;
     idEstilo: number;
@@ -12,7 +12,7 @@ export interface Cerveza{
     idPais: number;
     nombrePais: string;
     observaciones: string;
-    contenido: number;
+    contenido?: number;
     imagen?: string;
     imageFile?: string;
 }

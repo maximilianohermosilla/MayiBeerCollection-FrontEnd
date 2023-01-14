@@ -31,6 +31,7 @@ export class CervezaService {
   }
 
   public actualizar(cerveza: Cerveza): Observable<Cerveza>{
+    console.log(cerveza);
     return this.http.put<Cerveza>(this.apiUrl + "actualizar", cerveza);
   }
 

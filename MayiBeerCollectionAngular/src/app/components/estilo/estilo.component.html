@@ -4,8 +4,9 @@
         <h1>{{title}}</h1>
         <mat-divider></mat-divider><br>
         <form [formGroup]="formGroup" class="form-horizontal row">
-        <mat-form-field appearance="fill">
-            <mat-label>Nombre</mat-label>
+            <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-danger">El valor es requerido</p>
+        <mat-form-field color="accent" appearance="fill">
+            <mat-label>Nombre *</mat-label>
             <input  formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
         
@@ -23,6 +24,6 @@
     </div>   
 </div>
 <div mat-dialog-actions class="dialog-actions">
-    <button type="button" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" [disabled]="!formGroup.valid" class="btn btn-success" (click)="save()">Guardar</button>
     <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
 </div>
