@@ -32,11 +32,11 @@ export class PaisService {
     return this.http.put<Pais>(this.apiUrl + "actualizar", pais);
   }
 
-  public eliminar(id: number): Observable<any>{
+  public eliminarById(id: number): Observable<any>{
     return this.http.delete<any>(this.apiUrl + "eliminar/" + id);
   }
 
-  public eliminarById(id: number): Observable<any>{
+  public eliminar(id: number): Observable<any>{
     return this.http.delete<any>(this.apiUrl + "eliminar/" + id)
     .pipe(
       catchError(error => {

@@ -89,7 +89,7 @@ export class GrillaPaisComponent implements OnInit{
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {          
-          this.servicioPais.eliminarById(pais.id).subscribe(result =>
+          this.servicioPais.eliminar(pais.id).subscribe(result =>
             {    
               this.spinnerService.hide();
               this.ngOnInit();
