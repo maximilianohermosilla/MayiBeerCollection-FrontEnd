@@ -1,0 +1,46 @@
+.container{
+    padding: 30px;
+    color: black;
+    background-color: rgba(255,255,255,1);
+}
+
+.text-center{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.center{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-label{
+    font-size: 1.2rem;
+}
+
+.label{
+    font-weight: 600;
+}
+
+.label-right{
+    text-align: end;
+}
+
+.image-beer{
+    margin-top: 5px;
+}
+
+.center-button{
+    margin: 20px 0px;
+}
+
+.close{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    right: 0px;
+    padding: 0;
+}

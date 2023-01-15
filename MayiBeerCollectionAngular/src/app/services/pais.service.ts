@@ -33,26 +33,48 @@ export class PaisService {
   }
 
   public eliminar(id: number): Observable<any>{
-    return this.http.delete<any>(this.apiUrl + "eliminar/" + id)
-    .pipe(catchError(this.manejoError));;
+    return this.http.delete<any>(this.apiUrl + "eliminar/" + id);
   }
 
-  private manejoError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.warn('Error:', error.error.error)
-    } else {
-      console.warn('HTTPStatus:', error.status.toString(), error.error)
+  public eliminarById(id: number): Observable<any>{
+    return this.http.delete<any>(this.apiUrl + "eliminar/" + id)
+    .pipe(
+      catchError(error => {
+          let errorMsg: string;
+          if (error.error instanceof ErrorEvent) {
+              errorMsg = `Error: ${error.error}`;
+          } else {
+              errorMsg = this.getServerErrorMessage(error);
+          }
+          this.dialogoConfirmacion.open(DialogComponent, {
+            data: {
+              titulo: "Error",
+              mensaje: errorMsg,
+              icono: "warning",
+              clase: "class-error"
+            }
+          })
+          return errorMsg;
+      })
+    );
+  }
+
+  private getServerErrorMessage(error: HttpErrorResponse): string {    
+    switch (error.status) {
+        case 404: {
+            return `Not Found: ${error.error}`;
+        }
+        case 403: {
+            return `Access Denied: ${error.message}`;
+        }
+        case 500: {
+            return `Internal Server Error: ${error.message}`;
+        }
+        default: {
+            //return `Unknown Server Error: ${error.error}`;
+            return `${error.error}`;
+        }
+
     }
-    // this.dialogoConfirmacion.open(DialogComponent, {
-    //   data: {
-    //     titulo: "Error",
-    //     mensaje: error.error,
-    //     icono: "warning",
-    //     clase: "class-error"
-    //   }
-    // })
-    alert(error.error);
-    //return error.error;
-    return throwError(() => error);
   }
 }

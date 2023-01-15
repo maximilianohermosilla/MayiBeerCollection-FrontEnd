@@ -15,7 +15,7 @@ mat-form-field{
 .dialog-actions{
     display: flex;
     justify-content: space-evenly;
-    padding: 20px
+    padding: 20px;
 }
 
 img{
@@ -32,4 +32,8 @@ img{
     margin: 0;
     padding: 0;
     color: transparent;
+}
+
+.mat-mdc-dialog-surface{
+    background-color: red!important
 }

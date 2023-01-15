@@ -7,11 +7,11 @@ icon="search"
 <!-- <div class="d-flex justify-content-center">
   <span class="titulo" id="titulo">{{titulo}}</span>
 </div> -->
-<mat-form-field color="accent" class="search">  
-  <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
-  <mat-icon matPrefix class="my-icon">search</mat-icon>
-</mat-form-field>
 <div class="grilla">
+  <mat-form-field color="accent" class="search">  
+    <input matInput placeholder="Buscar" (keyup)="applyFilter($any($event.target).value)">
+    <mat-icon matPrefix class="my-icon">search</mat-icon>
+  </mat-form-field>
   <form [formGroup]="formGroup" class="form-horizontal">
     <div class="grilla-filter">
       <div>
@@ -59,7 +59,7 @@ icon="search"
 </div>
 <div class="grilla">  
   <h1 *ngIf="cervezas.length == 0">No se encontraron resultados</h1>
-  <div class="card" *ngFor="let element of cervezas | filterCerveza: filterText">
+  <div class="card" *ngFor="let element of cervezas | filterCerveza: filterText" (click)="ver(element)">
       <div class="card-img">
         <img class="card-img-top" [src]="element.imagen || defaultImage" alt={{element.nombre}}>
       </div>

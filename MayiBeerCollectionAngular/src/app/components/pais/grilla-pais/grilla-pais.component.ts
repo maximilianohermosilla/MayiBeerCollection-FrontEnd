@@ -88,24 +88,12 @@ export class GrillaPaisComponent implements OnInit{
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
-        if (confirmado) {
-          this.servicioPais.eliminar(pais.id).subscribe(result =>
-            {
-              console.log(result);
-              if(result.status){
-                  this.dialogoConfirmacion.open(DialogComponent, {
-                    data: {
-                      titulo: "Error",
-                      mensaje: result.error,
-                      icono: "warning",
-                      clase: "class-error"
-                    }
-                })
-              }
+        if (confirmado) {          
+          this.servicioPais.eliminarById(pais.id).subscribe(result =>
+            {    
               this.spinnerService.hide();
               this.ngOnInit();
             });
-        } else {
         }
       });      
   }

@@ -1,4 +1,20 @@
 .mat-dialog-actions {
     display: flex;
     justify-content: space-evenly
+  }  
+
+  h1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .dialog-content{
+    display: flex;
+    justify-content: center
+  }
+
+  .container{
+    padding: 20px;
   }

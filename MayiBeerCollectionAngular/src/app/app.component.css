@@ -76,14 +76,7 @@
       transform: rotate(-5deg);
     }
   }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-
+  
   .example-container {
     display: flex;
     flex-direction: column;
@@ -110,20 +103,20 @@
   
   .example-sidenav-container {
     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
     flex: 1;
   }
   
   .example-is-mobile .example-sidenav-container {
     /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-       `<body>` to be our scrolling element for mobile layouts. */
+    `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
-
+  
   .nav-list{
     min-width: 200px;
   }
-
+  
   .center{
     display: flex;
     justify-content: center;
@@ -131,16 +124,45 @@
     line-height: 20px;
     padding-left: 10px;
   }
-
+  
   .center:hover{
     background-color: #505050
   }
-
+  
   .center-icon{
     margin-left: 8px;
   }
-
+  
   a:hover{
     background-color: #424242;
   }
-
+  
+  .beer-icon{
+    margin-left: 10px;
+    color: rgba(239, 191, 102, 0.894);
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 1.5s;
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
+  }
+  
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+  
+  @keyframes shake {
+    0% { transform: rotate(0deg); }  
+    10% { transform: rotate(10deg); }  
+    20% { transform: rotate(15deg); }  
+    30% { transform: rotate(10deg); }  
+    40% { transform: rotate(5deg); }  
+    50% { transform: rotate(-5deg); }  
+    60% { transform: rotate(-10deg); }
+    70% { transform: rotate(-15deg); }
+    80% { transform: rotate(-10deg); }
+    90% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }

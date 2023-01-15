@@ -20,6 +20,7 @@ import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.
 import { ActivatedRoute, Params } from '@angular/router';
 import { Busqueda } from 'src/app/models/busqueda';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { CardviewComponent } from './cardview/cardview.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -127,11 +128,17 @@ export class DashboardComponent {
   
 
   ver(event: any) {
-    console.log(event);
-    const dialogRef = this.dialog.open(CervezaComponent,{
-      width: '800px',disableClose: false, data: {
-        title: "Editar Cerveza",
-        cerveza: event,        
+    const dialogRef = this.dialog.open(CardviewComponent,{
+      width: '600px',
+      disableClose: false,
+      maxWidth: '90vw',
+      data: {
+        title: event.nombre,
+        cerveza: event,    
+        paises: this.listaPaises,
+        ciudades: this.listaCiudades,
+        marcas: this.listaMarcas,
+        estilos: this.listaEstilos    
       } 
     });
 
@@ -141,21 +148,6 @@ export class DashboardComponent {
     })
 
   }
-
-  eliminar(cerveza: Cerveza){
-    this.dialogoConfirmacion.open(ConfirmDialogComponent, {
-        data: `¿Está seguro de que desea eliminar ${cerveza.nombre}?`
-      })
-      .afterClosed()
-      .subscribe((confirmado: Boolean) => {
-        if (confirmado) {
-          this.servicioCerveza.eliminar(cerveza.id).subscribe(result =>
-            {this.ngOnInit();}
-          );
-        } else {
-        }
-      });      
-  } 
 
    applyFilter(filterValue: string){
     this.filterText=filterValue;
@@ -176,10 +168,6 @@ export class DashboardComponent {
   }
 
   onChangeFilter(){
-    
-    console.log(this.paisSelected);
-    //this.busqueda.idMarca = 
-    
     setTimeout(() => {
       this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
         this.cervezas = rta;   

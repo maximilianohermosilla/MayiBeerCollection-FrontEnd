@@ -1,10 +1,12 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
-<h1 mat-dialog-title>Confirmación</h1>
-<mat-divider></mat-divider>
-<div mat-dialog-content>
-    <p>{{mensaje}}</p>
-</div>
-<div mat-dialog-actions class="mat-dialog-actions">
-    <button class="btn btn-success" (click)="confirmado()" cdkFocusInitial>Sí</button>
-    <button class="btn btn-danger" (click)="cerrarDialogo()">No</button>    
+<div class="container">
+    <h1 mat-dialog-title>Confirmación</h1>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content>
+        <p>{{mensaje}}</p>
+    </div>
+    <div mat-dialog-actions class="mat-dialog-actions">
+        <button class="btn btn-success" (click)="confirmado()" cdkFocusInitial>Sí</button>
+        <button class="btn btn-danger" (click)="cerrarDialogo()">No</button>    
+    </div>
 </div>
