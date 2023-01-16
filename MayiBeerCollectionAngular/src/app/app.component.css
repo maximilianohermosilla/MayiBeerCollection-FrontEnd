@@ -12,10 +12,6 @@
     min-height: 90vh;
   }
 
-  h1,  h2,  h3,  h4,  h5,  h6 {
-    margin: 8px 0;
-  }
-
   p {
     margin: 0;
   }
@@ -30,9 +26,8 @@
     align-items: space-between;
   }
 
-  .button-login{
-    margin-right: 5px;    
-    background-color: rgba(255,255,255,0.1)
+  .button-login{ 
+    background-color: rgba(80, 200, 0, 0.8);
   }
 
   .mat-drawer{    
@@ -121,12 +116,11 @@
   }
   
   .beer-icon{
-    margin-left: 10px;
+    margin-left: 0.5rem;
     color: rgba(239, 191, 102, 0.894);
-    /* Start the shake animation and make the animation last for 0.5 seconds */
     animation: shake 1.5s;
-    /* When the animation is finished, start again */
     animation-iteration-count: infinite;
+    /*animation: 0.5s ease-out 0s 1 transitionLeft;*/
   }
   
   @media screen and (max-width: 575px) {
@@ -149,3 +143,14 @@
     90% { transform: rotate(-5deg); }
     100% { transform: rotate(0deg); }
   }
+
+  @keyframes transitionLeft{
+    0% {
+        opacity: 0.1;
+        transform: translateX(50vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

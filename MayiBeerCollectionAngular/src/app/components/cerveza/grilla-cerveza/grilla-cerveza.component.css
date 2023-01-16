@@ -93,7 +93,7 @@ mat-header-row{
         width: 14px;
     }
 
-    .ciudades{
+    .ciudades, .contenido{
         display: none;
     }
 

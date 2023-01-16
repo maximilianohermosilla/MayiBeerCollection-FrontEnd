@@ -109,9 +109,12 @@ export class PaisComponent implements OnInit{
           this.spinnerService.hide();
         },
         error => {
+          if (error.status == 401){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
-              titulo: "Error",
+              titulo: "Error " + error.status,
               mensaje: error.error,
               icono: "warning",
               clase: "class-error"
