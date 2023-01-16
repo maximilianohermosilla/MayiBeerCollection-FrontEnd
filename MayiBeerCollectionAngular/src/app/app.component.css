@@ -30,6 +30,11 @@
     align-items: space-between;
   }
 
+  .button-login{
+    margin-right: 5px;    
+    background-color: rgba(255,255,255,0.1)
+  }
+
   .mat-drawer{    
     box-shadow: rgba(0, 0, 0, 0.54) 5px 5px 18px;
   }
@@ -55,28 +60,6 @@
     background-color: #323232;
   }
 
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-  
   .example-container {
     display: flex;
     flex-direction: column;

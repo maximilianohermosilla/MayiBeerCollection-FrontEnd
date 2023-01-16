@@ -31,6 +31,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { SpinnerInterceptorService } from './services/spinner-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardviewComponent } from './components/dashboard/cardview/cardview.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CardviewComponent } from './components/dashboard/cardview/cardview.comp
     DialogComponent,
     LandingPageComponent,
     SpinnerComponent,
-    CardviewComponent
+    CardviewComponent,
+    LoginComponent
   ],
   imports: [
     NgImageSliderModule,
