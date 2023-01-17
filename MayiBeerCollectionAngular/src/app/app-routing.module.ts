@@ -8,32 +8,38 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { GrillaMarcaComponent } from './components/marca/grilla-marca/grilla-marca.component';
 import { GrillaPaisComponent } from './components/pais/grilla-pais/grilla-pais.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
+import { GuardGuard } from './shared/guards/guard.guard';
 
 const routes: Routes = [
   {
     path: '',    
     redirectTo: 'menu',
-    pathMatch: 'full'
+    pathMatch: 'full' 
   },
   {
     path: 'cervezas',
-    component: GrillaCervezaComponent
+    component: GrillaCervezaComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'marcas',
-    component: GrillaMarcaComponent
+    component: GrillaMarcaComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'estilos',
-    component: GrillaEstiloComponent
+    component: GrillaEstiloComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'ciudades',
-    component: GrillaCiudadComponent
+    component: GrillaCiudadComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'paises',
-    component: GrillaPaisComponent
+    component: GrillaPaisComponent,
+    canActivate: [GuardGuard] 
   },
   {
     path: 'dashboard',
@@ -45,9 +51,13 @@ const routes: Routes = [
     component: LandingPageComponent
   },
   {
-    path: '',
-    component: NotfoundComponent
-  },
+    path: '404',
+     component:NotfoundComponent },
+  { 
+    path: '**',
+    redirectTo: 'menu',
+    pathMatch: 'full' 
+  }
 ];
 
 

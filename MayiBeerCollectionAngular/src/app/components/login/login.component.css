@@ -13,6 +13,7 @@
   .button {
     display: flex;
     justify-content: center;
+    margin-left: 10px;
   }
 
   .container{
@@ -29,8 +30,36 @@
     color: white;
     margin: 20px;
     padding: 10px 20px;
+    background-color: rgba(0,0,0,0.6);
     box-shadow: rgba(0, 0, 0, 0.84) 5px 5px 18px;
   }  
+
+  .card-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.84) 5px 5px 18px;
+  }
+
+  .login-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: rgba(198, 0, 0, 0.6);
+    box-shadow: rgba(0, 0, 0, 0.84) 5px 5px 18px;
+  }
 
   .form-horizontal{
     margin-top: 10px;    
@@ -38,4 +67,34 @@
 
   mat-card-content{
     margin: 1px;
+  }
+
+  .beer-icon{
+    color: rgba(224, 232, 79, 0.894);
+    animation: shake 1.5s;
+    animation-iteration-count: infinite;
+    /*animation: 0.5s ease-out 0s 1 transitionLeft;*/
+  }   
+  
+  .icon-container{   
+    width: 36px;
+    height: 36px; 
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+  @keyframes shake {
+    0% { transform: rotate(0deg); }  
+    10% { transform: rotate(10deg); }  
+    20% { transform: rotate(15deg); }  
+    30% { transform: rotate(10deg); }  
+    40% { transform: rotate(5deg); }  
+    50% { transform: rotate(-5deg); }  
+    60% { transform: rotate(-10deg); }
+    70% { transform: rotate(-15deg); }
+    80% { transform: rotate(-10deg); }
+    90% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
   }

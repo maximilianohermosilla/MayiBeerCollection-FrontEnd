@@ -18,6 +18,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -44,7 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatTooltipModule
   ],
   exports: [
     MatFormFieldModule,
@@ -62,7 +64,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatListModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule { }

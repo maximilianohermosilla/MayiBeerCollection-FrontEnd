@@ -1,7 +1,7 @@
 <div class="title-grilla">
     <mat-icon class="class-icon">{{icon}}</mat-icon>
     <span class="titulo">{{text}}</span>
-    <button mat-mini-fab class="green" (click)="onClick()" *ngIf="isAdmin">                                    
+    <button mat-mini-fab class="green" matTooltip="Añadir" (click)="onClick()" *ngIf="isAdmin">                                    
         <mat-icon style="cursor: pointer;">add</mat-icon>                                    
     </button>
     <div *ngIf="!isAdmin">

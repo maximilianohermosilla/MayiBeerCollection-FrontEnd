@@ -1,26 +1,36 @@
 <div class="container">
-    <mat-card class="form">
-        <mat-card-title class="form">Login</mat-card-title>
+    <mat-card class="card-title">
+        <div class="login-title">
+            <div class="icon-container">
+                <mat-icon mat-fab class="beer-icon">sports_bar</mat-icon>
+            </div>
+            <mat-card-title class="title">Ingresar</mat-card-title>
+            <div class="icon-container">
+                <mat-icon mat-fab class="beer-icon">sports_bar</mat-icon>
+            </div>
+        </div>
     <mat-card-content>
-    <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="onLogin($event)">
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Usuario</mat-label>
-            <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
-        </mat-form-field>
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Contraseña</mat-label>
-            <input formControlName="Password" matInput type="password"  autocomplete="off">
-        </mat-form-field>
+        <div class="row">
+            <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="onLogin($event)">
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label>Usuario</mat-label>
+                    <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
+                </mat-form-field>
+                <mat-form-field color="accent" appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input formControlName="Password" matInput type="password"  autocomplete="off">
+                </mat-form-field>
 
-    <p *ngIf="error" class="error">
-        {{ error }}
-    </p>
+            <p *ngIf="error" class="error">
+                {{ error }}
+            </p>
 
-    <div class="button">
-        <button type="submit" mat-raised-button color="accent">Ingresar</button>
-    </div>
+            <div class="button">
+                <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid">Confirmar</button>
+            </div>
 
-    </form>
+            </form>
+        </div>
     </mat-card-content>
     </mat-card>
 </div>

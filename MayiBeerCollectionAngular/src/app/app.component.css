@@ -78,6 +78,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  h1.example-app-name:hover {
+    margin-left: 8px;
+    background: -webkit-linear-gradient(#65cd23, #FFFFFF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   
   .example-sidenav-container {
     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
@@ -128,6 +136,7 @@
       display: none;
       visibility: hidden;
     }
+    
   }
   
   @keyframes shake {

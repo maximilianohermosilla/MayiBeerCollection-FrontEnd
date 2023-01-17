@@ -94,20 +94,20 @@
 
 .titulo{
     display: block;
-    padding-top: 100px;
+    padding-top: 50px;
     height: 100%;
     font-size: 4rem; 
     font-weight: 700;
     color: transparent;
     text-transform: uppercase;
-    background: linear-gradient(to bottom,           
-                    blue,
-                    violet,
-                    indigo,
-                    red);
-            -webkit-background-clip: text;
-            color: transparent;
-    animation: animate 6s linear infinite;
+    color: white;
+    text-shadow: 5px 5px 10px black;
+    /* background: linear-gradient(to bottom,           
+    blue, red, blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; */
+    
 }
 
 .titulos{
@@ -135,6 +135,126 @@ a:link, a:visited, a:active {
     text-decoration:none;
 }
 
+
+/* ANIMATION BUBBLES */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  margin-top: 80px;
+  width: 100%; 
+  position: absolute;
+}
+
+.wrapper div {
+  margin-top: 20px;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  animation: 4s linear infinite;
+}
+div .dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 20%;
+  right: 20%;
+}
+.wrapper div:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(2) {
+  top: 60%;
+  left: 80%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(3) {
+  top: 40%;
+  left: 40%;
+  animation: animate 3s linear infinite;
+}
+.wrapper div:nth-child(4) {
+  top: 66%;
+  left: 30%;
+  animation: animate 7s linear infinite;
+}
+.wrapper div:nth-child(5) {
+  top: 90%;
+  left: 15%;
+  animation: animate 9s linear infinite;
+}
+.wrapper div:nth-child(6) {
+  top: 30%;
+  left: 66%;
+  animation: animate 5s linear infinite;
+}
+.wrapper div:nth-child(7) {
+  top: 70%;
+  left: 20%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(8) {
+  top: 75%;
+  left: 60%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(9) {
+  top: 50%;
+  left: 50%;
+  animation: animate 6s linear infinite;
+}
+.wrapper div:nth-child(10) {
+  top: 45%;
+  left: 28%;
+  animation: animate 10s linear infinite;
+}
+.wrapper div:nth-child(11) {
+  top: 10%;
+  left: 90%;
+  animation: animate 9s linear infinite;
+}
+.wrapper div:nth-child(12) {
+  top: 20%;
+  left: 70%;
+  animation: animate 7s linear infinite;
+}
+.wrapper div:nth-child(13) {
+  top: 20%;
+  left: 33%;
+  animation: animate 8s linear infinite;
+}
+.wrapper div:nth-child(14) {
+  top: 60%;
+  left: 5%;
+  animation: animate 6s linear infinite;
+}
+.wrapper div:nth-child(15) {
+  top: 90%;
+  left: 80%;
+  animation: animate 9s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0) translateY(0) rotate(70deg);
+  }
+  100% {
+    transform: scale(1) translateY(-100px) rotate(360deg);
+  }
+}
+
+/* */
+
 @media screen and (max-width: 575px) {
     .search{
         margin-top: 5px;
@@ -155,7 +275,8 @@ a:link, a:visited, a:active {
         align-items: flex-end;
         padding-top: 0;
         font-size: 2rem;
-       
+        color: white;
+        text-shadow: 5px 5px 10px black;
     }
 
     .title{
@@ -165,18 +286,36 @@ a:link, a:visited, a:active {
 
     .container-fluid{
         padding: 0 30px;
-      }
-}
+    }
 
-@keyframes animate{
-    0%{
-        background-position: 0 100%;
+    .wrapper {
+        height: 110px;        
+        margin-top: 80px;
+        width: 100%; 
+        position: absolute;
+        overflow: hidden;
     }
-    50%{
-        background-position: 100% 0;
+      
+    .wrapper div {
+        margin-top: 30px;
+        height: 20px;
+        width: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        opacity: 0.5;
+        animation: 4s linear infinite;
     }
-    100%{
-        background-position: 0 100%;
-    }
-    
+
+    div .dot {
+        height: 5px;
+        width: 5px;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.5);
+        position: absolute;
+        top: 20%;
+        right: 20%;
+      }
 }

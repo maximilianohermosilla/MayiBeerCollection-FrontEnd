@@ -1,9 +1,9 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="secondary" class="example-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Mayi Beer Collection</h1><mat-icon class="beer-icon">sports_bar</mat-icon>
+    <h1 class="example-app-name" routerLink="menu" style="cursor: pointer;" >Mayi Beer Collection</h1><mat-icon class="beer-icon">sports_bar</mat-icon>
     <div class="spacer"></div>
-    <button mat-mini-fab class="button-login" [color]="isAdmin? 'warn': 'accent'" (click)="toggleLogin()"><mat-icon>person</mat-icon></button>
+    <button mat-mini-fab class="button-login" [color]="isAdmin? 'warn': 'accent'" [matTooltip]="isAdmin? 'Cerrar sesión': 'Ingresar'" (click)="toggleLogin()"><mat-icon>person</mat-icon></button>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
