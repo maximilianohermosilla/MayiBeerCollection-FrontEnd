@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">Mayi Beer Collection</h1><mat-icon class="beer-icon">sports_bar</mat-icon>
     <div class="spacer"></div>
-    <button mat-mini-fab class="button-login" color="accent" (click)="login()"><mat-icon>person</mat-icon></button>
+    <button mat-mini-fab class="button-login" [color]="isAdmin? 'warn': 'accent'" (click)="toggleLogin()"><mat-icon>person</mat-icon></button>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"

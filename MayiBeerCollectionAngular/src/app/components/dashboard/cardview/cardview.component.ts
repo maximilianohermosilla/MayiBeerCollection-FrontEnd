@@ -11,6 +11,7 @@ import { Pais } from 'src/app/models/pais';
 import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { TokenService } from 'src/app/services/token.service';
 import { CervezaComponent } from '../../cerveza/cerveza.component';
 
 @Component({
@@ -18,7 +19,7 @@ import { CervezaComponent } from '../../cerveza/cerveza.component';
   templateUrl: './cardview.component.html',
   styleUrls: ['./cardview.component.css']
 })
-export class CardviewComponent{
+export class CardviewComponent implements OnInit{
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
@@ -54,8 +55,12 @@ export class CardviewComponent{
   archivo: any;
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
+  isAdmin: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog,
+
+
+
+  constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog, private tokenService: TokenService,
     private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService, public spinnerService: SpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {   
     this.title = "Cerveza";
@@ -93,6 +98,9 @@ export class CardviewComponent{
     })
   }
  
+  ngOnInit(): void {
+    this.isAdmin  = (this.tokenService.getToken())? true: false;
+  }
 
   editar(event: Cerveza){
     console.log(event);

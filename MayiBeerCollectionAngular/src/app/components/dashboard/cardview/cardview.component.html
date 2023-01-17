@@ -6,7 +6,9 @@
     <h1 class="center">{{title}}</h1>
     <mat-divider></mat-divider><br>       
     <div class="row">
-        <div class="col-12" id="data">   
+        <div class="col-12" id="data" [ngStyle]="{'background-image': 'url(' + imageFileSanitized + ')',  'background-size': 'cover',
+        'background-repeat': 'no-repeat', 'height': '100%'}">  
+            
             <div class="text-center">
                 <mat-label class="label">Marca:</mat-label><mat-label class="label-right">{{datos.nombreMarca}}</mat-label>   
             </div>
@@ -31,11 +33,11 @@
             <div class="text-center">
                 <mat-label class="label">Observaciones:</mat-label>
             </div>
-            <div class="">
+            <div class="text">
                 <mat-label>{{datos.observaciones}}</mat-label>
             </div>
-            <div class="center center-button">                
-                <button type="button" class="btn btn-outline-success text-center" [hidden]="!admin" (click)="editar(datos)"><mat-icon style="cursor: pointer; margin-right: 5px;">edit_square</mat-icon>Editar</button>
+            <div class="text center center-button"  *ngIf="isAdmin">                
+                <button type="button" class="btn btn-outline-success text-center" (click)="editar(datos)"><mat-icon style="cursor: pointer; margin-right: 5px;">edit_square</mat-icon>Editar</button>
             </div>
         </div>
         <div class="col-12" hidden>

@@ -32,6 +32,7 @@ import { SpinnerInterceptorService } from './services/spinner-interceptor.servic
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardviewComponent } from './components/dashboard/cardview/cardview.component';
 import { LoginComponent } from './components/login/login.component';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [FilterPipe,
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptorService, multi: true}, 
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

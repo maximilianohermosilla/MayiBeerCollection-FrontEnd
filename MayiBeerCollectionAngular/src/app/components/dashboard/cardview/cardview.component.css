@@ -8,6 +8,11 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
+    background-color: rgba(255,255,255,0.6)
+}
+
+.text{
+    background-color: rgba(255,255,255,0.6)
 }
 
 .center{
@@ -29,11 +34,12 @@ mat-label{
 }
 
 .image-beer{
-    margin-top: 5px;
+    position: absolute;
+    opacity: 0.3;
 }
 
 .center-button{
-    margin: 20px 0px;
+    padding: 20px 0px;
 }
 
 .close{
@@ -43,4 +49,10 @@ mat-label{
     width: 100%;
     right: 0px;
     padding: 0;
+}
+
+.data{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: auto;
 }
