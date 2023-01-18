@@ -54,16 +54,10 @@ export class EstiloComponent implements OnInit{
     
   }
 
-  ver(element: any) {
-    console.log(element);
-  }
-
   save(){
+    let _edit: Estilo = {id: this.datos.id, nombre: this.datos.nombre, 
+      imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
     if (this.datos.id > 0){
-      console.log("update");
-      let _edit: Estilo = {id: this.datos.id, nombre: this.datos.nombre, 
-        imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
-      console.log(_edit);
       this.servicioEstilo.actualizar(_edit).subscribe(
         result =>
         {
@@ -80,6 +74,9 @@ export class EstiloComponent implements OnInit{
         },
         error => 
         {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",
@@ -94,9 +91,8 @@ export class EstiloComponent implements OnInit{
         }          
       );
     }
-    else{      
-      console.log("nuevo");
-      this.servicioEstilo.nuevo(this.datos).subscribe(
+    else{     
+      this.servicioEstilo.nuevo(_edit).subscribe(
         result =>
         {
           this.refDialog.close(this.formGroup.value);
@@ -111,6 +107,9 @@ export class EstiloComponent implements OnInit{
           this.spinnerService.hide();
         },
         error => {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",

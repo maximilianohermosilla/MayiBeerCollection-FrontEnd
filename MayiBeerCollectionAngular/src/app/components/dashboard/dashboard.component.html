@@ -1,4 +1,5 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
+<app-spinner *ngIf="noResults"></app-spinner> 
 <app-banner-title
 text={{titulo}}
 icon="search"
@@ -57,8 +58,8 @@ icon="search"
   </div>
   </form>
 </div>
-<div class="grilla">  
-  <h1 *ngIf="cervezas.length == 0">No se encontraron resultados</h1>
+<div class="grilla">   
+  <!-- <h1 *ngIf="noResults">No se encontraron resultados</h1>   -->
   <div class="card" *ngFor="let element of cervezas | filterCerveza: filterText" (click)="ver(element)">
       <div class="card-img">
         <img class="card-img-top" [src]="element.imagen || defaultImage" alt={{element.nombre}}>

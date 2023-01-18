@@ -53,7 +53,7 @@ export class DashboardComponent {
   data: any;
   formGroup: FormGroup;
   myParam: string = "";
-
+  noResults: boolean = true;
   paisSelected: Pais = {id: 0,nombre: ''};
   marcaSelected: Marca = {id: 0,nombre: ''};
   estiloSelected: Estilo = {id: 0,nombre: ''};
@@ -121,7 +121,6 @@ export class DashboardComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
@@ -143,7 +142,6 @@ export class DashboardComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
 
@@ -168,13 +166,16 @@ export class DashboardComponent {
   }
 
   onChangeFilter(){
+    this.noResults = true;
     setTimeout(() => {
       this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
         this.cervezas = rta;   
+        this.noResults = rta == null || rta == undefined;
+        //this.noResults = this.cervezas.length == 0? true: false;
       });      
       this.clearSelectedItems();        
       if (this.busqueda.idCiudad! > 0 || this.busqueda.idMarca! > 0 || this.busqueda.idEstilo! > 0 || this.busqueda.idPais! > 0){
-        this.titulo = "Resultados de la búsqueda";
+        this.titulo = "Resultados de la búsqueda";        
       }
       else{
         this.titulo = "Búsqueda";

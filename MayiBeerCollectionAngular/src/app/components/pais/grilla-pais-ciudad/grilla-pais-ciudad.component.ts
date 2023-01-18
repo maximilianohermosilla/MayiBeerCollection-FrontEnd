@@ -61,7 +61,6 @@ export class GrillaPaisCiudadComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
@@ -76,7 +75,6 @@ export class GrillaPaisCiudadComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       dialogRef.close('Cierro!');
       this.ngOnInit();
     })

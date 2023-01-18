@@ -18,7 +18,7 @@ export class MarcaComponent implements OnInit{
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
   formGroup: FormGroup;
-  datos: Marca = {id: 0, nombre: ""};
+  datos: Marca = {id: 0, nombre: "", imagen : "", };
   title = "";
   
   base64: string = ''
@@ -59,13 +59,10 @@ export class MarcaComponent implements OnInit{
   }
 
   save(){
-    console.log(this.datos);
-    console.log(this.datos.id);
+    this.datos.imagen = this.imageFileSanitized.changingThisBreaksApplicationSecurity;
+    let _edit: Marca = {id: this.datos.id, nombre: this.datos.nombre,
+      imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
     if (this.datos.id > 0){
-      console.log("update");
-      let _edit: Marca = {id: this.datos.id, nombre: this.datos.nombre,
-        imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
-      console.log(_edit);
       this.servicioMarca.actualizar(_edit).subscribe(
         result =>
         {
@@ -82,6 +79,9 @@ export class MarcaComponent implements OnInit{
         },
         error => 
         {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",
@@ -97,8 +97,7 @@ export class MarcaComponent implements OnInit{
       );
     }
     else{      
-      console.log("nuevo");
-      this.servicioMarca.nuevo(this.datos).subscribe(
+      this.servicioMarca.nuevo(_edit).subscribe(
         result =>
         {
           this.refDialog.close(this.formGroup.value);
@@ -113,6 +112,9 @@ export class MarcaComponent implements OnInit{
           this.spinnerService.hide();
         },
         error => {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",

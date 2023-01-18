@@ -23,12 +23,10 @@ export class PaisService {
   }
 
   public nuevo(pais: Pais): Observable<any> {
-    console.log(pais);
     return this.http.post<Pais>(this.apiUrl + "nuevo", pais);
   }
 
   public actualizar(pais: Pais): Observable<Pais>{
-    console.log(pais);    
     return this.http.put<Pais>(this.apiUrl + "actualizar", pais);
   }
 

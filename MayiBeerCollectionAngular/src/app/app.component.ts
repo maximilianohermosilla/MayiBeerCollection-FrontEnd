@@ -23,7 +23,7 @@ export class AppComponent {
   //fillerNav = Array.from({length: 6}, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
-
+  userName: string = "";
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private tokenService: TokenService
     , public spinnerService: SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -35,6 +35,7 @@ export class AppComponent {
     this.isAdmin  = (this.tokenService.getToken())? true: false;
     this.fillerNav.push({nombre: "Inicio",routerlink: "menu",icon: "home"}); 
     if (this.isAdmin) {
+      this.userName = this.tokenService.getUserName();
       this.fillerNav.push({nombre: "Cervezas",routerlink: "cervezas",icon: "sports_bar"}); 
       this.fillerNav.push({nombre: "Marcas",routerlink: "marcas",icon: "local_mall"}); 
       this.fillerNav.push({nombre: "Estilos",routerlink: "estilos",icon: "soup_kitchen"}); 
@@ -60,7 +61,6 @@ export class AppComponent {
         window.location.reload();            
         this.spinnerService.hide();
       }, 1000);
-      console.log("Cerraste el dialog");
     })   
   }
 
@@ -73,6 +73,7 @@ export class AppComponent {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.spinnerService.show();
+          this.userName = "";
           this.router.navigate(['menu']);
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {

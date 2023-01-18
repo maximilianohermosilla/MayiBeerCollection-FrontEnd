@@ -62,25 +62,35 @@ export class LoginComponent {
     return this.formGroup.get('password');
   }
 
-  onLogin(event: Event){
-    event.preventDefault;
-    //console.log(this.formGroup.value);
-    this.authService.iniciarSesion(this.formGroup.value).subscribe(data=>{
-      console.log(data);
+  onLogin(){
+    this.authService.iniciarSesion(this.loginUsuario).subscribe(data=>{
       this.isLogged = true;
       this.isLoginFail = false;    
       this.perfil = data.role;
-      this.refDialog.close(this.formGroup.value);    
-      //this.route.navigate(['/portfolio']);
+      this.refDialog.close(this.loginUsuario);   
     },
     error => {
+      if (error.status >= 400){
+        error.error = "Usuario o contraseña incorrectas";
+      }
       this.isLoginFail = true;
       this.isLogged = false;     
       this.errMsj = error;
       //console.log("error: ", this.errMsj);      
       this.spinnerService.hide(); 
-      this.refDialog.close(this.formGroup.value);    
+      this.refDialog.close(this.loginUsuario);    
     }
     )
+  }
+
+  loginInvitado(){
+    this.loginUsuario.Login = "invitado";
+    this.loginUsuario.Password = "CLAve123**";
+    this.onLogin();
+  }
+
+  loginUser(){
+    this.loginUsuario = this.formGroup.value;
+    this.onLogin();
   }
 }

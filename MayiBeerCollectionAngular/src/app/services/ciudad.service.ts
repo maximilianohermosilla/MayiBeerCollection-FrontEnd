@@ -27,12 +27,10 @@ export class CiudadService {
   }
   
   public nuevo(ciudad: Ciudad): Observable<any> {
-    console.log(ciudad);
     return this.http.post<Ciudad>(this.apiUrl + "nuevo", ciudad);
   }
 
   public actualizar(ciudad: Ciudad): Observable<Ciudad>{
-    console.log(ciudad);    
     return this.http.put<Ciudad>(this.apiUrl + "actualizar", ciudad);
   }
 

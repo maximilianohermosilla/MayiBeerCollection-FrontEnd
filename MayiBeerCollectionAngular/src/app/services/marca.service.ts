@@ -24,12 +24,10 @@ export class MarcaService {
 
   
   public nuevo(marca: Marca): Observable<any> {
-    console.log(marca);
     return this.http.post<Marca>(this.apiUrl + "nuevo", marca);
   }
 
   public actualizar(marca: Marca): Observable<Marca>{
-    console.log(marca);    
     return this.http.put<Marca>(this.apiUrl + "actualizar", marca);
   }
 

@@ -41,7 +41,6 @@ export class GrillaMarcaComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
@@ -55,7 +54,6 @@ export class GrillaMarcaComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
 

@@ -130,11 +130,19 @@
     animation-iteration-count: infinite;
     /*animation: 0.5s ease-out 0s 1 transitionLeft;*/
   }
+
+  .name{
+    margin-right: 5px;
+  }
   
   @media screen and (max-width: 575px) {
     svg#rocket-smoke {
       display: none;
       visibility: hidden;
+    }
+
+    .name{
+      display: none;
     }
     
   }

@@ -54,15 +54,10 @@ export class PaisComponent implements OnInit{
     
   }
 
-  ver(element: any) {
-    console.log(element);
-  }
-
   save(){
+    let _editPais: Pais = {id: this.datos.id, nombre: this.datos.nombre,
+      imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
     if (this.datos.id > 0){
-      console.log("update");
-      let _editPais: Pais = {id: this.datos.id, nombre: this.datos.nombre,
-        imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity};
       this.servicioPais.actualizar(_editPais).subscribe(
         result =>
         {
@@ -79,6 +74,9 @@ export class PaisComponent implements OnInit{
         },
         error => 
         {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",
@@ -94,7 +92,7 @@ export class PaisComponent implements OnInit{
       );
     }
     else{
-      this.servicioPais.nuevo(this.datos).subscribe(
+      this.servicioPais.nuevo(_editPais).subscribe(
         result =>
         {
           this.refDialog.close(this.formGroup.value);
@@ -109,7 +107,7 @@ export class PaisComponent implements OnInit{
           this.spinnerService.hide();
         },
         error => {
-          if (error.status == 401){
+          if (error.status == 401 || error.status == 403){
             error.error = "Usuario no autorizado";
           }
           this.dialogoConfirmacion.open(DialogComponent, {

@@ -58,7 +58,6 @@ export class GrillaCiudadComponent  implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
@@ -73,7 +72,6 @@ export class GrillaCiudadComponent  implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
 

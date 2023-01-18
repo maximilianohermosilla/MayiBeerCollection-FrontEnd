@@ -49,7 +49,7 @@ export class TokenService {
   
   public getAuthorities(): string{
     this.perfil = "";
-    console.log(sessionStorage.getItem(AUTHORITIES_KEY));
+    //console.log(sessionStorage.getItem(AUTHORITIES_KEY));
     if (sessionStorage.getItem(AUTHORITIES_KEY) != undefined)
     {      
       this.perfil = JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!)

@@ -98,24 +98,24 @@ export class CervezaComponent{
   save(){  
     this.spinnerService.show();      
     //console.log(this.imageFileSanitized.changingThisBreaksApplicationSecurity);
+    let _edit: Cerveza = {
+      id: this.datos.id,
+      nombre: this.datos.nombre,
+      idMarca: this.datos.idMarca,
+      nombreMarca: this.datos.nombreMarca,
+      idEstilo: this.datos.idEstilo,
+      nombreEstilo: this.datos.nombreEstilo,
+      idCiudad: this.datos.idCiudad,
+      nombreCiudad: this.datos.nombreCiudad,
+      idPais: this.datos.idPais,
+      nombrePais: this.datos.nombrePais,
+      ibu: this.datos.ibu,
+      alcohol: this.datos.alcohol,
+      contenido: this.datos.contenido,
+      observaciones: this.datos.observaciones,
+      imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity
+    };
     if (this.datos.id > 0){
-      let _edit: Cerveza = {
-        id: this.datos.id,
-        nombre: this.datos.nombre,
-        idMarca: this.datos.idMarca,
-        nombreMarca: this.datos.nombreMarca,
-        idEstilo: this.datos.idEstilo,
-        nombreEstilo: this.datos.nombreEstilo,
-        idCiudad: this.datos.idCiudad,
-        nombreCiudad: this.datos.nombreCiudad,
-        idPais: this.datos.idPais,
-        nombrePais: this.datos.nombrePais,
-        ibu: this.datos.ibu,
-        alcohol: this.datos.alcohol,
-        contenido: this.datos.contenido,
-        observaciones: this.datos.observaciones,
-        imagen: this.imageFileSanitized.changingThisBreaksApplicationSecurity
-      };
 
       this.servicioCerveza.actualizar(_edit).subscribe(result =>
         {          
@@ -130,7 +130,10 @@ export class CervezaComponent{
           });
           this.spinnerService.hide();
         },
-        error => {          
+        error => {    
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }      
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",
@@ -147,7 +150,7 @@ export class CervezaComponent{
     }
     else{   
       this.datos.imagen = this.imageFileSanitized.changingThisBreaksApplicationSecurity;
-      this.servicioCerveza.nuevo(this.datos).subscribe(result =>
+      this.servicioCerveza.nuevo(_edit).subscribe(result =>
         {
           this.refDialog.close(this.formGroup.value);
           this.dialogoConfirmacion.open(DialogComponent, {
@@ -161,6 +164,9 @@ export class CervezaComponent{
           this.spinnerService.hide();
         },
         error => {
+          if (error.status == 401 || error.status == 403){
+            error.error = "Usuario no autorizado";
+          }
           this.dialogoConfirmacion.open(DialogComponent, {
             data: {
               titulo: "Error",

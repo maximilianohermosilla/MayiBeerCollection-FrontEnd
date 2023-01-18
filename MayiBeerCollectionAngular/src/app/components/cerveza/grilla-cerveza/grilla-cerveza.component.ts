@@ -84,13 +84,11 @@ export class GrillaCervezaComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
 
   ver(event: any) {
-    console.log(event);
     const dialogRef = this.dialog.open(CervezaComponent,{
       width: '800px',disableClose: false, data: {
         title: "Editar Cerveza",
@@ -103,7 +101,6 @@ export class GrillaCervezaComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
 

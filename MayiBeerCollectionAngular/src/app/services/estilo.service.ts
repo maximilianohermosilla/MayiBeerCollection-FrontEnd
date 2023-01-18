@@ -23,12 +23,10 @@ export class EstiloService {
   }
 
   public nuevo(estilo: Estilo): Observable<any> {
-    console.log(estilo);
     return this.http.post<Estilo>(this.apiUrl + "nuevo", estilo);
   }
 
   public actualizar(estilo: Estilo): Observable<Estilo>{
-    console.log(estilo);    
     return this.http.put<Estilo>(this.apiUrl + "actualizar", estilo);
   }
 

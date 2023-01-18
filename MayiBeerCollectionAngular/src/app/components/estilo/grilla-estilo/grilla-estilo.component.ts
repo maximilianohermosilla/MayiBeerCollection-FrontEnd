@@ -40,7 +40,6 @@ export class GrillaEstiloComponent {
     });
 
     dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
       this.ngOnInit();
     })
   }
@@ -53,8 +52,8 @@ export class GrillaEstiloComponent {
       } 
     });
 
-    dialogRef.afterClosed().subscribe( res => {
-      console.log("Cerraste el dialog");
+    dialogRef.afterClosed().subscribe( res => {      
+      this.ngOnInit();
     })
 
   } 

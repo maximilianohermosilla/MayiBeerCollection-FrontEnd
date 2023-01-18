@@ -103,7 +103,6 @@ export class CardviewComponent implements OnInit{
   }
 
   editar(event: Cerveza){
-    console.log(event);
     const dialogRef = this.dialogoConfirmacion.open(CervezaComponent,{
       width: '800px',disableClose: false, data: {
         title: "Editar Cerveza",

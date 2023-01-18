@@ -4,33 +4,42 @@
             <div class="icon-container">
                 <mat-icon mat-fab class="beer-icon">sports_bar</mat-icon>
             </div>
-            <mat-card-title class="title">Ingresar</mat-card-title>
+            <mat-card-title class="title">Login</mat-card-title>
             <div class="icon-container">
                 <mat-icon mat-fab class="beer-icon">sports_bar</mat-icon>
             </div>
         </div>
-    <mat-card-content>
-        <div class="row">
-            <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="onLogin($event)">
-                <mat-form-field color="accent" appearance="fill">
-                    <mat-label>Usuario</mat-label>
-                    <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
-                </mat-form-field>
-                <mat-form-field color="accent" appearance="fill">
-                    <mat-label>Contraseña</mat-label>
-                    <input formControlName="Password" matInput type="password"  autocomplete="off">
-                </mat-form-field>
-
-            <p *ngIf="error" class="error">
-                {{ error }}
-            </p>
-
-            <div class="button">
-                <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid">Confirmar</button>
-            </div>
-
-            </form>
+        <br>
+        <div class="button">
+            <button type="button" class="btn btn-primary" (click)="loginInvitado()">Ingresar como invitado</button>
         </div>
-    </mat-card-content>
+        <br>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <div class="row">
+                <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="loginUser()">
+                    <mat-form-field color="accent" appearance="fill">
+                        <mat-label>Usuario</mat-label>
+                        <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="fill">
+                        <mat-label>Contraseña</mat-label>
+                        <input formControlName="Password" matInput type="password"  autocomplete="off">
+                    </mat-form-field>
+
+                <p *ngIf="error" class="error">
+                    {{ error }}
+                </p>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <div class="button">
+                    <button type="submit" class="btn btn-success" [disabled]="!formGroup.valid">Confirmar</button>
+                </div>
+                <br>
+                </form>
+            </div>
+            <br>
+        </mat-card-content>
     </mat-card>
 </div>

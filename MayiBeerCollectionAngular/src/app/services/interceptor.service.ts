@@ -1,4 +1,4 @@
-import { HttpEvent, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginService } from './login.service';
@@ -7,7 +7,7 @@ import { TokenService } from './token.service';
 @Injectable({
   providedIn: 'root'
 })
-export class InterceptorService {
+export class InterceptorService implements HttpInterceptor{
 
   constructor(private authService: LoginService, private tokenService: TokenService) { }
 

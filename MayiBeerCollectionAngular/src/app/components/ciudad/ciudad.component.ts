@@ -47,8 +47,8 @@ export class CiudadComponent {
 
   save(){
     if (this.formGroup.value.pais){
+      let _edit: Ciudad = {id: this.datos.id, nombre: this.datos.nombre, idPais: this.datos.idPais, nombrePais: this.datos.nombrePais};
       if (this.datos.id > 0){
-        let _edit: Ciudad = {id: this.datos.id, nombre: this.datos.nombre, idPais: this.datos.idPais, nombrePais: this.datos.nombrePais};
         this.servicioCiudad.actualizar(_edit).subscribe(
           result => 
           {
@@ -65,6 +65,9 @@ export class CiudadComponent {
           },
           error => 
           {
+            if (error.status == 401 || error.status == 403){
+              error.error = "Usuario no autorizado";
+            }
             this.dialogoConfirmacion.open(DialogComponent, {
               data: {
                 titulo: "Error",
@@ -80,7 +83,7 @@ export class CiudadComponent {
         );
       }
       else{   
-        this.servicioCiudad.nuevo(this.datos).subscribe(
+        this.servicioCiudad.nuevo(_edit).subscribe(
           result =>
           {
             this.refDialog.close(this.formGroup.value);
@@ -95,6 +98,9 @@ export class CiudadComponent {
             this.spinnerService.hide();
           },
           error => {
+            if (error.status == 401 || error.status == 403){
+              error.error = "Usuario no autorizado";
+            }
             this.dialogoConfirmacion.open(DialogComponent, {
               data: {
                 titulo: "Error",
