@@ -15,11 +15,15 @@ export class CervezaService {
   constructor(private http: HttpClient) { }
 
   public GetById(id: Number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + id);
+    return this.http.get<any>(this.apiUrl + "buscar/" + id);
   }
 
   public GetAll(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl);    
+    return this.http.get<any[]>(this.apiUrl + "listar");    
+  }
+
+  public GetAllProxy(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarProxy");    
   }
 
   public GetBusqueda(busqueda: Busqueda): Observable<any> {

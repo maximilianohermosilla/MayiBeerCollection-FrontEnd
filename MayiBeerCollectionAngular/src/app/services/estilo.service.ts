@@ -14,12 +14,17 @@ export class EstiloService {
   
   constructor(private http: HttpClient, private dialogoConfirmacion: MatDialog) { }
 
-  public GetById(id: Number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + id);
+  
+  public GetAll(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listar");    
   }
 
-  public GetAll(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl);    
+  public GetAllProxy(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarProxy");    
+  }
+  
+  public GetById(id: Number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "buscar/" + id);
   }
 
   public nuevo(estilo: Estilo): Observable<any> {

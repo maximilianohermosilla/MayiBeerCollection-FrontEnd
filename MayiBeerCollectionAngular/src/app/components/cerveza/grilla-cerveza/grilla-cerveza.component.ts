@@ -36,7 +36,7 @@ export class GrillaCervezaComponent {
     private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService) { }
 
   ngOnInit(): void {
-    this.servicioCerveza.GetAll().subscribe((rta: any[]) => {
+    this.servicioCerveza.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
     });
@@ -47,8 +47,9 @@ export class GrillaCervezaComponent {
   }
 
   listarPaises(){
-    this.servicioPais.GetAll().subscribe((rta: Ciudad[]) => {
+    this.servicioPais.GetAllProxy().subscribe((rta: Ciudad[]) => {
       this.listaPaises = rta;    
+      console.log(this.listaPaises);
     });
   }
   
@@ -59,13 +60,13 @@ export class GrillaCervezaComponent {
   }
 
   listarMarcas(){
-    this.servicioMarca.GetAll().subscribe((rta: Marca[]) => {
+    this.servicioMarca.GetAllProxy().subscribe((rta: Marca[]) => {
       this.listaMarcas = rta;    
     });
   }
 
   listarEstilos(){
-    this.servicioEstilo.GetAll().subscribe((rta: Estilo[]) => {
+    this.servicioEstilo.GetAllProxy().subscribe((rta: Estilo[]) => {
       this.listaEstilos = rta;    
     });
   }
@@ -89,21 +90,22 @@ export class GrillaCervezaComponent {
   }
 
   ver(event: any) {
-    const dialogRef = this.dialog.open(CervezaComponent,{
-      width: '800px',disableClose: false, data: {
-        title: "Editar Cerveza",
-        cerveza: event,
-        paises: this.listaPaises,
-        ciudades: this.listaCiudades,
-        marcas: this.listaMarcas,
-        estilos: this.listaEstilos
-      } 
-    });
+    this.servicioCerveza.GetById(event.id).subscribe((rta: Cerveza) => { 
+      const dialogRef = this.dialog.open(CervezaComponent,{
+        width: '800px',disableClose: false, data: {
+          title: "Editar Cerveza",
+          cerveza: rta,
+          paises: this.listaPaises,
+          ciudades: this.listaCiudades,
+          marcas: this.listaMarcas,
+          estilos: this.listaEstilos
+        } 
+      });
 
-    dialogRef.afterClosed().subscribe( res => {
-      this.ngOnInit();
-    })
-
+      dialogRef.afterClosed().subscribe( res => {
+        this.ngOnInit();
+      })
+  });
   }
 
   eliminar(cerveza: Cerveza){

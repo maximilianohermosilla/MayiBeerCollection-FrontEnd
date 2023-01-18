@@ -62,6 +62,8 @@ export class DashboardComponent {
   defaultImage = "/assets/img/default.png";
   defaultImageCheck = "/assets/img/check-all.png";
 
+  filterCount: number = 0;
+
   constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private formBuilder: FormBuilder, public spinnerService: SpinnerService,
     private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService,
     private route: ActivatedRoute){
@@ -90,19 +92,19 @@ export class DashboardComponent {
   }
 
   listarPaises(){
-    this.servicioPais.GetAll().subscribe((rta: Ciudad[]) => {
+    this.servicioPais.GetAllProxy().subscribe((rta: Ciudad[]) => {
       this.listaPaises = rta;    
     });
   }
 
   listarMarcas(){
-   this.servicioMarca.GetAll().subscribe((rta: Marca[]) => {
+   this.servicioMarca.GetAllProxy().subscribe((rta: Marca[]) => {
      this.listaMarcas = rta;    
    });
   }
 
   listarEstilos(){
-   this.servicioEstilo.GetAll().subscribe((rta: Estilo[]) => {
+   this.servicioEstilo.GetAllProxy().subscribe((rta: Estilo[]) => {
      this.listaEstilos = rta;    
    });
   }
@@ -167,24 +169,27 @@ export class DashboardComponent {
 
   onChangeFilter(){
     this.noResults = true;
-    setTimeout(() => {
-      this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
-        this.cervezas = rta;   
-        this.noResults = rta == null || rta == undefined;
-        //this.noResults = this.cervezas.length == 0? true: false;
-      });      
-      this.clearSelectedItems();        
-      if (this.busqueda.idCiudad! > 0 || this.busqueda.idMarca! > 0 || this.busqueda.idEstilo! > 0 || this.busqueda.idPais! > 0){
-        this.titulo = "Resultados de la búsqueda";        
-      }
-      else{
-        this.titulo = "Búsqueda";
-      }
-      this.paisSelected = this.listaPaises.find(element => element.id == this.busqueda.idPais) || this.paisSelected;
-      this.marcaSelected = this.listaMarcas.find(element => element.id == this.busqueda.idMarca) || this.marcaSelected;
-      this.estiloSelected = this.listaEstilos.find(element => element.id == this.busqueda.idEstilo) || this.estiloSelected;
-      //this.spinnerService.hide();
-    }, 1000);
+    this.filterCount++;
+    if(this.filterCount >= 4){
+      setTimeout(() => {
+        this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
+          this.cervezas = rta;   
+          this.noResults = rta == null || rta == undefined;
+          //this.noResults = this.cervezas.length == 0? true: false;
+        });      
+        this.clearSelectedItems();        
+        if (this.busqueda.idCiudad! > 0 || this.busqueda.idMarca! > 0 || this.busqueda.idEstilo! > 0 || this.busqueda.idPais! > 0){
+          this.titulo = "Resultados de la búsqueda";        
+        }
+        else{
+          this.titulo = "Búsqueda";
+        }
+        this.paisSelected = this.listaPaises.find(element => element.id == this.busqueda.idPais) || this.paisSelected;
+        this.marcaSelected = this.listaMarcas.find(element => element.id == this.busqueda.idMarca) || this.marcaSelected;
+        this.estiloSelected = this.listaEstilos.find(element => element.id == this.busqueda.idEstilo) || this.estiloSelected;
+        //this.spinnerService.hide();
+      }, 1000);
+    }
   }
 
   clearSelectedItems(){

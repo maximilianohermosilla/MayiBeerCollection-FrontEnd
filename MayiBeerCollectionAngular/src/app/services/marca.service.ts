@@ -15,13 +15,16 @@ export class MarcaService {
   constructor(private http: HttpClient, public dialogoConfirmacion: MatDialog) { }
 
   public GetById(id: Number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + id);
+    return this.http.get<any>(this.apiUrl + "buscar/" + id);
   }
 
   public GetAll(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl);    
+    return this.http.get<any[]>(this.apiUrl + "listar");    
   }
 
+  public GetAllProxy(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarProxy");    
+  }
   
   public nuevo(marca: Marca): Observable<any> {
     return this.http.post<Marca>(this.apiUrl + "nuevo", marca);

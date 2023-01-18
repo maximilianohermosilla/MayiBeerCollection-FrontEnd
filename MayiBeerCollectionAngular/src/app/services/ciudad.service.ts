@@ -15,7 +15,7 @@ export class CiudadService {
   constructor(private http: HttpClient, private dialogoConfirmacion: MatDialog) { }
 
   public GetById(id: Number): Observable<any> {
-    return this.http.get<any>(this.apiUrl + id);
+    return this.http.get<any>(this.apiUrl + "buscar/" + id);
   }
 
   public GetAll(): Observable<any> {
