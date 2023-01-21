@@ -36,6 +36,7 @@ import { CardviewComponent } from './cardview/cardview.component';
 export class DashboardComponent {  
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   cervezas: Cerveza[] = [];  
+  cervezasFiltered: Cerveza[] = [];  
   nombreColumnas: string[] = ["Cerveza"];
   filterText: string = "";
  
@@ -174,6 +175,7 @@ export class DashboardComponent {
       setTimeout(() => {
         this.servicioCerveza.GetBusqueda(this.busqueda).subscribe((rta: any[]) => {
           this.cervezas = rta;   
+          this.cervezasFiltered = rta.slice(0, 10);;   
           this.noResults = rta == null || rta == undefined;
           //this.noResults = this.cervezas.length == 0? true: false;
         });      
@@ -214,5 +216,13 @@ export class DashboardComponent {
         console.log(rta);
       });
     }
+  }
+
+  onPageChange($event: any) {
+    this.cervezasFiltered =  this.cervezas.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+  }
+
+  onPaginateChange(data: any) {
+    this.cervezasFiltered = this.cervezas.slice(0, data.pageSize);
   }
 }

@@ -60,7 +60,7 @@ icon="search"
 </div>
 <div class="grilla">   
   <!-- <h1 *ngIf="noResults">No se encontraron resultados</h1>   -->
-  <div class="card" *ngFor="let element of cervezas | filterCerveza: filterText" (click)="ver(element)">
+  <div class="card" *ngFor="let element of cervezasFiltered | filterCerveza: filterText" (click)="ver(element)">
       <div class="card-img">
         <img class="card-img-top" [src]="element.imagen || defaultImage" alt={{element.nombre}}>
       </div>
@@ -69,6 +69,15 @@ icon="search"
         <p hidden class="card-text">{{element.nombreMarca}} {{element.nombreEstilo}}, {{element.nombreCiudad}}</p>
         <!-- <a href="#" class="btn btn-outline-success"><mat-icon>notes</mat-icon>Ver detalle</a> -->
       </div>
-    </div>
+  </div>
+  <mat-paginator  
+  [length]="cervezas.length"
+  [pageSizeOptions]="[5, 10, 25, 100, cervezas.length]"  
+  [pageSize]="10"  
+  (page)="onPageChange($event)"
+  showFirstLastButtons
+  aria-label="Select page"
+  > 
+  </mat-paginator>
 </div>
 
