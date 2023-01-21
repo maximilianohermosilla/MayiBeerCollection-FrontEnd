@@ -24,7 +24,7 @@ export class GrillaEstiloComponent {
   constructor(private servicioEstilo: EstiloService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
 
   ngOnInit(): void {
-    this.servicioEstilo.GetAll().subscribe((rta: any[]) => {
+    this.servicioEstilo.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
       //console.log(rta);
@@ -45,17 +45,18 @@ export class GrillaEstiloComponent {
   }
 
   ver(event: any) {
-    const dialogRef = this.dialog.open(EstiloComponent,{
-      width: '640px',disableClose: false, data: {
-        title: "Editar Estilo",
-        estilo: event
-      } 
+    this.servicioEstilo.GetById(event.id).subscribe((rta: Estilo) => { 
+      const dialogRef = this.dialog.open(EstiloComponent,{
+        width: '640px',disableClose: false, data: {
+          title: "Editar Estilo",
+          estilo: rta
+        } 
+      });
+
+      dialogRef.afterClosed().subscribe( res => {      
+        this.ngOnInit();
+      })
     });
-
-    dialogRef.afterClosed().subscribe( res => {      
-      this.ngOnInit();
-    })
-
   } 
 
   eliminar(estilo: Estilo){

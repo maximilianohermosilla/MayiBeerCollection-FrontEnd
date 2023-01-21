@@ -11,6 +11,10 @@ body{
     align-items: center;
     background-color: #323232;
   }
+  
+  img{
+    cursor:pointer;
+  }
 /* 
   .card-container {
     display: flex;

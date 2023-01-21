@@ -179,15 +179,12 @@ export class DashboardComponent {
         });      
         this.clearSelectedItems();        
         if (this.busqueda.idCiudad! > 0 || this.busqueda.idMarca! > 0 || this.busqueda.idEstilo! > 0 || this.busqueda.idPais! > 0){
+          this.refreshSelected();
           this.titulo = "Resultados de la búsqueda";        
         }
         else{
           this.titulo = "Búsqueda";
         }
-        this.paisSelected = this.listaPaises.find(element => element.id == this.busqueda.idPais) || this.paisSelected;
-        this.marcaSelected = this.listaMarcas.find(element => element.id == this.busqueda.idMarca) || this.marcaSelected;
-        this.estiloSelected = this.listaEstilos.find(element => element.id == this.busqueda.idEstilo) || this.estiloSelected;
-        //this.spinnerService.hide();
       }, 1000);
     }
   }
@@ -196,5 +193,26 @@ export class DashboardComponent {
     this.paisSelected = {id: 0,nombre: ''};
     this.marcaSelected = {id: 0,nombre: ''};
     this.estiloSelected = {id: 0,nombre: ''};
+  }
+
+  refreshSelected(){    
+    if (this.busqueda.idPais! > 0 ){
+      this.servicioPais.GetById(this.busqueda.idPais || 0).subscribe((rta: Pais) => {
+        this.paisSelected = rta;  
+        console.log(rta);  
+      });
+    }
+    if (this.busqueda.idMarca! > 0 ){
+      this.servicioMarca.GetById(this.busqueda.idMarca || 0).subscribe((rta: Marca) => {
+        this.marcaSelected = rta;  
+        console.log(rta);  
+      });
+    }
+    if (this.busqueda.idEstilo! > 0 ){
+      this.servicioEstilo.GetById(this.busqueda.idEstilo || 0).subscribe((rta: Estilo) => {
+        this.estiloSelected = rta;    
+        console.log(rta);
+      });
+    }
   }
 }

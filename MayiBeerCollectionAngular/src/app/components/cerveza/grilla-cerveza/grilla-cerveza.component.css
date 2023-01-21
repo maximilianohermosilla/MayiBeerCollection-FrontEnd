@@ -49,7 +49,6 @@ mat-header-row{
 .example-flex-container {
     display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
 }
 
 .search{

@@ -22,6 +22,6 @@
     </div>   
 </div>
 <div mat-dialog-actions class="dialog-actions">
-    <button type="button" [disabled]="!formGroup.valid" class="btn btn-success" (click)="save()">Guardar</button>
+    <button type="button" [disabled]="!formGroup.valid" #fileInput class="btn btn-success" (click)="save()">Guardar</button>
     <button type="button" class="btn btn-danger" [mat-dialog-close]="true">Cancelar</button>
 </div>

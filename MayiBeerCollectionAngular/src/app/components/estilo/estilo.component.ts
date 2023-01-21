@@ -7,6 +7,7 @@ import { Estilo } from 'src/app/models/estilo';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { DialogComponent } from '../shared/dialog/dialog.component';
+import { NgxImageCompressService } from 'ngx-image-compress';
 
 @Component({
   selector: 'app-estilo',
@@ -27,9 +28,17 @@ export class EstiloComponent implements OnInit{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
+    //compress
+    file: any;
+    localUrl: any;
+    localCompressedURl:any;
+    sizeOfOriginalImage:number = 0;
+    sizeOFCompressedImage:number = 0;
+  
+
   constructor(private servicioEstilo: EstiloService, private formBuilder: FormBuilder,
      public spinnerService: SpinnerService, public refDialog: MatDialogRef<EstiloComponent>,
-     private sanitizer: DomSanitizer, public dialogoConfirmacion: MatDialog,
+     private sanitizer: DomSanitizer, public dialogoConfirmacion: MatDialog, private imageCompress: NgxImageCompressService,
     @Inject(MAT_DIALOG_DATA) public data: { estilo: any; title: string; }) {
     
     this.title = "Nueva Marca";
@@ -126,26 +135,73 @@ export class EstiloComponent implements OnInit{
     }
   }
 
-  selectFile(event: Event): void{
+  selectFile(event: any) {
     this.spinnerService.show();
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
     //this.imageUrl= this.sant.bypassSecurityTrustUrl( window.URL.createObjectURL(this.fileSelected)) as string;    
     this.base64="Base64...";
-    this.convertFileToBase64();
-    
-  }
+    //this.convertFileToBase64();
 
-  convertFileToBase64(): void{
-    let reader= new FileReader();
-    reader.readAsDataURL(this.fileSelected as Blob);
-    reader.onloadend=()=>{
-      this.base64=reader.result as string;
+
+    var  fileName : any;
+    this.file = event.target.files[0];
+    fileName = this.file['name'];
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.localUrl = event.target.result;
+        this.compressFile(this.localUrl,fileName, this.file)
+      }
+      reader.readAsDataURL(event.target.files[0]);
     }
-    setTimeout(()=>{         
-      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
-      this.spinnerService.hide();
-    }, 1000); 
-  }
+    }
+    imgResultBeforeCompress:string = "";
+    imgResultAfterCompress:string = "";
+
+    compressFile(image: any ,fileName: any, originalFile: File) {
+      var orientation = -1;
+      this.sizeOfOriginalImage = this.imageCompress.byteCount(image)/(1024*1024);
+      console.warn('Size in bytes is now:',  this.sizeOfOriginalImage);
+      this.imageCompress.compressFile(image, orientation, 50, 50).then(
+        result => {
+          this.imgResultAfterCompress = result;
+          this.localCompressedURl = result;
+          this.sizeOFCompressedImage = this.imageCompress.byteCount(result)/(1024*1024)
+          console.warn('Size in bytes after compression:',  this.sizeOFCompressedImage);
+          // create file from byte
+          const imageName = fileName;
+          // call method that creates a blob from dataUri
+          const imageBlob = this.dataURItoBlob(this.imgResultAfterCompress.split(',')[1]);
+          //imageFile created below is the new compressed file which can be send to API in form data
+          const imageFile = new File([result], imageName, { type: 'image/jpeg' });
+          //this.fileSelected = (imageBlob);
+          this.fileSelected = this.sizeOfOriginalImage > 0.05? imageBlob: originalFile;
+          this.convertFileToBase64();
+        }
+    );}
+
+    dataURItoBlob(dataURI: any) {
+      const byteString = window.atob(dataURI);
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const int8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < byteString.length; i++) {
+        int8Array[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([int8Array], { type: 'image/jpeg' });
+      return blob;
+    }  
+    
+    convertFileToBase64(): void{
+      let reader= new FileReader();
+      reader.readAsDataURL(this.fileSelected as Blob);
+      reader.onloadend=()=>{
+        this.base64=reader.result as string;
+      }
+      setTimeout(()=>{         
+        this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+        this.spinnerService.hide();
+      }, 1000); 
+    }
 
 }

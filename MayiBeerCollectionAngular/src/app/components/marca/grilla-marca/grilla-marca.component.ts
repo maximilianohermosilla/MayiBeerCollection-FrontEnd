@@ -26,7 +26,7 @@ export class GrillaMarcaComponent implements OnInit{
 
   ngOnInit(): void {
     this.spinnerService.show();
-    this.servicioMarca.GetAll().subscribe((rta: any[]) => {
+    this.servicioMarca.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
     })
@@ -46,16 +46,18 @@ export class GrillaMarcaComponent implements OnInit{
   }
 
   ver(event: any) {
-    const dialogRef = this.dialog.open(MarcaComponent,{
-      width: '640px',disableClose: false, data: {
-        title: "Editar Marca",
-        marca: event
-      } 
-    });
+    this.servicioMarca.GetById(event.id).subscribe((rta: Marca) => { 
+      const dialogRef = this.dialog.open(MarcaComponent,{
+        width: '640px',disableClose: false, data: {
+          title: "Editar Marca",
+          marca: rta
+        } 
+      });
 
-    dialogRef.afterClosed().subscribe( res => {
-      this.ngOnInit();
-    })
+      dialogRef.afterClosed().subscribe( res => {
+        this.ngOnInit();
+      })
+    });
 
   } 
 

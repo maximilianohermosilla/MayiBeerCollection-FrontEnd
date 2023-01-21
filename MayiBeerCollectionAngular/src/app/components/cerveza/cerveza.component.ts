@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgxImageCompressService } from 'ngx-image-compress';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { Cerveza } from 'src/app/models/cerveza';
 import { Ciudad } from 'src/app/models/ciudad';
@@ -56,7 +57,16 @@ export class CervezaComponent{
   imageFileSanitized: any;
   defaultImage = "/assets/img/default.png";
 
-  constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog,
+  //compress
+  file: any;
+  localUrl: any;
+  localCompressedURl:any;
+  sizeOfOriginalImage:number = 0;
+  sizeOFCompressedImage:number = 0;
+
+
+
+  constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog, private imageCompress: NgxImageCompressService,
     private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService, public spinnerService: SpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {
     
@@ -183,7 +193,7 @@ export class CervezaComponent{
     } 
   }
 
-  selectFile(event: Event): void{
+  /*selectFile(event: Event): void{
     this.spinnerService.show();
     const target= event.target as HTMLInputElement;
     this.fileSelected = (target.files as FileList)[0];
@@ -191,19 +201,7 @@ export class CervezaComponent{
     this.base64="Base64...";
     this.convertFileToBase64();
     
-  }
-
-  convertFileToBase64(): void{
-    let reader= new FileReader();
-    reader.readAsDataURL(this.fileSelected as Blob);
-    reader.onloadend=()=>{
-      this.base64=reader.result as string;
-    }
-    setTimeout(()=>{         
-      this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
-      this.spinnerService.hide();
-    }, 1000); 
-  }
+  }*/
 
   setearArchivo(arch: any) {
     return new Promise((resolve, reject) => {
@@ -223,4 +221,74 @@ export class CervezaComponent{
       this.listarCiudades(idPais);
     }
   }
+
+  selectFile(event: any) {
+    this.spinnerService.show();
+    const target= event.target as HTMLInputElement;
+    this.fileSelected = (target.files as FileList)[0];
+    //this.imageUrl= this.sant.bypassSecurityTrustUrl( window.URL.createObjectURL(this.fileSelected)) as string;    
+    this.base64="Base64...";
+    //this.convertFileToBase64();
+
+
+    var  fileName : any;
+    this.file = event.target.files[0];
+    fileName = this.file['name'];
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.localUrl = event.target.result;
+        this.compressFile(this.localUrl,fileName, this.file)
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+    }
+    imgResultBeforeCompress:string = "";
+    imgResultAfterCompress:string = "";
+
+    compressFile(image: any ,fileName: any, originalFile: File) {
+      var orientation = -1;
+      this.sizeOfOriginalImage = this.imageCompress.byteCount(image)/(1024*1024);
+      console.warn('Size in bytes is now:',  this.sizeOfOriginalImage);
+      this.imageCompress.compressFile(image, orientation, 50, 50).then(
+        result => {
+          this.imgResultAfterCompress = result;
+          this.localCompressedURl = result;
+          this.sizeOFCompressedImage = this.imageCompress.byteCount(result)/(1024*1024)
+          console.warn('Size in bytes after compression:',  this.sizeOFCompressedImage);
+          // create file from byte
+          const imageName = fileName;
+          // call method that creates a blob from dataUri
+          const imageBlob = this.dataURItoBlob(this.imgResultAfterCompress.split(',')[1]);
+          //imageFile created below is the new compressed file which can be send to API in form data
+          const imageFile = new File([result], imageName, { type: 'image/jpeg' });
+          //this.fileSelected = (imageBlob);
+          this.fileSelected = this.sizeOfOriginalImage > 0.05? imageBlob: originalFile;
+          this.convertFileToBase64();
+        }
+    );}
+
+    dataURItoBlob(dataURI: any) {
+      const byteString = window.atob(dataURI);
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const int8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < byteString.length; i++) {
+        int8Array[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([int8Array], { type: 'image/jpeg' });
+      return blob;
+    }  
+    
+    convertFileToBase64(): void{
+      let reader= new FileReader();
+      reader.readAsDataURL(this.fileSelected as Blob);
+      reader.onloadend=()=>{
+        this.base64=reader.result as string;
+      }
+      setTimeout(()=>{         
+        this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
+        this.spinnerService.hide();
+      }, 1000); 
+    }
+
 }

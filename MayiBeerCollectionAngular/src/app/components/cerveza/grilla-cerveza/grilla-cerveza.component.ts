@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Cerveza } from 'src/app/models/cerveza';
 import { Ciudad } from 'src/app/models/ciudad';
@@ -23,6 +24,7 @@ import { CervezaComponent } from '../cerveza.component';
 })
 export class GrillaCervezaComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "contenido", "ciudad", "acciones"];
@@ -49,7 +51,6 @@ export class GrillaCervezaComponent {
   listarPaises(){
     this.servicioPais.GetAllProxy().subscribe((rta: Ciudad[]) => {
       this.listaPaises = rta;    
-      console.log(this.listaPaises);
     });
   }
   
