@@ -70,14 +70,14 @@ icon="search"
         <!-- <a href="#" class="btn btn-outline-success"><mat-icon>notes</mat-icon>Ver detalle</a> -->
       </div>
   </div>
-  <mat-paginator  
-  [length]="cervezas.length"
-  [pageSizeOptions]="[5, 10, 25, 100, cervezas.length]"  
-  [pageSize]="10"  
-  (page)="onPageChange($event)"
-  showFirstLastButtons
-  aria-label="Select page"
-  > 
-  </mat-paginator>
 </div>
+<mat-paginator  
+[length]="cervezas.length"
+[pageSizeOptions]="[5, 10, 25, 100, cervezas.length]"  
+[pageSize]="10"  
+(page)="onPageChange($event)"
+showFirstLastButtons
+aria-label="Select page"
+> 
+</mat-paginator>
 
