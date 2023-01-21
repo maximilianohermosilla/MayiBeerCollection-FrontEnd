@@ -7,6 +7,9 @@ import { EstiloService } from 'src/app/services/estilo.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { EstiloComponent } from '../estilo.component';
+import { MatSort, Sort } from '@angular/material/sort'
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-grilla-estilo',
@@ -16,17 +19,19 @@ import { EstiloComponent } from '../estilo.component';
 export class GrillaEstiloComponent {
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioEstilo: EstiloService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioEstilo: EstiloService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.servicioEstilo.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       //console.log(rta);
     })
   }
@@ -76,5 +81,14 @@ export class GrillaEstiloComponent {
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  announceSortChange(sort: Sort){
+    if (sort.direction){
+      this.liveAnnouncer.announce('Sorted${sort.direction}ending');
+    }
+    else{
+      this.liveAnnouncer.announce('sorting cleared');
+    }
   }
 }

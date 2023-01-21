@@ -40,6 +40,7 @@ export class LoginService {
     this.spinnerService.show();
     return this.httpClient.post<any>(this.apiUrl + 'login', credenciales).pipe(map(data=>{   
         this.decodeToken = this.jwtHelper.decodeToken(data.token);
+        console.log(data);
         //console.log(this.decodeToken);
         //this.expirationDate = this.jwtHelper.getTokenExpirationDate(data.token);
         //this.isExpired = this.jwtHelper.isTokenExpired(data.token);
@@ -61,26 +62,10 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
 
-  _login(user: string, password: string){
-    /*this.httpClient.post(this.api + '/authenticate', {user: user, password: password}).subscribe((resp: any)=>{
-      this.router.navigate(['portfolio']);
-      localStorage.setItem('auth_token', resp.token);
-    })*/
-    this.isLogin = true;
-  }
-
-  login(){
-    /*this.httpClient.post(this.api + '/authenticate', {user: user, password: password}).subscribe((resp: any)=>{
-      this.router.navigate(['portfolio']);
-      localStorage.setItem('auth_token', resp.token);
-    })*/
-    this.isLogin = true;
-  }
 
   logout(){
     //localStorage.removeItem('token');
     this.isLogin = false;
-
   }
 
   public get logIn(): boolean {

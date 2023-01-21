@@ -12,39 +12,39 @@ icon="sports_bar"
                 <mat-icon matPrefix class="my-icon">search</mat-icon>
             </mat-form-field>
             <div class="col-sm-12 grilla">
-                <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
+                <table mat-table [dataSource]="dataSource" class="tabla" #table matSort (matSortChange)="announceSortChange($event)">                          
                     <ng-container matColumnDef="nombre">
-                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.nombre}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="marca">
-                        <th mat-header-cell *matHeaderCellDef> Marca </th>
+                    <ng-container matColumnDef="nombreMarca">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.nombreMarca}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="estilo">
-                        <th mat-header-cell *matHeaderCellDef> Estilo </th>
+                    <ng-container matColumnDef="nombreEstilo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estilo </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.nombreEstilo}} </td>
                     </ng-container>
                     <ng-container matColumnDef="ibu">
-                        <th mat-header-cell *matHeaderCellDef> Ibu </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ibu </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.ibu}} </td>
                     </ng-container>
                     <ng-container matColumnDef="alcohol">
-                        <th mat-header-cell *matHeaderCellDef> Alcohol </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Alcohol </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.alcohol}} %</td>
                     </ng-container>
                     <ng-container matColumnDef="contenido">
-                        <th mat-header-cell *matHeaderCellDef class="contenido"> Contenido </th>
+                        <th mat-header-cell *matHeaderCellDef class="contenido" mat-sort-header> Contenido </th>
                         <td mat-cell *matCellDef="let element" class="contenido">
                             {{element.contenido}} ml/cc</td>
                     </ng-container>
                     <ng-container matColumnDef="ciudad">
-                        <th mat-header-cell *matHeaderCellDef class="ciudades"> Ciudad </th>
+                        <th mat-header-cell *matHeaderCellDef class="ciudades" mat-sort-header> Ciudad </th>
                         <td mat-cell *matCellDef="let element" class="ciudades">
                             {{element.nombreCiudad}} </td>
                     </ng-container>

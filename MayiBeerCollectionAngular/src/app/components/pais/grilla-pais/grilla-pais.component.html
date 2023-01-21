@@ -12,9 +12,9 @@ icon="public"
                 <mat-icon matPrefix class="my-icon">search</mat-icon>
             </mat-form-field>
             <div class="col-sm-12 grilla">
-                <table mat-table [dataSource]="dataSource" class="tabla" #table>                          
+                <table mat-table [dataSource]="dataSource" class="tabla" #table matSort (matSortChange)="announceSortChange($event)">                          
                     <ng-container matColumnDef="nombre">
-                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
                         <td mat-cell *matCellDef="let element">
                             {{element.nombre}} </td>
                     </ng-container>
@@ -32,7 +32,7 @@ icon="public"
                                             <mat-icon style="cursor: pointer;">delete</mat-icon>                                    
                                         </button>
                                         &nbsp;&nbsp;
-                                        <button mat-mini-fab color="warn" (click)="verCiudades(element)" matTooltip="Ver ciudades">                                    
+                                        <button mat-mini-fab class="warn" color="warn" (click)="verCiudades(element)" matTooltip="Ver ciudades">                                    
                                             <mat-icon style="cursor: pointer;">location_city</mat-icon>                                    
                                         </button>
                                     </div>

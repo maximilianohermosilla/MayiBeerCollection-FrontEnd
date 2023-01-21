@@ -1,7 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Cerveza } from 'src/app/models/cerveza';
 import { Ciudad } from 'src/app/models/ciudad';
@@ -23,11 +24,11 @@ import { CervezaComponent } from '../cerveza.component';
   styleUrls: ['./grilla-cerveza.component.css']
 })
 export class GrillaCervezaComponent {
-  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
-  @ViewChild(MatSort, {static: true}) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource: any;
-  nombreColumnas: string[] = ["nombre", "marca", "estilo", "ibu", "alcohol", "contenido", "ciudad", "acciones"];
+  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
+  @ViewChild(MatSort) sort!: MatSort; 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  nombreColumnas: string[] = ["nombre", "nombreMarca", "nombreEstilo", "ibu", "alcohol", "contenido", "ciudad", "acciones"];
  
   listaPaises: Pais[] = [];
   listaCiudades: Ciudad[] = [];
@@ -35,13 +36,21 @@ export class GrillaCervezaComponent {
   listaEstilos: Estilo[] = [];
 
   constructor(private servicioCerveza: CervezaService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, public spinnerService: SpinnerService,
-    private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService) { }
+    private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioCiudad: CiudadService, private servicioPais: PaisService, private liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.servicioCerveza.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;      
+      this.dataSource.sort = this.sort;
     });
+    this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
+      if (typeof data[sortHeaderId] === 'string') {
+        return data[sortHeaderId].toLocaleLowerCase();
+      }
+    
+      return data[sortHeaderId];
+    };
     this.listarPaises();
     this.listarCiudades();
     this.listarMarcas();
@@ -122,11 +131,18 @@ export class GrillaCervezaComponent {
         } else {
         }
       });      
-  }
-  
+  }  
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  announceSortChange(sort: Sort){
+    if (sort.direction){
+      this.liveAnnouncer.announce('Sorted${sort.direction}ending');
+    }
+    else{
+      this.liveAnnouncer.announce('sorting cleared');
+    }
+  }
 }

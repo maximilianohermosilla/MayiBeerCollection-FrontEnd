@@ -23,6 +23,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule,
     MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
   ],
   exports: [
     MatFormFieldModule,
@@ -65,7 +67,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
   ]
 })
 export class SharedModule { }

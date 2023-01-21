@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { LoginService } from 'src/app/services/login.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TokenService } from 'src/app/services/token.service';
+import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent {
   perfil: string = "";
   errMsj: string = "";
 
-  constructor(private formBuilder: FormBuilder, private authService: LoginService, private route: Router, private tokenService: TokenService, private spinnerService: SpinnerService, public refDialog: MatDialogRef<LoginComponent>){
+  constructor(private formBuilder: FormBuilder, private authService: LoginService, private route: Router, private tokenService: TokenService, 
+    private spinnerService: SpinnerService, public refDialog: MatDialogRef<LoginComponent>, public dialogoConfirmacion: MatDialog){
 
   this.formGroup = this.formBuilder.group({
     Login: ['',[Validators.required]],
@@ -67,18 +69,39 @@ export class LoginComponent {
       this.isLogged = true;
       this.isLoginFail = false;    
       this.perfil = data.role;
+      this.dialogoConfirmacion.open(DialogComponent, {
+        width: '400px', data: {
+          titulo: "Confirmación",
+          mensaje: "Acceso Correcto",
+          icono: "check_circle",
+          clase: "class-success"
+        }
+      });
       this.refDialog.close(this.loginUsuario);   
     },
     error => {
+      console.log(error);
       if (error.status >= 400){
         error.error = "Usuario o contraseña incorrectas";
       }
-      this.isLoginFail = true;
-      this.isLogged = false;     
-      this.errMsj = error;
-      //console.log("error: ", this.errMsj);      
+      else if (error.status == 0){
+        error.error = "No es posible iniciar sesión. Consulte con su administrador";
+      }
+      else{
+        this.isLoginFail = true;
+        this.isLogged = false;     
+        this.errMsj = error; 
+        this.refDialog.close(this.loginUsuario);   
+      }
+      this.dialogoConfirmacion.open(DialogComponent, {
+        data: {
+          titulo: "Error",
+          mensaje: error.error,
+          icono: "warning",
+          clase: "class-error"
+        }
+      })
       this.spinnerService.hide(); 
-      this.refDialog.close(this.loginUsuario);    
     }
     )
   }

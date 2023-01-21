@@ -82,7 +82,7 @@ mat-header-row{
         width: 25px;
     }
 
-    .green>mat-icon, .delete>mat-icon{
+    .green>mat-icon, .delete>mat-icon, .warn>mat-icon{
         font-size: 14px;
         height: 14px;
         width: 14px;

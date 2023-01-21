@@ -23,7 +23,7 @@ export class GrillaCiudadComponent  implements AfterViewInit {
   @ViewChild(MatSort) sort?: MatSort;
   dataSource: any;
   listaPaises: Pais[] = [];
-  nombreColumnas: string[] = ["nombre", "pais", "acciones"];
+  nombreColumnas: string[] = ["nombre", "paisNombre", "acciones"];
 
   constructor(private servicioCiudad: CiudadService, private servicioPais: PaisService, public spinnerService: SpinnerService,
      public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private _liveAnnouncer: LiveAnnouncer) { }
@@ -97,16 +97,12 @@ export class GrillaCiudadComponent  implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  announceSortChange(sortState: any) {
-    console.log(sortState);
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+  announceSortChange(sort: Sort){
+    if (sort.direction){
+      this._liveAnnouncer.announce('Sorted${sort.direction}ending');
+    }
+    else{
+      this._liveAnnouncer.announce('sorting cleared');
     }
   }
 

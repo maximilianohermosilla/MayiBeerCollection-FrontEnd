@@ -44,7 +44,11 @@ mat-header-row{
 .example-flex-container {
     display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
+}
+
+.example-button-row {
+    padding-right: 5px;
+    margin-right: 5px;
 }
   
 .example-button-container {
@@ -70,6 +74,12 @@ app-banner-title{
 }
 
 .search{
-    padding: 0 20%;
+    padding: 0 2%;
+    width: 100%;
+}
+
+.title{
+    color: white;
+    text-align: center;
     width: 100%;
 }

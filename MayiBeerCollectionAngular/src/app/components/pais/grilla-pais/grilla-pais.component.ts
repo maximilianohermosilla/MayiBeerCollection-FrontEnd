@@ -6,10 +6,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PaisComponent } from '../pais.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { Pais } from 'src/app/models/pais';
-import { GrillaCiudadComponent } from '../../ciudad/grilla-ciudad/grilla-ciudad.component';
 import { GrillaPaisCiudadComponent } from '../grilla-pais-ciudad/grilla-pais-ciudad.component';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { MatSort, Sort } from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -20,17 +21,19 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class GrillaPaisComponent implements OnInit{
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioPais: PaisService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.servicioPais.GetAll().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);      
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;      
+      this.dataSource.sort = this.sort;
     })
   }
   
@@ -66,7 +69,7 @@ export class GrillaPaisComponent implements OnInit{
 
   verCiudades(event: any) {
     const dialogRef = this.dialog.open(GrillaPaisCiudadComponent,{
-      width: '640px',disableClose: false, data: {
+      width: '640px', minWidth: '320px',  maxHeight: '80vh', disableClose: false, data: {
         title: "Ciudades",
         pais: event,
         ciudades: event.ciudades
@@ -114,5 +117,13 @@ export class GrillaPaisComponent implements OnInit{
         }   
     }); 
   }
-
+  
+  announceSortChange(sort: Sort){
+    if (sort.direction){
+      this.liveAnnouncer.announce('Sorted${sort.direction}ending');
+    }
+    else{
+      this.liveAnnouncer.announce('sorting cleared');
+    }
+  }
 }

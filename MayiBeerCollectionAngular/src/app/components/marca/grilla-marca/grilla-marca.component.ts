@@ -1,6 +1,8 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
@@ -17,18 +19,20 @@ import { MarcaComponent } from '../marca.component';
 export class GrillaMarcaComponent implements OnInit{
   @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   dataSource: any;
   nombreColumnas: string[] = ["nombre", "acciones"];
   title = "";
 
-  constructor(private servicioMarca: MarcaService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog) { }
+  constructor(private servicioMarca: MarcaService, public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private liveAnnouncer: LiveAnnouncer) { }
 
   ngOnInit(): void {
     this.spinnerService.show();
     this.servicioMarca.GetAllProxy().subscribe((rta: any[]) => {
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }  
   
@@ -78,5 +82,14 @@ export class GrillaMarcaComponent implements OnInit{
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
+  announceSortChange(sort: Sort){
+    if (sort.direction){
+      this.liveAnnouncer.announce('Sorted${sort.direction}ending');
+    }
+    else{
+      this.liveAnnouncer.announce('sorting cleared');
+    }
   }
 }
