@@ -21,6 +21,26 @@
 </div>
 <br>
 
+<div *ngFor="let cantidad of cantidades" class="container-fluid" hidden>
+    <h1>{{cantidad.name}}: {{cantidad.value}}</h1>   
+    <mat-progress-bar mode="determinate" value={{cantidad.value}} color="accent"></mat-progress-bar> 
+</div>
+
+<div class="spacer"></div>    
+<div class="container-fluid" id="total">
+    
+    <ng-image-slider class="" [images]="cantidadesObject"    
+    [infinite]="true"
+    [autoSlide]="3"
+    [animationSpeed]="0.5"
+    [slideImage]="1"
+    [imageSize]="{width: '300px', height:'300px'}"    
+    [imagePopup]="false"
+     #nav0
+     ></ng-image-slider>
+</div> 
+
+<div class="spacer"></div>
 <div class="container-fluid">
     <mat-divider></mat-divider>
     <div class="title">
@@ -45,6 +65,8 @@
     <div class="title">
         Paises
     </div>
+</div>
+<div class="container-fluid" id="paises">
     <ng-image-slider [images]="paisesObject"
     [infinite]="true"
     [autoSlide]="2"

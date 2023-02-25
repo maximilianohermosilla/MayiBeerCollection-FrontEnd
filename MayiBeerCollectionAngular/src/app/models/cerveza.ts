@@ -5,11 +5,11 @@ export interface Cerveza{
     alcohol?: number;
     idMarca: number;
     nombreMarca:string;
-    idEstilo: number;
+    idEstilo?: number;
     nombreEstilo: string;
-    idCiudad: number;
+    idCiudad?: number;
     nombreCiudad: string;
-    idPais: number;
+    idPais?: number;
     nombrePais: string;
     observaciones: string;
     contenido?: number;

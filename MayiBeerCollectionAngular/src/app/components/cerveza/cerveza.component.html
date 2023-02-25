@@ -10,20 +10,26 @@
             <mat-label>Nombre</mat-label>
             <input formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Marca</mat-label>
-            <mat-select formControlName="marca"  [(ngModel)]="datos.idMarca">
-                <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="form-add">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="marca"  [(ngModel)]="datos.idMarca">
+                    <mat-option *ngFor="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('marca')"><mat-icon>add</mat-icon></button>
+        </div>
         <p *ngIf="(formGroup.controls['contenido'].hasError('min') || formGroup.controls['contenido'].hasError('max') || formGroup.controls['contenido'].hasError('required')) && formGroup.controls['contenido'].touched"
          class="text-hidden">_</p>
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Estilo</mat-label>
-            <mat-select formControlName="estilo"  [(ngModel)]="datos.idEstilo">
-                <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="form-add">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Estilo</mat-label>
+                <mat-select formControlName="estilo"  [(ngModel)]="datos.idEstilo">
+                    <mat-option *ngFor="let estilo of listaEstilos" [value]="estilo.id">{{estilo.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('estilo')"><mat-icon>add</mat-icon></button>
+        </div>        
         <mat-form-field class="form-half" color="accent" appearance="fill">
             <p *ngIf="(formGroup.controls['ibu'].hasError('min') || formGroup.controls['ibu'].hasError('max')) && formGroup.controls['ibu'].touched" class="text-danger">0 - 100</p>          
             <mat-label>Ibu</mat-label>
@@ -37,21 +43,27 @@
     </div>
     <div class="col-md-4">
         <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-hidden">_</p>          
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Pais</mat-label>
-            <mat-select formControlName="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="datos.idPais">
-                <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
-            </mat-select>
-        </mat-form-field>     
-        <mat-form-field color="accent" appearance="fill">
-            <mat-label>Ciudad</mat-label>
-            <mat-select formControlName="ciudad"  [(ngModel)]="datos.idCiudad">
-                <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
-            </mat-select>
-        </mat-form-field>  
+        <div class="form-add">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Pais</mat-label>
+                <mat-select formControlName="pais" (ngModelChange)="actualizarCiudades($event)" [(ngModel)]="datos.idPais">
+                    <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field> 
+            <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('pais')"><mat-icon>add</mat-icon></button>
+        </div>   
+        <div class="form-add"> 
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Ciudad</mat-label>
+                <mat-select formControlName="ciudad"  [(ngModel)]="datos.idCiudad">
+                    <mat-option *ngFor="let ciudad of listaCiudades" [value]="ciudad.id">{{ciudad.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field> 
+            <button matSuffix class="btn btn-outline-success add-button" (click)="openDialog('ciudad')"><mat-icon>add</mat-icon></button>
+        </div>  
         <p *ngIf="formGroup.controls['contenido'].hasError('required') && formGroup.controls['contenido'].touched" class="text-danger">El valor es equerido</p>          
         <mat-form-field color="accent" appearance="fill">
-            <mat-label>Contenido*</mat-label>
+            <mat-label>Contenido</mat-label>
             <p *ngIf="(formGroup.controls['contenido'].hasError('min') || formGroup.controls['contenido'].hasError('max')) && formGroup.controls['contenido'].touched" class="text-danger">0 - 1000</p>
             <input formControlName="contenido" min="0" max="1000" matInput type="number" placeholder="" [(ngModel)]="datos.contenido" required>
         </mat-form-field>        

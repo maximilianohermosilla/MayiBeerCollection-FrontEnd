@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { ImageSlide } from 'src/app/models/image-slide';
 import { Marca } from 'src/app/models/marca';
+import { Reporte } from 'src/app/models/reporte';
+import { CervezaService } from 'src/app/services/cerveza.service';
 import { EstiloService } from 'src/app/services/estilo.service';
 import { MarcaService } from 'src/app/services/marca.service';
 import { PaisService } from 'src/app/services/pais.service';
@@ -33,9 +35,11 @@ export class LandingPageComponent {
   marcasObject = Array();
   estilosObject = Array();
   paisesObject = Array();
+  cantidadesObject = Array();
+  cantidades: Reporte[] = [];
 
-  constructor(private servicioMarca: MarcaService, private servicioEstilos: EstiloService, private servicioPaises: PaisService, public spinnerService: SpinnerService,
-    public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private sanitizer: DomSanitizer, private router: Router) {  
+  constructor(private servicioMarca: MarcaService, private servicioEstilos: EstiloService, private servicioPaises: PaisService, private servicioCerveza: CervezaService,
+    public spinnerService: SpinnerService, public dialog: MatDialog, public dialogoConfirmacion: MatDialog, private sanitizer: DomSanitizer, private router: Router) {  
 
   }
   
@@ -43,7 +47,7 @@ export class LandingPageComponent {
     this.getMarcas();
     this.getEstilos();
     this.getPaises();
-
+    this.getCantidades();
   }
 
   selectFile(event: Event): void{
@@ -132,6 +136,22 @@ export class LandingPageComponent {
         this.paisesObject.push(imageSlide);
       });
     })
+   }
+
+   getCantidades(){
+    this.servicioCerveza.GetCantidades().subscribe((rta: any[]) => {
+      this.cantidades = rta;  
+      this.cantidadesObject.push({id: 0, image: '', thumbImage: '', alt: '', title: ''});
+      this.cantidades.forEach(element => {
+        var imageSlide: ImageSlide = {id: 0, image: '', thumbImage: '', alt: '', title: ''} ;
+        //imageSlide.id = element.id;
+        imageSlide.image = "/assets/img/png/" + element.name + ".png";
+        imageSlide.thumbImage = "/assets/img/png/" + element.name + ".png";
+        imageSlide.alt = element.value.toString();
+        imageSlide.title = element.value.toString() + " " + element.name;
+        this.cantidadesObject.push(imageSlide);
+      }); 
+    });
    }
 
 }

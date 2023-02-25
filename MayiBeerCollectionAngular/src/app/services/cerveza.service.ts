@@ -21,9 +21,29 @@ export class CervezaService {
   public GetAll(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl + "listar");    
   }
+  
+    public GetAllProxy(): Observable<any> {
+      return this.http.get<any[]>(this.apiUrl + "listarProxy");    
+    }
 
-  public GetAllProxy(): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl + "listarProxy");    
+  public GetAllMarcas(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarMarcas");    
+  }
+
+  public GetAllEstilos(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarEstilos");    
+  }
+
+  public GetAllCiudades(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarCiudades");    
+  }
+
+  public GetAllPaises(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarPaises");    
+  }
+
+  public GetCantidades(): Observable<any> {
+    return this.http.get<any[]>(this.apiUrl + "listarCantidades");    
   }
 
   public GetBusqueda(busqueda: Busqueda): Observable<any> {

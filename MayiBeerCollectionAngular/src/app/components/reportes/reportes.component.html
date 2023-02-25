@@ -1,0 +1,11 @@
+<div *ngFor="let cantidad of cantidades" class="container" >
+    <h1>{{cantidad.name}}: {{cantidad.value}}</h1>   
+    <mat-progress-bar mode="determinate" value={{cantidad.value}} color="accent"></mat-progress-bar> 
+</div>
+<app-pie-chart [totalMarcas]="marcas"></app-pie-chart>
+<mat-progress-bar mode="query" color="accent"></mat-progress-bar> 
+<app-pie-chart [totalEstilos]="estilos"></app-pie-chart>
+<mat-progress-bar mode="query" color="warn"></mat-progress-bar> 
+<app-pie-chart [totalPaises]="paises"></app-pie-chart>
+<mat-progress-bar mode="query"></mat-progress-bar> 
+<app-pie-chart [totalCiudades]="ciudades"></app-pie-chart>

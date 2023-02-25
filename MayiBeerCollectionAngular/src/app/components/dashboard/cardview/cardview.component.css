@@ -2,17 +2,24 @@
     padding: 30px;
     color: black;
     background-color: rgba(255,255,255,1);
+    height: 80vh;
 }
 
 .text-center{
     display: flex;
     justify-content: space-between;
     text-align: center;
-    background-color: rgba(255,255,255,0.6)
+    padding: 0px 5px;
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    /*background-color: rgba(255,255,255,0.6);*/
 }
 
 .text{
-    background-color: rgba(255,255,255,0.6)
+    /*background-color: rgba(255,255,255,0.6);*/
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    padding: 0px 5px;
 }
 
 .center{
@@ -39,6 +46,7 @@ mat-label{
 }
 
 .center-button{
+    bottom: 0;
     padding: 20px 0px;
 }
 
@@ -51,8 +59,27 @@ mat-label{
     padding: 0;
 }
 
-.data{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-size: auto;
+.button{
+    padding: 8px;
+    width: 100%;
 }
+
+#data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.background{
+    height: 100%;
+}
+
+/* #data{
+    -khtml-opacity:.80; 
+    -moz-opacity:.80; 
+    -ms-filter:"alpha(opacity=80)";
+     filter:alpha(opacity=80);
+     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.8);
+     opacity:.80; 
+} */

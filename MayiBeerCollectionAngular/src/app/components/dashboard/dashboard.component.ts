@@ -113,7 +113,7 @@ export class DashboardComponent {
   
   openDialog(): void {
     const dialogRef = this.dialog.open(CervezaComponent,{
-      width: '800px',disableClose: false, data: {
+      width: '800px', minWidth: '340px',disableClose: false, data: {
         title: "Nueva Cerveza",
         cerveza: null,
         paises: this.listaPaises,
@@ -133,6 +133,7 @@ export class DashboardComponent {
     const dialogRef = this.dialog.open(CardviewComponent,{
       width: '600px',
       disableClose: false,
+      maxHeight: '90vh',
       maxWidth: '90vw',
       data: {
         title: event.nombre,

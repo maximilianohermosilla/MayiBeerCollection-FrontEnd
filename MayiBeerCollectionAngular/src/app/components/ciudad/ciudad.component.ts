@@ -25,7 +25,7 @@ export class CiudadComponent {
   constructor(private servicioCiudad: CiudadService, private formBuilder: FormBuilder,
      public refDialog: MatDialogRef<CiudadComponent>, public spinnerService: SpinnerService,
      public dialogoConfirmacion: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: { ciudad: any, title: string, paises: any[] }) {
+    @Inject(MAT_DIALOG_DATA) public data: { ciudad: any, title: string, paises: any[] , idPais: any }) {
     
     this.title = "Nueva ciudad";
     if (data.ciudad != undefined) {
@@ -37,7 +37,7 @@ export class CiudadComponent {
       this.title = data.title;
       this.listaPaises = data.paises;
     }
-
+    this.datos.idPais = data.idPais;
 
     this.formGroup = this.formBuilder.group({
       nombre: ['',[Validators.required]],

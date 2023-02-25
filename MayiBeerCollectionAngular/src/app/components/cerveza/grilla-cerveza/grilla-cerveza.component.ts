@@ -40,21 +40,21 @@ export class GrillaCervezaComponent {
 
   ngOnInit(): void {
     this.servicioCerveza.GetAllProxy().subscribe((rta: any[]) => {
+      this.listarPaises();
+      this.listarCiudades();
+      this.listarMarcas();
+      this.listarEstilos();
       this.dataSource = new MatTableDataSource<any[]>(rta);
       this.dataSource.paginator = this.paginator;      
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
+        if (typeof data[sortHeaderId] === 'string') {
+          return data[sortHeaderId].toLocaleLowerCase();
+        }
+      
+        return data[sortHeaderId];
+      };
     });
-    this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
-      if (typeof data[sortHeaderId] === 'string') {
-        return data[sortHeaderId].toLocaleLowerCase();
-      }
-    
-      return data[sortHeaderId];
-    };
-    this.listarPaises();
-    this.listarCiudades();
-    this.listarMarcas();
-    this.listarEstilos();
   }
 
   listarPaises(){
@@ -84,7 +84,7 @@ export class GrillaCervezaComponent {
   
   openDialog(): void {
     const dialogRef = this.dialog.open(CervezaComponent,{
-      width: '800px',disableClose: false, data: {
+      width: '800px', minWidth: '340px',disableClose: false, data: {
         title: "Nueva Cerveza",
         cerveza: null,
         paises: this.listaPaises,

@@ -6,11 +6,11 @@
         <form [formGroup]="formGroup" class="form-horizontal row">
         <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-danger">El valor es requerido</p>
         <mat-form-field color="accent" appearance="fill">
-            <mat-label>Nombre *</mat-label>
+            <mat-label>Nombre</mat-label>
             <input formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
         <mat-form-field color="accent" appearance="fill">
-            <mat-label>País *</mat-label>
+            <mat-label>País</mat-label>
             <mat-select formControlName="pais" min="1" [(ngModel)]="datos.idPais" required>
                 <mat-option *ngFor="let pais of listaPaises" [value]="pais.id">{{pais.nombre}}</mat-option>
             </mat-select>

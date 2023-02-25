@@ -129,6 +129,7 @@
 
   .container-fluid{
     padding: 0 10%;
+    font-size: 25px;
 }
 
 a:link, a:visited, a:active {
@@ -255,6 +256,16 @@ div .dot {
 
 /* */
 
+#total{
+  padding: 0 20%;
+  font-size: 50px;
+}
+
+#paises{
+  padding: 0 20%;
+}
+
+
 @media screen and (max-width: 575px) {
     .search{
         margin-top: 5px;
@@ -286,6 +297,14 @@ div .dot {
 
     .container-fluid{
         padding: 0 30px;
+    }
+
+    #total{
+      padding: 0 30px;
+    }
+    
+    #paises{
+      padding: 0 30px;
     }
 
     .wrapper {

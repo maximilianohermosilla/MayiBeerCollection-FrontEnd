@@ -6,7 +6,7 @@
         <form [formGroup]="formGroup" class="form-horizontal row">
         <p *ngIf="formGroup.controls['nombre'].hasError('required') && formGroup.controls['nombre'].touched" class="text-danger">El valor es requerido</p>
         <mat-form-field color="accent" appearance="fill">
-            <mat-label>Nombre *</mat-label>
+            <mat-label>Nombre</mat-label>
             <input  formControlName="nombre" matInput type="text" placeholder="" [(ngModel)]="datos.nombre">
         </mat-form-field>
         <div class="center">

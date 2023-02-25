@@ -1,0 +1,28 @@
+.title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 2em;
+    font-size: 4em;
+    font-weight: 700;
+    background: -webkit-linear-gradient(#FFFFFF, #777777);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+@media screen and (max-width: 575px) { 
+    .container{
+        display: block;
+        max-width: 360px;
+        overflow: hidden;
+    }
+}
+

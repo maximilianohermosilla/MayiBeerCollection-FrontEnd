@@ -16,13 +16,13 @@
         <br>
         <mat-divider></mat-divider>
         <mat-card-content>
-            <div class="row">
+            <div class="">
                 <form [formGroup]="formGroup" class="form-horizontal row" (ngSubmit)="loginUser()">
-                    <mat-form-field color="accent" appearance="fill">
+                    <mat-form-field color="accent" appearance="fill" class="form-field">
                         <mat-label>Usuario</mat-label>
                         <input formControlName="Login" matInput type="text" placeholder="" autocomplete="off">
                     </mat-form-field>
-                    <mat-form-field color="accent" appearance="fill">
+                    <mat-form-field color="accent" appearance="fill" class="form-field">
                         <mat-label>Contraseña</mat-label>
                         <input formControlName="Password" matInput type="password"  autocomplete="off">
                     </mat-form-field>

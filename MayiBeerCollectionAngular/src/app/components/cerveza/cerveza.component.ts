@@ -12,7 +12,14 @@ import { Marca } from 'src/app/models/marca';
 import { Pais } from 'src/app/models/pais';
 import { CervezaService } from 'src/app/services/cerveza.service';
 import { CiudadService } from 'src/app/services/ciudad.service';
+import { EstiloService } from 'src/app/services/estilo.service';
+import { MarcaService } from 'src/app/services/marca.service';
+import { PaisService } from 'src/app/services/pais.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { CiudadComponent } from '../ciudad/ciudad.component';
+import { EstiloComponent } from '../estilo/estilo.component';
+import { MarcaComponent } from '../marca/marca.component';
+import { PaisComponent } from '../pais/pais.component';
 import { DialogComponent } from '../shared/dialog/dialog.component';
 
 @Component({
@@ -30,11 +37,11 @@ export class CervezaComponent{
     nombre: "",
     idMarca: 0,
     nombreMarca: "",
-    idEstilo: 0,
+    idEstilo: undefined,
     nombreEstilo: "",
-    idCiudad: 0,
+    idCiudad: undefined,
     nombreCiudad: "",
-    idPais: 0,
+    idPais: undefined,
     nombrePais: "",
     ibu: undefined,
     alcohol: undefined,
@@ -49,7 +56,7 @@ export class CervezaComponent{
   listaCiudades: Ciudad[] = [];
   listaMarcas: Marca[] = [];
   listaEstilos: Estilo[] = [];
-
+  idPaisSelected: number = 0;
   
   base64: string = ''
   fileSelected?: Blob;
@@ -68,6 +75,7 @@ export class CervezaComponent{
 
   constructor(private formBuilder: FormBuilder, public refDialog: MatDialogRef<CervezaComponent>, public dialogoConfirmacion: MatDialog, private imageCompress: NgxImageCompressService,
     private sanitizer: DomSanitizer, private servicioCiudad: CiudadService, private servicioCerveza: CervezaService, public spinnerService: SpinnerService,
+    private servicioMarca: MarcaService, private servicioEstilo: EstiloService, private servicioPais: PaisService,
     @Inject(MAT_DIALOG_DATA) public data: { cerveza: any, title: string, paises: any[], ciudades: any[], marcas: any[], estilos: any[] }) {
     
     this.title = "Nueva Cerveza";
@@ -113,11 +121,11 @@ export class CervezaComponent{
       nombre: this.datos.nombre,
       idMarca: this.datos.idMarca,
       nombreMarca: this.datos.nombreMarca,
-      idEstilo: this.datos.idEstilo,
+      idEstilo: this.datos.idEstilo != 0? this.datos.idEstilo: undefined,
       nombreEstilo: this.datos.nombreEstilo,
-      idCiudad: this.datos.idCiudad,
+      idCiudad: this.datos.idCiudad != 0? this.datos.idCiudad: undefined,
       nombreCiudad: this.datos.nombreCiudad,
-      idPais: this.datos.idPais,
+      idPais: this.datos.idPais != 0? this.datos.idPais: undefined,
       nombrePais: this.datos.nombrePais,
       ibu: this.datos.ibu,
       alcohol: this.datos.alcohol,
@@ -217,6 +225,7 @@ export class CervezaComponent{
   }
 
   actualizarCiudades(idPais: number){
+    this.idPaisSelected = idPais;
     if(idPais > 0){
       this.listarCiudades(idPais);
     }
@@ -289,6 +298,97 @@ export class CervezaComponent{
         this.imageFileSanitized = this.sanitizer.bypassSecurityTrustResourceUrl(this.base64);
         this.spinnerService.hide();
       }, 1000); 
+    }
+
+    openDialog(tipo: string): void {        
+      switch (tipo) {
+        case 'marca':
+           this.openABMMarca();
+          break;
+        case 'estilo':
+           this.openABMEstilo();
+        break;
+        case 'pais':
+           this.openABMPais();
+        break;
+        case 'ciudad':
+          this.openABMCiudad();
+       break;
+        default:        
+          break;
+      }    
+    }
+  
+    openABMMarca(){
+      const dialogRef = this.dialogoConfirmacion.open(MarcaComponent,{
+        width: '640px', minWidth: '340px',disableClose: false, data: {
+          title: "Nueva Marca",
+          marca: null
+        } 
+      });
+  
+      dialogRef.afterClosed().subscribe( res => {
+        this.listarMarcas();
+      })
+    }
+  
+    openABMEstilo(){
+      const dialogRef = this.dialogoConfirmacion.open(EstiloComponent,{
+        width: '640px', minWidth: '340px',disableClose: false, data: {
+          title: "Nuevo Estilo",
+          estilo: null
+        } 
+      });
+  
+      dialogRef.afterClosed().subscribe( res => {
+        this.listarEstilos();
+      })
+    }
+  
+    openABMPais(){
+      const dialogRef = this.dialogoConfirmacion.open(PaisComponent,{
+        width: '640px', minWidth: '340px',disableClose: false, data: {
+          title: "Nuevo País",
+          pais: null
+        } 
+      });
+  
+      dialogRef.afterClosed().subscribe( res => {
+        this.listarPaises();
+      })
+    }
+  
+    openABMCiudad(){
+      const dialogRef = this.dialogoConfirmacion.open(CiudadComponent,{
+        width: '640px', minWidth: '340px',disableClose: false, data: {
+          title: "Nueva Ciudad",
+          ciudad: null,
+          paises: this.listaPaises,
+          idPais: this.idPaisSelected
+        } 
+      });
+  
+      dialogRef.afterClosed().subscribe( res => {
+        this.listarCiudades(this.idPaisSelected);
+      })
+    }
+
+    listarPaises(){
+      this.servicioPais.GetAllProxy().subscribe((rta: Ciudad[]) => {
+        this.listaPaises = rta;    
+      });
+    }
+
+    listarMarcas(){
+      this.servicioMarca.GetAllProxy().subscribe((rta: Marca[]) => {
+        this.listaMarcas = rta;    
+      });
+    }
+  
+    listarEstilos(){
+      this.servicioEstilo.GetAllProxy().subscribe((rta: Estilo[]) => {
+        this.listaEstilos = rta;    
+      });
     }
 
 }

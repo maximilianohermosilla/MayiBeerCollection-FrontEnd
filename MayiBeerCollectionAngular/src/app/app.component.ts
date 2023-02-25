@@ -43,6 +43,7 @@ export class AppComponent {
       this.fillerNav.push({nombre: "Ciudades",routerlink: "ciudades",icon: "location_city"});       
     }
     this.fillerNav.push({nombre: "Búsquedas",routerlink: "dashboard",icon: "search"}); 
+    this.fillerNav.push({nombre: "Reportes",routerlink: "reportes",icon: "leaderboard"}); 
   }
 
   ngOnDestroy(): void {
@@ -52,7 +53,8 @@ export class AppComponent {
   login(){
     this.spinnerService.show();
     const dialogRef = this.dialog.open(LoginComponent,{
-      width: '640px',disableClose: false, data: {
+      width: '640px',
+      maxWidth: '90vw',disableClose: false, data: {
         title: "Ingresar",        
       } 
     });

@@ -1,14 +1,16 @@
 <app-spinner *ngIf="spinnerService.blockUI | async"></app-spinner>
-<div class="container">
+<div class="container background" [ngStyle]="{'background-image': 'url(' + imageFileSanitized + ')',  'background-size': 'cover',
+'background-repeat': 'no-repeat', 'height': '100%'}">
     <button mat-icon-button aria-label="close dialog" mat-dialog-close class="close">
         <mat-icon>close</mat-icon>
     </button>
-    <h1 class="center">{{title}}</h1>
+    <h1 class="text center">{{title}}</h1>
+    <div class="text center center-button"  *ngIf="isAdmin">                
+        <button type="button" class="btn btn-success text-center button" (click)="editar(datos)"><mat-icon style="cursor: pointer; margin-right: 5px;">edit_square</mat-icon>Editar<mat-icon></mat-icon></button>
+    </div>
     <mat-divider></mat-divider><br>       
-    <div class="row">
-        <div class="col-12" id="data" [ngStyle]="{'background-image': 'url(' + imageFileSanitized + ')',  'background-size': 'cover',
-        'background-repeat': 'no-repeat', 'height': '100%'}">  
-            
+    <div class="">
+        <div class="col-12" id="data">             
             <div class="text-center">
                 <mat-label class="label">Marca:</mat-label><mat-label class="label-right">{{datos.nombreMarca}}</mat-label>   
             </div>
@@ -36,14 +38,8 @@
             <div class="text">
                 <mat-label>{{datos.observaciones}}</mat-label>
             </div>
-            <div class="text center center-button"  *ngIf="isAdmin">                
-                <button type="button" class="btn btn-outline-success text-center" (click)="editar(datos)"><mat-icon style="cursor: pointer; margin-right: 5px;">edit_square</mat-icon>Editar</button>
-            </div>
-        </div>
-        <div class="col-12" hidden>
-            <div>
-                <img id="image-beer" [src]="imageFileSanitized" alt="Imagen" style="width: 100%; max-height: 50vh;">
-            </div>
+            
+            <div class="spacer"></div>
         </div>     
     </div>
 

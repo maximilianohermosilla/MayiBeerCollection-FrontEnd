@@ -19,7 +19,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -48,7 +48,8 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     MatCardModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule
   ],
   exports: [
     MatFormFieldModule,
@@ -68,7 +69,8 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     HttpClientModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule
   ]
 })
 export class SharedModule { }

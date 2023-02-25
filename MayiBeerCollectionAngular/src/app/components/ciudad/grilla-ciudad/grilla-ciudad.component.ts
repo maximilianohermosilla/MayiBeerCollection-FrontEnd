@@ -53,7 +53,8 @@ export class GrillaCiudadComponent  implements AfterViewInit {
       width: '640px',disableClose: false, data: {
         title: "Nuevo Ciudad",
         ciudad: null,
-        paises: this.listaPaises
+        paises: this.listaPaises,
+        idPais: 0
       } 
     });
 
@@ -67,7 +68,8 @@ export class GrillaCiudadComponent  implements AfterViewInit {
       width: '640px',disableClose: false, data: {
         title: "Editar Ciudad",
         ciudad: event,
-        paises: this.listaPaises
+        paises: this.listaPaises,
+        idPais: event.idPais
       } 
     });
 

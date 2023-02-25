@@ -7,6 +7,7 @@ import { GrillaEstiloComponent } from './components/estilo/grilla-estilo/grilla-
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { GrillaMarcaComponent } from './components/marca/grilla-marca/grilla-marca.component';
 import { GrillaPaisComponent } from './components/pais/grilla-pais/grilla-pais.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 import { GuardGuard } from './shared/guards/guard.guard';
 
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'menu',
     component: LandingPageComponent
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent
   },
   {
     path: '404',

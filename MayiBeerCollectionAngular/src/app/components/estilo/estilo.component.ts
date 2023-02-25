@@ -41,7 +41,7 @@ export class EstiloComponent implements OnInit{
      private sanitizer: DomSanitizer, public dialogoConfirmacion: MatDialog, private imageCompress: NgxImageCompressService,
     @Inject(MAT_DIALOG_DATA) public data: { estilo: any; title: string; }) {
     
-    this.title = "Nueva Marca";
+    this.title = "Nuevol Estilo";
 
     if (data.estilo != undefined) {
       this.datos = data.estilo;

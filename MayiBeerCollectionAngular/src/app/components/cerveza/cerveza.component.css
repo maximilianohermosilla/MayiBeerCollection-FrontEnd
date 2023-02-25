@@ -37,3 +37,25 @@ img{
 .mat-mdc-dialog-surface{
     background-color: red!important
 }
+
+.form-add{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;  
+}
+
+.button-add{
+    background-color: rgba(68, 177, 0, 0.8);
+    color: white;
+    z-index: 100;
+}
+
+.button-add:hover{
+    background-color: rgba(68, 177, 0, 1);    
+}
+
+.add-button{
+    font-size: 28px;
+    height: 58px;
+    margin-left: 2px;
+}

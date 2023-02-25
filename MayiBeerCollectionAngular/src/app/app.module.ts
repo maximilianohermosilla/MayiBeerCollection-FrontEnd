@@ -33,6 +33,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CardviewComponent } from './components/dashboard/cardview/cardview.component';
 import { LoginComponent } from './components/login/login.component';
 import { InterceptorService } from './services/interceptor.service';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { PieChartComponent } from './components/reportes/pie-chart/pie-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 @NgModule({
   declarations: [
@@ -59,7 +63,9 @@ import { InterceptorService } from './services/interceptor.service';
     LandingPageComponent,
     SpinnerComponent,
     CardviewComponent,
-    LoginComponent
+    LoginComponent,
+    ReportesComponent,
+    PieChartComponent,    
   ],
   imports: [
     NgImageSliderModule,
@@ -68,7 +74,8 @@ import { InterceptorService } from './services/interceptor.service';
     BrowserModule,
     AppRoutingModule,    
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   exports: [
     FilterPipe
